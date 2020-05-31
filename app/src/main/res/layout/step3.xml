@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EFF2F7"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/scrollview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="680dp"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:orientation="horizontal" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="9.4"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="7"
+                                    android:scaleType="fitStart"
+                                    android:src="@drawable/step4_title" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="500dp"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:gravity="center">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/step3_front_title" />
+                                </LinearLayout>
+
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="400dp">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="275dp"
+                                            android:layout_height="370dp"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_front" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="horizontal">
+
+                                        <RelativeLayout
+                                            android:layout_width="275dp"
+                                            android:layout_height="370dp">
+
+                                            <FrameLayout
+
+                                                android:id="@+id/bt2"
+                                                android:layout_width="69dp"
+                                                android:layout_height="96dp"
+                                                android:layout_marginLeft="69dp"
+                                                android:layout_marginTop="42dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click2"
+                                                    />
+
+                                                <ImageView
+                                                    android:layout_marginTop="11dp"
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+
+                                            </FrameLayout>
+
+                                            <FrameLayout
+                                                android:id="@+id/bt1"
+                                                android:layout_width="52dp"
+                                                android:layout_height="95dp"
+                                                android:layout_marginLeft="36dp"
+                                                android:layout_marginTop="54dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click1"
+                                                    android:visibility="visible" />
+
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+
+                                            </FrameLayout>
+
+
+                                            <FrameLayout
+
+                                                android:id="@+id/bt3"
+                                                android:layout_width="69dp"
+                                                android:layout_height="96dp"
+                                                android:layout_marginLeft="135.5dp"
+                                                android:layout_marginTop="42dp">
+
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click3"
+                                                    android:visibility="visible" />
+
+                                                <ImageView
+                                                    android:layout_marginTop="11dp"
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+
+                                            </FrameLayout>
+
+
+                                            <FrameLayout
+
+                                                android:id="@+id/bt4"
+                                                android:layout_width="52dp"
+                                                android:layout_height="95dp"
+                                                android:layout_marginLeft="186dp"
+                                                android:layout_marginTop="54dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click4"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
+
+
+                                            <FrameLayout
+
+                                                android:id="@+id/bt5"
+                                                android:layout_width="101.5dp"
+                                                android:layout_height="147dp"
+                                                android:layout_marginLeft="37dp"
+                                                android:layout_marginTop="118dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click5"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
+
+
+                                            <FrameLayout
+
+                                                android:id="@+id/bt6"
+                                                android:layout_width="101.5dp"
+                                                android:layout_height="147dp"
+                                                android:layout_marginLeft="136dp"
+                                                android:layout_marginTop="118dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click6"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
+
+
+                                            <FrameLayout
+
+                                                android:id="@+id/bt7"
+                                                android:layout_width="71.5dp"
+                                                android:layout_height="100dp"
+                                                android:layout_marginLeft="66dp"
+                                                android:layout_marginTop="224.8dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click7"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
+
+
+                                            <FrameLayout
+
+                                                android:id="@+id/bt8"
+                                                android:layout_width="71.5dp"
+                                                android:layout_height="100dp"
+                                                android:layout_marginLeft="136.9dp"
+                                                android:layout_marginTop="224.8dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click8"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_marginRight="10dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
+
+
+                                        </RelativeLayout>
+
+                                    </LinearLayout>
+
+                                </FrameLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="#e4e6ea" />
+
+                    <LinearLayout
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="620dp"
+                        android:background="#EFF2F7"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/step3_back_title" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="400dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="335dp"
+                                    android:layout_height="370dp"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/step3_back" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal"
+                                android:orientation="horizontal">
+
+                                <RelativeLayout
+                                    android:layout_width="335dp"
+                                    android:layout_height="370dp">
+
+                                    <FrameLayout
+
+                                        android:id="@+id/bt11"
+                                        android:layout_width="84dp"
+                                        android:layout_height="158dp"
+                                        android:layout_marginLeft="85dp"
+                                        android:layout_marginTop="100dp">
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click3"
+                                            android:visibility="visible" />
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="10dp"
+                                            android:src="@drawable/step3_check" />
+                                    </FrameLayout>
+
+
+                                    <FrameLayout
+
+                                        android:id="@+id/bt12"
+                                        android:layout_width="84dp"
+                                        android:layout_height="158dp"
+                                        android:layout_marginLeft="165.8dp"
+                                        android:layout_marginTop="100dp">
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click4"
+                                            android:visibility="visible" />
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="10dp"
+                                            android:src="@drawable/step3_check" />
+                                    </FrameLayout>
+
+
+
+                                    <FrameLayout
+
+                                        android:id="@+id/bt9"
+                                        android:layout_width="82dp"
+                                        android:layout_height="100dp"
+                                        android:layout_marginLeft="87dp"
+                                        android:layout_marginTop="41.8dp">
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click1"
+                                            android:visibility="visible" />
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/step3_check" />
+                                    </FrameLayout>
+
+
+                                    <FrameLayout
+
+                                        android:id="@+id/bt10"
+                                        android:layout_width="82dp"
+                                        android:layout_height="100dp"
+                                        android:layout_marginLeft="166dp"
+                                        android:layout_marginTop="41.4dp">
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click2"
+                                            android:visibility="visible" />
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/step3_check" />
+                                    </FrameLayout>
+
+
+                                    <FrameLayout
+
+                                        android:id="@+id/bt14"
+                                        android:layout_width="142dp"
+                                        android:layout_height="64dp"
+                                        android:layout_marginLeft="28dp"
+                                        android:layout_marginTop="280dp">
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click6"
+                                            android:visibility="visible" />
+
+                                        <ImageView
+                                            android:layout_marginLeft="20dp"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/step3_check" />
+                                    </FrameLayout>
+
+
+                                    <FrameLayout
+
+                                        android:id="@+id/bt15"
+                                        android:layout_width="142dp"
+                                        android:layout_height="64dp"
+                                        android:layout_marginLeft="168dp"
+                                        android:layout_marginTop="280dp">
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click7"
+                                            android:visibility="visible" />
+                                        <ImageView
+                                            android:layout_marginRight="20dp"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/step3_check" />
+                                    </FrameLayout>
+
+
+
+                                    <FrameLayout
+
+                                        android:id="@+id/bt13"
+                                        android:layout_width="116.5dp"
+                                        android:layout_height="74dp"
+                                        android:layout_marginLeft="109.5dp"
+                                        android:layout_marginTop="233dp">
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click5"
+                                            android:visibility="visible" />
+
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="10dp"
+                                            android:src="@drawable/step3_check" />
+
+                                    </FrameLayout>
+
+
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="3" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="4"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    android:id="@+id/backBt"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:background="@drawable/back_radius"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="이전"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="20dp" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5" />
+
+                                <TextView
+                                    android:id="@+id/nextBt"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:background="@drawable/next_radius"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="다음"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="20dp" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="3" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/backGoBt"
+            android:layout_gravity="right|bottom"
+            android:layout_width="170dp"
+            android:layout_height="70dp"
+            android:src="@drawable/step3_back_go_bt"
+            />
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

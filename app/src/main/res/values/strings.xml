@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Headache</string>
+
+    <string name="login_view"><u>보기</u></string>
+</resources>

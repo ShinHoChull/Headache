@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="alarmList"
+            type="com.m2comm.headache.views.DetaiViewActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SettingContent.SettingMainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:padding="20dp"
+                        android:src="@drawable/step_back" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="6" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:padding="17dp"
+                        android:src="@drawable/detailview_delete" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/nanum_bold"
+                    android:gravity="center"
+                    android:text="두통일기"
+                    android:textColor="#222222"
+                    android:textSize="20dp" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dedede" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8.4"
+                android:background="#EFF2F7"
+                android:orientation="vertical">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:background="#FFFFFF"
+                            android:elevation="3dp"
+                            android:orientation="vertical"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.1"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="3.4"
+                                android:orientation="horizontal"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3.9"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2.2"
+                                    android:background="@drawable/detail_icon3_back">
+
+                                    <ImageView
+                                        android:id="@+id/content_icon"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:padding="16dp"
+                                        android:src="@drawable/detail_icon3" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3.9"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.6"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.3"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2.9"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4.2"
+                                    android:background="@drawable/detail_date_board"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3.3"
+                                        android:src="@drawable/detail_clock"
+                                        android:padding="4dp"
+                                        />
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="8"
+                                        android:text="2020.03.06 (화)"
+                                        android:textColor="#222222"
+                                        android:gravity="center_vertical"
+                                        android:textSize="13.5dp"
+                                        android:fontFamily="@font/nanum_bold"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2.9"/>
+
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="0.8"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1.4"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="5"
+                                        android:textColor="#222222"
+                                        android:textSize="15dp"
+                                        android:text="강도"
+                                        android:gravity="center"
+                                        />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="5"
+                                        android:textColor="#666666"
+                                        android:textSize="12dp"
+                                        android:text="(7/10)"
+                                        android:gravity="center"
+                                        />
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:background="#e2e2e2"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="5"
+                                        android:textColor="#222222"
+                                        android:textSize="15dp"
+                                        android:text="미가드"
+                                        android:gravity="center"
+                                        />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="5"
+                                        android:textColor="#666666"
+                                        android:textSize="12dp"
+                                        android:text="(효과 있음)"
+                                        android:gravity="center"
+                                        />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:background="#e2e2e2"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:textColor="#222222"
+                                        android:textSize="15dp"
+                                        android:text="월경중"
+                                        android:gravity="center"
+                                        />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.5"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
+                        <!--step0-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="01. 지속시간"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step1-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="350dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.3"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3.5"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1.2">
+
+
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="4"
+                                            android:textColor="#666666"
+                                            android:fontFamily="@font/nanum_bold"
+                                            android:text="두통 시작시간"
+                                            android:textSize="18dp"
+                                            android:gravity="center_vertical"/>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="3"/>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="3">
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:textColor="#FFFFFF"
+                                                android:fontFamily="@font/nanum_bold"
+
+                                                android:gravity="center"
+                                                android:textSize="13dp"/>
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_marginTop="10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="8.9"
+                                        android:orientation="vertical"
+                                        android:background="@drawable/step1_board">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="2.8"
+                                            android:background="@drawable/step1_day_board"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="5.5"
+                                                android:textColor="#222222"
+                                                android:textSize="16dp"
+                                                android:fontFamily="@font/nanum"
+                                                android:gravity="center"
+                                                android:text="2020년 03월 20일"/>
+                                            <LinearLayout
+                                                android:layout_width="1dp"
+                                                android:layout_height="20dp"
+                                                android:layout_gravity="center"
+                                                android:background="#C2C2C2"
+                                                />
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="4.5"
+                                                android:textColor="#222222"
+                                                android:textSize="16dp"
+                                                android:fontFamily="@font/nanum"
+                                                android:gravity="center"
+                                                android:text="오후 3시 50분"/>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="4.3"
+                                            >
+
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="0.5"/>
+
+                                            <TextView
+                                                android:layout_weight="2"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:textStyle="bold"
+                                                android:text="21°"
+                                                android:textColor="#000000"
+                                                android:textSize="40dp"
+                                                android:gravity="center"
+                                                />
+
+                                            <TextView
+                                                android:paddingStart="5dp"
+                                                android:layout_weight="4"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:text="습도 49%\n압력 1029.0mbar"
+                                                android:textColor="#8C8F99"
+                                                android:textSize="16dp"
+                                                android:gravity="center_vertical"
+                                                />
+                                            <ImageView
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="2.5"
+                                                android:src="@drawable/step1_windy_1"
+                                                android:padding="13dp"/>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="2px"
+                                            android:background="#EFF2F7"/>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="2.9"
+                                            >
+
+                                            <TextView
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="8"
+                                                android:textColor="#666666"
+                                                android:textSize="15dp"
+                                                android:fontFamily="@font/nanum"
+                                                android:gravity="center_vertical"
+                                                android:paddingStart="10dp"
+                                                android:text="∙ 서울특별시 성동구 성수2가 1동 323"/>
+
+                                            <ImageView
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="2"
+                                                android:padding="15dp"/>
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.4"/>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1.4"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1.2">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="4"
+                                            android:textColor="#666666"
+                                            android:fontFamily="@font/nanum_bold"
+                                            android:text="두통 종료시간"
+                                            android:textSize="18dp"
+                                            android:gravity="center_vertical"/>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="3"/>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="3">
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:textColor="#FFFFFF"
+                                                android:fontFamily="@font/nanum_bold"
+
+                                                android:gravity="center"
+                                                android:textSize="13dp"/>
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_marginTop="10dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="2.5"
+                                        android:background="@drawable/step1_day_board"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="5.5"
+                                            android:textColor="#222222"
+                                            android:textSize="16dp"
+                                            android:fontFamily="@font/nanum"
+                                            android:gravity="center"
+                                            android:text="2020년 03월 20일"/>
+                                        <LinearLayout
+                                            android:layout_width="1dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:background="#C2C2C2"
+                                            />
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="4.5"
+                                            android:textColor="#222222"
+                                            android:textSize="16dp"
+                                            android:fontFamily="@font/nanum"
+                                            android:gravity="center"
+                                            android:text="오후 3시 50분"/>
+
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.3"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--step1-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="02. 강도"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step2-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2.8"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="4.4"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8"/>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2.2"
+                                    android:background="@drawable/detail_icon3_back">
+
+                                    <ImageView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:padding="16dp"
+                                        android:src="@drawable/detail_icon3" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="7"
+                                    android:orientation="vertical"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginLeft="20dp">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#222222"
+                                            android:textSize="18dp"
+                                            android:text="7"
+                                            android:fontFamily="@font/nanum_bold"
+                                            android:gravity="center_vertical"
+                                            />
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textColor="#222222"
+                                            android:textSize="14dp"
+                                            android:text=" /10"
+                                            android:fontFamily="@font/nanum"
+                                            android:gravity="center_vertical"
+                                            />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_marginTop="3dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="#666666"
+                                        android:textSize="15dp"
+                                        android:text="·심한 통증 상태입니다."
+                                        android:gravity="center_vertical"
+                                        android:fontFamily="@font/nanum"
+                                        />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2.8"/>
+
+                        </LinearLayout>
+                        <!--step2-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="03. 위치"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step3-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="900dp"
+                            android:background="#EFF2F7"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp"
+                                android:src="@drawable/step3_front"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp"
+                                android:src="@drawable/step3_front"/>
+
+                        </LinearLayout>
+                        <!--step3-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="04. 유형"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step4-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp">
+
+                                <LinearLayout
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="6.5">
+                                    <GridView
+                                        android:id="@+id/detail4_gridV"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:numColumns="4"
+                                        android:nestedScrollingEnabled="true"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="#dedede"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3.5"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="기타 : 깨질듯한 통증이 있었습니다."
+                                        android:textColor="#222222"
+                                        android:gravity="center_vertical"
+                                        android:textSize="13dp"
+                                        android:fontFamily="@font/nanum_bold"
+                                        />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--step4-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="05. 전구"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step5-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="340dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="5"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="1"
+                                        />
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="5"
+                                        android:orientation="vertical"
+                                        >
+
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="2"
+                                            android:background="@drawable/step1_day_board"
+                                            android:orientation="horizontal"
+                                            >
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="예"
+                                                android:gravity="center"
+                                                android:textSize="18dp"
+                                                android:textColor="#1EA2B6"
+                                                android:background="@drawable/step5_select_board"/>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="아니오"
+                                                android:gravity="center"
+                                                android:textSize="18dp"
+                                                android:textColor="#C2C2C2"/>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1"
+                                            />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="2"
+                                            android:orientation="horizontal">
+
+                                            <LinearLayout
+                                                android:layout_weight="3"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/step1_day_board"
+                                                >
+                                                <EditText
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="7"/>
+                                                <TextView
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="3"
+                                                    android:text="시간"
+                                                    android:gravity="center_vertical"
+                                                    android:textSize="16dp"
+                                                    android:fontFamily="@font/nanum"
+                                                    android:textColor="#C2C2C2"/>
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="0.5"/>
+
+                                            <LinearLayout
+                                                android:layout_weight="3"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:background="@drawable/step1_day_board"
+                                                >
+                                                <EditText
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="7"/>
+                                                <TextView
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="match_parent"
+                                                    android:layout_weight="3"
+                                                    android:text="분 전"
+                                                    android:gravity="center_vertical"
+                                                    android:textSize="16dp"
+                                                    android:fontFamily="@font/nanum"
+                                                    android:textColor="#C2C2C2"/>
+
+                                            </LinearLayout>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="1"
+                                            />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="#dedede"
+                                        />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="5">
+
+                                    <GridView
+                                        android:layout_marginTop="10dp"
+                                        android:id="@+id/detail5_gridV"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:numColumns="4"
+                                        android:nestedScrollingEnabled="true"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--step5-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="06. 조짐"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step6-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="3.5"
+                                        />
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="3"
+                                        android:orientation="vertical"
+                                        >
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="2"
+                                            android:background="@drawable/step1_day_board"
+                                            android:orientation="horizontal"
+                                            >
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="예"
+                                                android:gravity="center"
+                                                android:textSize="18dp"
+                                                android:textColor="#1EA2B6"
+                                                android:background="@drawable/step5_select_board"/>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="아니오"
+                                                android:gravity="center"
+                                                android:textSize="18dp"
+                                                android:textColor="#C2C2C2"/>
+
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="3.5"
+                                        />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--step6-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="07. 동반증상"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step7-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp">
+
+                                <LinearLayout
+                                    android:layout_marginTop="10dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="6.5">
+                                    <GridView
+                                        android:id="@+id/detail7_gridV"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:numColumns="4"
+                                        android:nestedScrollingEnabled="true"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="#dedede"
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3.5"
+                                    android:gravity="center">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="기타 : 깨질듯한 통증이 있었습니다."
+                                        android:textColor="#222222"
+                                        android:gravity="center_vertical"
+                                        android:textSize="13dp"
+                                        android:fontFamily="@font/nanum_bold"
+                                        />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--step7-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="08. 유발요인"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step8-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="160dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="3.5"
+                                        />
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="3"
+                                        android:orientation="vertical"
+                                        >
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="0dp"
+                                            android:layout_weight="2"
+                                            android:background="@drawable/step1_day_board"
+                                            android:orientation="horizontal"
+                                            >
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="없음"
+                                                android:gravity="center"
+                                                android:textSize="18dp"
+                                                android:textColor="#1EA2B6"
+                                                android:background="@drawable/step5_select_board"/>
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="있음"
+                                                android:gravity="center"
+                                                android:textSize="18dp"
+                                                android:textColor="#C2C2C2"/>
+
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="3.5"
+                                        />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--step8-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="09. 약물"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step9-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="320dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+                        </LinearLayout>
+                        <!--step9-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="10. 장애"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step10-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="250dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+                            <GridView
+                                android:id="@+id/detail10_gridV"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:numColumns="4"
+                                android:nestedScrollingEnabled="true"/>
+
+                        </LinearLayout>
+                        <!--step10-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="11. 월경"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <!--step11-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+                        </LinearLayout>
+                        <!--step11-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:text="12. 기록"
+                            android:textColor="#222222"
+                            android:gravity="center_vertical"
+                            android:paddingStart="15dp"
+                            android:background="#e4e8ef"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/nanum_bold"
+                            />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:orientation="vertical"
+                            android:background="#EFF2F7">
+
+                            <EditText
+                                android:layout_margin="20dp"
+                                android:padding="3dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="#222222"
+                                android:textSize="17dp"
+                                android:fontFamily="@font/nanum"
+                                android:background="@drawable/step1_day_board"
+                                android:gravity="left"
+                                android:paddingStart="10dp"
+                                />
+
+                        </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="vertical"
+                        android:background="#EFF2F7"/>
+
+
+
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dedede" />
+
+            <LinearLayout
+                android:id="@+id/bottom"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8"
+                android:background="#FFF"
+                android:orientation="vertical" />
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

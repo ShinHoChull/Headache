@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="joinStep2"
+            type="com.m2comm.headache.views.JoinStep2Activity" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.JoinStep2Activity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="550dp"
+                        android:background="#FFFFFF"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.85"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/backBt"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:padding="16dp"
+                                android:src="@drawable/step_back" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="8"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.8" />
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="6.2"
+                                    android:src="@drawable/join_step2_title" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_weight="8"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.2" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:fontFamily="@font/nanum"
+                                    android:gravity="center_vertical"
+                                    android:hint="아이디(이메일)"
+                                    android:textColor="#555555"
+                                    android:textColorHint="#222222"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:background="@drawable/step1_day_board"
+                                        android:orientation="horizontal">
+
+                                        <EditText
+                                            android:id="@+id/email"
+                                            android:inputType="text"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="7"
+                                            android:fontFamily="@font/nanum"
+                                            android:gravity="center_vertical"
+                                            android:paddingStart="10dp"
+                                            android:textColor="#222222"
+                                            android:textColorHint="#222222"
+                                            android:textSize="14dp"
+                                            android:layout_margin="3dp"
+                                            android:background="#FFFFFF"/>
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="23dp"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:text="&#64;"
+                                        android:textColor="#222222"
+                                        android:textSize="18dp" />
+
+                                    <FrameLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:background="@drawable/step1_day_board"
+                                        >
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="horizontal">
+
+                                            <EditText
+                                                android:id="@+id/emailInput"
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="7.5"
+                                                android:fontFamily="@font/nanum"
+                                                android:gravity="center_vertical"
+                                                android:hint="아이디(이메일)"
+                                                android:paddingStart="10dp"
+                                                android:textColor="#222222"
+                                                android:textColorHint="#222222"
+                                                android:textSize="14dp"
+                                                android:enabled="false"
+                                                />
+
+
+                                            <ImageView
+                                                android:layout_width="0dp"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="2.5"
+                                                android:padding="10dp"
+                                                android:src="@drawable/bottom_arrow" />
+
+                                        </LinearLayout>
+
+                                        <Spinner
+                                            android:id="@+id/spinner_email"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="300dp"
+                                            android:theme="@style/SpinnerDivideStyle"
+                                            android:gravity="center"
+                                            android:layout_marginTop="5dp"
+                                            android:layout_marginRight="5dp"
+                                            android:layout_marginBottom="5dp"
+                                            />
+
+                                    </FrameLayout>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.5" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:fontFamily="@font/nanum"
+                                    android:gravity="center_vertical"
+                                    android:hint="비밀번호"
+                                    android:textColor="#555555"
+                                    android:textColorHint="#222222"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:background="@drawable/step1_day_board"
+                                        android:orientation="horizontal">
+
+                                        <EditText
+                                            android:inputType="textPassword"
+                                            android:id="@+id/pw"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="7"
+                                            android:fontFamily="@font/nanum"
+                                            android:gravity="center_vertical"
+                                            android:paddingStart="10dp"
+                                            android:textColor="#222222"
+                                            android:textColorHint="#222222"
+                                            android:textSize="18dp"
+                                            android:layout_margin="3dp"
+                                            android:background="#FFFFFF"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:visibility="invisible"
+                                        android:id="@+id/pwHint"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_weight="5"
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:padding="1dp"
+                                            android:src="@drawable/join_step2_pw_check" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="7"
+                                            android:text="4자리 이상 입력하셔야 합니다."
+                                            android:textColor="#ff0054"
+                                            android:textSize="14dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="4" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    android:fontFamily="@font/nanum"
+                                    android:gravity="center_vertical"
+                                    android:hint="비밀번호 재확인"
+                                    android:textColor="#555555"
+                                    android:textColorHint="#222222"
+                                    android:textSize="13dp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:background="@drawable/step1_day_board"
+                                        android:orientation="horizontal">
+
+                                        <EditText
+                                            android:inputType="textPassword"
+                                            android:id="@+id/repw"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="7"
+                                            android:fontFamily="@font/nanum"
+                                            android:gravity="center_vertical"
+                                            android:paddingStart="10dp"
+                                            android:textColor="#222222"
+                                            android:textColorHint="#222222"
+                                            android:textSize="18dp"
+                                            android:layout_margin="3dp"
+                                            android:background="#FFFFFF"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:visibility="invisible"
+                                    android:id="@+id/pwReHint"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_marginTop="3dp"
+                                        android:layout_weight="5"
+                                        android:orientation="horizontal">
+
+                                        <ImageView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:padding="1dp"
+                                            android:src="@drawable/join_step2_pw_check" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="7"
+                                            android:text="4자리 이상 입력하셔야 합니다."
+                                            android:textColor="#ff0054"
+                                            android:textSize="14dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="0dp"
+                                        android:layout_weight="4" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:background="#e4e6ea" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:background="#FFFFFF"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.3" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:fontFamily="@font/nanum"
+                            android:gravity="center_vertical"
+                            android:hint="태어난 년도"
+                            android:textColor="#555555"
+                            android:textColorHint="#222222"
+                            android:textSize="13dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.9"
+                            android:orientation="horizontal">
+
+
+                            <FrameLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:background="@drawable/step1_day_board"
+                                >
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/yearInput"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="7.5"
+                                        android:fontFamily="@font/nanum"
+                                        android:gravity="center_vertical"
+                                        android:hint="1234"
+                                        android:paddingStart="10dp"
+                                        android:textColor="#222222"
+                                        android:textColorHint="#222222"
+                                        android:textSize="14dp"
+                                        android:enabled="false"/>
+
+                                    <ImageView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2.5"
+                                        android:padding="5dp"
+                                        android:src="@drawable/bottom_arrow" />
+
+                                </LinearLayout>
+
+                                <Spinner
+                                    android:id="@+id/spinner_year"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="300dp"
+                                    android:theme="@style/SpinnerDivideStyle"
+                                    android:gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    />
+                            </FrameLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="20dp"
+                                android:layout_height="match_parent" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/step1_day_board"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/boyBt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/step5_select_board"
+                                        android:gravity="center"
+                                        android:text="남"
+                                        android:textColor="#1EA2B6"
+                                        android:textSize="18dp" />
+
+                                    <TextView
+                                        android:id="@+id/girlBt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:text="여"
+                                        android:textColor="#777777"
+                                        android:textSize="18dp" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.2"
+                            android:orientation="horizontal" />
+
+                        <LinearLayout
+                            android:visibility="invisible"
+                            android:id="@+id/girl_only"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/girl_only_Img"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1.5"
+                                android:padding="10dp"
+                                android:src="@drawable/login_check_off" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="6.5">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center_vertical"
+                                    android:text="폐경 함"
+                                    android:textColor="#222222"
+                                    android:textSize="15dp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#dddddd" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.8"
+                            android:orientation="horizontal" />
+
+                        <LinearLayout
+                            android:id="@+id/joinSuccessBt"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.5"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="6"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="8"
+                                    android:background="@drawable/next_radius"
+                                    android:fontFamily="@font/nanum"
+                                    android:gravity="center"
+                                    android:text="회원가입완료"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="16dp" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="2" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

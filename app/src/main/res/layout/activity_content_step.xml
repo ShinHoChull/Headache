@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="step"
+            type="com.m2comm.headache.views.ContentStepActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.ContentStepActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="TITLE"
+                    android:textColor="#222222"
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/backBt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:padding="20dp"
+                        android:src="@drawable/step_back" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="7" />
+
+                    <ImageView
+                        android:id="@+id/closeBt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:padding="20dp"
+                        android:src="@drawable/step_close" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="#EBEBEB" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.9">
+
+                <HorizontalScrollView
+                    android:id="@+id/scrollview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/stepBtParentV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <!--step1 Start-->
+                        <LinearLayout
+                            android:id="@+id/step1Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step1B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_success">
+
+                                <TextView
+                                    android:id="@+id/step1B_Back_txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:background="@drawable/step_content_bt_sub_success"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="1 기간"
+                                    android:textColor="#9C9C9C" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step1_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step1 End-->
+
+                        <!--step2 Statr-->
+                        <LinearLayout
+                            android:id="@+id/step2Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step2B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_work">
+
+                                <TextView
+                                    android:id="@+id/step2B_Back_txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="2 강도"
+                                    android:textColor="#FFFFFF" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step2_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step2 End-->
+
+                        <!--step3 Start-->
+                        <LinearLayout
+                            android:id="@+id/step3Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step3B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step3B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="3 위치"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step3_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step3 End-->
+
+                        <!--step4 Start-->
+                        <LinearLayout
+                            android:id="@+id/step4Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step4B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step4B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="4 유형"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step4_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step4 End-->
+
+                        <!--step5 Start-->
+                        <LinearLayout
+                            android:id="@+id/step5Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step5B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step5B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="5 전구"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step5_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step5 End-->
+
+                        <!--step6 Start-->
+                        <LinearLayout
+                            android:id="@+id/step6Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step6B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step6B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="6 조짐"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step6_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step6 End-->
+
+                        <!--step7 Start-->
+                        <LinearLayout
+                            android:id="@+id/step7Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step7B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step7B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="7 증상"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step7_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step7 End-->
+
+
+                        <!--step8 Start-->
+                        <LinearLayout
+                            android:id="@+id/step8Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step8B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step8B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="8 요인"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step8_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step8 End-->
+
+                        <!--step9 Start-->
+                        <LinearLayout
+                            android:id="@+id/step9Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step9B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step9B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="9 약물"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step9_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step9 End-->
+
+                        <!--step10 Start-->
+                        <LinearLayout
+                            android:id="@+id/step10Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step10B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step10B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="10 장애"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step10_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step10 End-->
+
+                        <!--step11 Start-->
+                        <LinearLayout
+                            android:id="@+id/step11Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step11B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step11B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="11 월경"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step11_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot" />
+                        <!--step11 End-->
+
+                        <!--step12 Start-->
+                        <LinearLayout
+                            android:id="@+id/step12Bt"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/step12B_Back"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/step_content_bt_not_work">
+
+                                <TextView
+                                    android:id="@+id/step12B_Back_Txt"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="8dp"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center"
+                                    android:text="12 기록"
+                                    android:textColor="#D9D9D7" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <ImageView
+                            android:id="@+id/step12_dot"
+                            android:layout_width="17dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/step_not_work_dot"
+                            android:visibility="gone" />
+                        <!--step12 End-->
+
+
+                    </LinearLayout>
+                    <!--StepBoxEnd-->
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#EBEBEB"
+                android:elevation="3dp" />
+
+            <LinearLayout
+                android:id="@+id/contentV"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:background="#EFF2F7"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

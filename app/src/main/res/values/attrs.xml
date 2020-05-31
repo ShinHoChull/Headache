@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="CirView">
+        <attr name="w" format="integer"/>
+        <attr name="h" format="integer"/>
+        <attr name="mixcolor" format="color"/>
+
+    </declare-styleable>
+
+
+</resources>
