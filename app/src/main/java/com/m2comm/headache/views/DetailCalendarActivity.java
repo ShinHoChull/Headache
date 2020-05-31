@@ -25,16 +25,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.m2comm.headache.Adapter.DetailListViewAdapter;
 import com.m2comm.headache.CalendarFragment;
+import com.m2comm.headache.DTO.CalendarListValDTO;
 import com.m2comm.headache.DTO.DetailCalendarDTO;
-import com.m2comm.headache.DTO.ListViewAdapter;
+import com.m2comm.headache.DetailCalendarFragment;
 import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
 import com.m2comm.headache.databinding.ActivityDetailCalendarBinding;
 import com.m2comm.headache.module.CalendarModule;
 import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.module.Urls;
-import com.m2comm.headache.sendDTO.CalendarDTO;
-import com.m2comm.headache.sendDTO.CalendarListDTO;
+import com.m2comm.headache.DTO.CalendarDTO;
+import com.m2comm.headache.DTO.CalendarListDTO;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,7 +43,6 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class DetailCalendarActivity extends AppCompatActivity implements View.OnClickListener {
@@ -87,8 +87,6 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
         this.csp = new Custom_SharedPreferences(this);
         this.detailDTOArr = new ArrayList<>();
 
-
-
         this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this);
 
         this.cm = new CalendarModule(this , this);
@@ -113,14 +111,16 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
 
             }
         });
-        this.getData(this.cm.getStrRealDate());
 
+        this.getData(this.cm.getStrRealDate());
         this.binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DetailCalendarDTO row = detailDTOArr.get(position);
                 Toast.makeText(getApplicationContext(),""+row.getDiary_key(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext() , ContentStepActivity.class);
+//                Intent intent = new Intent(getApplicationContext() , ContentStepActivity.class);
+//                intent.putExtra("diary_sid",row.getDiary_key());
+                Intent intent = new Intent(getApplicationContext() , DetaiViewActivity.class);
                 intent.putExtra("diary_sid",row.getDiary_key());
                 startActivity(intent);
 
@@ -129,14 +129,13 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
     }
 
     private void listViewChange() {
+        Log.d("detailListArraySize",this.detailDTOArr.size()+"_");
         this.detailListViewAdapter = new DetailListViewAdapter(this.detailDTOArr , this , this, getLayoutInflater());
         this.binding.listview.setAdapter(this.detailListViewAdapter);
     }
 
     private void getData (String date) {
-
         Log.d("year_month",this.dateStrings.get(this.dateIndex));
-
         AndroidNetworking.post(this.urls.mainUrl+this.urls.getUrls.get("getMonthDiary"))
                 .addBodyParameter("user_sid","13")
                 .addBodyParameter("year_month","2020-05")
@@ -154,8 +153,11 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
 
                     for ( int i = 0 , j = calendarListDTOS.size(); i < j ; i ++ ) {
                         CalendarListDTO row = calendarListDTOS.get(i);
-                        detailDTOArr.add(new DetailCalendarDTO(row.getDiary_key(),true , Global.getTimeToStr(row.getSdate()*1000),row.getDate_txt() ,row.getAche_power(),row.getMedicine_txt()));
-                        detailDTOArr.add(new DetailCalendarDTO(row.getDiary_key(),false , Global.getTimeToStr(row.getSdate()*1000),row.getDate_txt() ,5,row.getMedicine_txt()));
+                        detailDTOArr.add(new DetailCalendarDTO(0,true , row.getDate_txt(),row.getDate_txt() ,0,""));
+                        for ( int k = 0 , l = row.getDate_val().size(); k < l; k++ ) {
+                            CalendarListValDTO valRow = row.getDate_val().get(k);
+                            detailDTOArr.add(new DetailCalendarDTO(valRow.getDiary_sid(),false , "","" ,valRow.getAche_power(),"·"+valRow.getAche_power_txt()+"\n"+"·"+valRow.getMedicine_txt()));
+                        }
                     }
                     listViewChange();
 
@@ -232,7 +234,7 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
         public Fragment getItem(int position) {
             Log.d("pager_position",dateStrings.get(position));
             dayStringArr = cm.getCalendar(dateStrings.get(position));
-            return CalendarFragment.newInstance( dateStrings.get(position) , dayStringArr);
+            return DetailCalendarFragment.newInstance( dateStrings.get(position) , dayStringArr);
         }
 
         @Override
@@ -297,9 +299,7 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
                     params2.weight = 8.2f;
                     this.binding.listviewParent.setLayoutParams(params2);
                 }
-
                 break;
-
         }
 
     }

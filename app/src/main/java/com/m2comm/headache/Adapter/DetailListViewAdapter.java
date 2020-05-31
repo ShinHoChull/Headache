@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.m2comm.headache.DTO.DetailCalendarDTO;
 import com.m2comm.headache.DTO.ListViewAdapter;
+import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
 
 import java.util.ArrayList;
@@ -55,7 +56,8 @@ public class DetailListViewAdapter extends BaseAdapter {
 
         DetailCalendarDTO row = this.list.get(position);
 
-        ImageView img = null , nextImg = null;
+        ImageView img = null  , nextImg = null;
+        LinearLayout img_Back;
         TextView headerTitle  = null , desc = null;
         if (row.isHeader()) {
             convertView = this.inflater.inflate(R.layout.detail_calendar_header, null);
@@ -65,6 +67,11 @@ public class DetailListViewAdapter extends BaseAdapter {
         } else {
             convertView = this.inflater.inflate(R.layout.detail_calendar_content, null);
             img = convertView.findViewById(R.id.content_icon);
+            img_Back = convertView.findViewById(R.id.content_icon_back);
+
+            img.setImageResource(Global.icon[Global.getIconNumberReturn(row.getState())]);
+            img_Back.setBackgroundResource(Global.icon_back[Global.getIconNumberReturn(row.getState())]);
+
             desc = convertView.findViewById(R.id.desc);
             nextImg = convertView.findViewById(R.id.nextImg);
             nextImg.setColorFilter(Color.parseColor("#B1B2B1"));
@@ -75,7 +82,7 @@ public class DetailListViewAdapter extends BaseAdapter {
         if ( row.isHeader() ) {
             headerTitle.setText(row.getStrDate());
         } else {
-            desc.setText("· 강도 ( "+row.getState()+" / 10 )\n· "+row.getDes()+" ( 효과 있음 )");
+            desc.setText(row.getDes());
         }
 
         return convertView;

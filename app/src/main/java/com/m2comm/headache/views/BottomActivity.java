@@ -94,33 +94,37 @@ public class BottomActivity implements View.OnClickListener {
         switch ( v.getId() ) {
 
             case R.id.bottomBt1:
-                this.changeColor(0);
+             //   this.changeColor(0);
                 intent = new Intent(this.activity , Main2Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.activity.startActivity(intent);
                 break;
 
             case R.id.bottomBt2:
-                this.changeColor(1);
-
+             //   this.changeColor(1);
+                intent = new Intent(this.activity , ContentStepActivity.class);
+                this.activity.startActivity(intent);
                 break;
 
             case R.id.bottomBt3:
-                this.changeColor(2);
+                //this.changeColor(2);
                 intent = new Intent(this.activity , DetailCalendarActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.activity.startActivity(intent);
                 break;
 
             case R.id.bottomBt4:
-                this.changeColor(3);
+                //this.changeColor(3);
                 intent = new Intent(this.activity , AnalysisViewActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.activity.startActivity(intent);
                 break;
 
             case R.id.bottomBt5:
-                this.changeColor(4);
+                //this.changeColor(4);
+                intent = new Intent(this.activity , NewsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                this.activity.startActivity(intent);
                 break;
 
         }

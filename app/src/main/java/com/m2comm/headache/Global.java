@@ -17,6 +17,31 @@ public class Global {
     public Global(Context c) {
         this.c = c;
     }
+    public static int[] icon = {
+            R.drawable.detail_icon1,
+            R.drawable.detail_icon2,
+            R.drawable.detail_icon3,
+            R.drawable.detail_icon4
+    };
+
+    public static int[] icon_back = {
+            R.drawable.detail_icon1_back,
+            R.drawable.detail_icon2_back,
+            R.drawable.detail_icon3_back,
+            R.drawable.detail_icon4_back
+    };
+
+    public static int getIconNumberReturn (int num) {
+        if ( num <= 3 ) {
+            return 0;
+        } else if ( num <= 6 ) {
+            return 1;
+        } else if ( num <= 9 ) {
+            return 2;
+        } else {
+            return 3;
+        }
+    }
 
     public float pxToDp(Context context, float px) {
 
@@ -134,6 +159,8 @@ public class Global {
         }
         return color;
     }
+
+
 
 
 }

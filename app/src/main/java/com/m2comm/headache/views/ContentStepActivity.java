@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -24,9 +22,6 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-import com.m2comm.headache.DTO.Step10Dates;
 import com.m2comm.headache.DTO.Step10EtcDTO;
 import com.m2comm.headache.DTO.Step10SaveDTO;
 import com.m2comm.headache.DTO.Step11SaveDTO;
@@ -64,7 +59,6 @@ import com.m2comm.headache.contentStepView.Step9;
 import com.m2comm.headache.databinding.ActivityContentStepBinding;
 import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.module.Urls;
-import com.m2comm.headache.sendDTO.CalendarDTO;
 import com.m2comm.headache.sendDTO.Send9PixDTO;
 import com.m2comm.headache.sendDTO.Step4SendDTO;
 import com.m2comm.headache.sendDTO.Step9SendDTO;
@@ -73,10 +67,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 public class ContentStepActivity extends AppCompatActivity  implements View.OnClickListener {
 

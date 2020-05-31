@@ -18,17 +18,18 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.m2comm.headache.Adapter.CalendarAdapter;
-import com.m2comm.headache.module.Custom_SharedPreferences;
-import com.m2comm.headache.module.Urls;
+import com.m2comm.headache.Adapter.DetailCalendarAdapter;
 import com.m2comm.headache.DTO.CalendarDTO;
 import com.m2comm.headache.DTO.CalendarListDTO;
+import com.m2comm.headache.module.Custom_SharedPreferences;
+import com.m2comm.headache.module.Urls;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class CalendarFragment extends Fragment {
+public class DetailCalendarFragment extends Fragment {
 
     private ArrayList<String> dayArr;
     private String dateStr;
@@ -37,13 +38,13 @@ public class CalendarFragment extends Fragment {
     private ArrayList<CalendarDTO> calendarDTOS;
     private ArrayList<CalendarListDTO> calendarListDTOS;
     private GridView gridView;
-    private CalendarAdapter calendarAdapter;
+    private DetailCalendarAdapter calendarAdapter;
 
     private int gridviewHeight = 0;
 
-    public static CalendarFragment newInstance( String dateStr ,ArrayList<String> dayArr) {
+    public static DetailCalendarFragment newInstance(String dateStr , ArrayList<String> dayArr) {
 
-        CalendarFragment fragment = new CalendarFragment();
+        DetailCalendarFragment fragment = new DetailCalendarFragment();
         Bundle args = new Bundle();
         args.putString("dateStr",dateStr);//format = > yyyy-mm
         args.putStringArrayList("dateArr",dayArr);
@@ -101,7 +102,7 @@ public class CalendarFragment extends Fragment {
     }
 
     private void reloadCalendar() {
-        this.calendarAdapter = new CalendarAdapter( this.calendarDTOS, dateStr ,dayArr , getContext() , getLayoutInflater(),gridviewHeight);
+        this.calendarAdapter = new DetailCalendarAdapter( this.calendarDTOS, dateStr ,dayArr , getContext() , getLayoutInflater(),gridviewHeight);
         gridView.setAdapter(calendarAdapter);
     }
 
@@ -116,8 +117,8 @@ public class CalendarFragment extends Fragment {
         this.gridView.post(new Runnable() {
             @Override
             public void run() {
-                gridviewHeight = gridView.getHeight()/6;
-                calendarAdapter = new CalendarAdapter(calendarDTOS, dateStr ,dayArr , getContext() , getLayoutInflater(),gridviewHeight);
+                gridviewHeight = (gridView.getHeight()/6);
+                calendarAdapter = new DetailCalendarAdapter(calendarDTOS, dateStr ,dayArr , getContext() , getLayoutInflater(),gridviewHeight);
                 gridView.setAdapter(calendarAdapter);
             }
         });

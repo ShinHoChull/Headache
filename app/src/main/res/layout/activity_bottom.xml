@@ -35,7 +35,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="6"
                     android:padding="3dp"
-                    android:src="@drawable/bottom_img_1" />
+                    android:src="@drawable/bottom_img_1_click" />
 
                 <TextView
                     android:id="@+id/bt1Txt"
@@ -44,7 +44,7 @@
                     android:layout_weight="4"
                     android:gravity="center"
                     android:text="홈"
-                    android:textColor="#959595"
+                    android:textColor="#222222"
                     android:textSize="12dp" />
 
             </LinearLayout>
@@ -79,7 +79,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="6"
                     android:padding="3dp"
-                    android:src="@drawable/bottom_img_2" />
+                    android:src="@drawable/bottom_img_2_click" />
 
                 <TextView
                     android:id="@+id/bt2Txt"
@@ -88,7 +88,7 @@
                     android:layout_weight="4"
                     android:gravity="center"
                     android:text="두통일기"
-                    android:textColor="#959595"
+                    android:textColor="#222222"
                     android:textSize="12dp" />
 
             </LinearLayout>
@@ -124,7 +124,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="6"
                     android:padding="3dp"
-                    android:src="@drawable/bottom_img_3" />
+                    android:src="@drawable/bottom_img_3_click" />
 
                 <TextView
                     android:id="@+id/bt3Txt"
@@ -133,7 +133,7 @@
                     android:layout_weight="4"
                     android:gravity="center"
                     android:text="캘린더"
-                    android:textColor="#959595"
+                    android:textColor="#222222"
                     android:textSize="12dp" />
 
             </LinearLayout>
@@ -169,7 +169,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="6"
                     android:padding="3dp"
-                    android:src="@drawable/bottom_img_4" />
+                    android:src="@drawable/bottom_img_4_click" />
 
                 <TextView
                     android:id="@+id/bt4Txt"
@@ -178,7 +178,7 @@
                     android:layout_weight="4"
                     android:gravity="center"
                     android:text="두통분석"
-                    android:textColor="#959595"
+                    android:textColor="#222222"
                     android:textSize="12dp" />
             </LinearLayout>
 
@@ -213,7 +213,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="6"
                     android:padding="3dp"
-                    android:src="@drawable/bottom_img_5" />
+                    android:src="@drawable/bottom_img_5_click" />
 
                 <TextView
                     android:id="@+id/bt5Txt"
@@ -222,7 +222,7 @@
                     android:layout_weight="4"
                     android:gravity="center"
                     android:text="두통뉴스"
-                    android:textColor="#959595"
+                    android:textColor="#222222"
                     android:textSize="12dp" />
 
             </LinearLayout>
