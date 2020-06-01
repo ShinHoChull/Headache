@@ -11,14 +11,14 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.m2comm.headache.DTO.CalendarDTO;
 import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
 import com.m2comm.headache.module.CirView;
-import com.m2comm.headache.DTO.CalendarDTO;
 
 import java.util.ArrayList;
 
-public class CalendarAdapter extends BaseAdapter {
+public class DetailCalendarAdapter extends BaseAdapter {
 
     private ArrayList<String> dayString;
     private Context c;
@@ -27,7 +27,7 @@ public class CalendarAdapter extends BaseAdapter {
     private ArrayList<CalendarDTO> calendarDTOS;
     private String dateStr;
 
-    public CalendarAdapter(ArrayList<CalendarDTO> calendarDTOS, String dateStr, ArrayList<String> dayString, Context c, LayoutInflater inflater, int width) {
+    public DetailCalendarAdapter(ArrayList<CalendarDTO> calendarDTOS, String dateStr, ArrayList<String> dayString, Context c, LayoutInflater inflater, int width) {
         this.calendarDTOS = calendarDTOS;
         this.dayString = dayString;
         this.c = c;

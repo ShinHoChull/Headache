@@ -58,6 +58,7 @@
                     android:layout_weight="0.1" />
 
                 <LinearLayout
+                    android:id="@+id/content_icon_back"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"

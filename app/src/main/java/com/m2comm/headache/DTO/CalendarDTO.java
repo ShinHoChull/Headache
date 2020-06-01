@@ -1,4 +1,4 @@
-package com.m2comm.headache.sendDTO;
+package com.m2comm.headache.DTO;
 
 public class CalendarDTO {
 

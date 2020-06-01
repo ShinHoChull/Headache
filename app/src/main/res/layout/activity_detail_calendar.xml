@@ -134,12 +134,15 @@
                     android:layout_weight="5.9"
                     android:elevation="3dp"
                     android:background="@drawable/detail_calendar_radius"
+
                     >
                     <androidx.viewpager.widget.ViewPager
                         android:id="@+id/pager"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="35dp"
                         />
                 </LinearLayout>
 
