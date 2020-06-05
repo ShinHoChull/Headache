@@ -54,7 +54,7 @@ public class DetailCalendarAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        convertView = this.inflater.inflate(R.layout.calendar_item, parent, false);
+        convertView = this.inflater.inflate(R.layout.detail_calendar_item, parent, false);
         convertView.getLayoutParams().height = this.width;
         final CirView back1 = convertView.findViewById(R.id.back1); // 원
         final FrameLayout back2 = convertView.findViewById(R.id.back2);// 시작
@@ -65,38 +65,50 @@ public class DetailCalendarAdapter extends BaseAdapter {
         final LinearLayout mens = convertView.findViewById(R.id.mens);
         final LinearLayout medicine = convertView.findViewById(R.id.medicine);
         final LinearLayout effect = convertView.findViewById(R.id.effect);
-
+        TextView count = convertView.findViewById(R.id.calendar_count);
         TextView tv = convertView.findViewById(R.id.calendar_number);
         final FrameLayout textBackView = convertView.findViewById(R.id.textBackView);
 
         tv.setText(this.dayString.get(position));
 
         if (this.calendarDTOS != null) {
-            String pushDate = this.dateStr + "-" + this.dayString.get(position);
+
+            String day = this.dayString.get(position);
+            if ( !day.equals("") ) {
+                day = this.plusZero(day);
+            }
+
+            String pushDate = this.dateStr + "-" + day;
 
             for (int i = 0, j = this.calendarDTOS.size(); i < j; i++) {
+
                 final CalendarDTO row = this.calendarDTOS.get(i);
 
                 if (row.getDate().equals(pushDate)) {
+                    if (row.getChk_num() > 1) {
+                        count.setVisibility(View.VISIBLE);
+                        count.setText(String.valueOf(row.getChk_num()));
+                    }
 
                     if (row.getImg_type() != 0) {
                         tv.setTextColor(Color.WHITE);
                     }
 
-                    if ( row.getMens() == 1 ) {
+                    if ( row.getMens() > 0 ) {
                         mens.setVisibility(View.VISIBLE);
                     }
-                    if ( row.getMedicine() == 1 ) {
+                    if ( row.getMedicine() >0 ) {
                         medicine.setVisibility(View.VISIBLE);
                     }
-                    if ( row.getEffect() == 1 ) {
+                    if ( row.getEffect() >0 ) {
                         effect.setVisibility(View.VISIBLE);
                     }
 
-                    convertView.post(new Runnable() {
+                    textBackView.post(new Runnable() {
                         @Override
                         public void run() {
-                            final int h = textBackView.getWidth();
+                            final int h = textBackView.getHeight();
+                            //textBackView.getLayoutParams().height = h;
                             back1.setColor(Global.getEffectColor(row.getAche_power()));
 
                             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -114,8 +126,8 @@ public class DetailCalendarAdapter extends BaseAdapter {
                                 back2_color.setVisibility(View.VISIBLE);
                                 back2_color.setBackgroundColor(Global.getEffectLineColor(row.getAche_power()));
 
-                                FrameLayout.LayoutParams params2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
-                                params2.width = h;
+                                FrameLayout.LayoutParams params2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.WRAP_CONTENT);
+                                //params2.width = h;
                                 params2.height = h;
                                 params2.gravity = Gravity.CENTER;
                                 back2.setLayoutParams(params2);
@@ -125,9 +137,9 @@ public class DetailCalendarAdapter extends BaseAdapter {
                                 back3.setVisibility(View.VISIBLE);
                                 back3.setBackgroundColor(Global.getEffectLineColor(row.getAche_power()));
 
-                                FrameLayout.LayoutParams params3 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
-                                params3.width = h;
-                                params3.height = h;
+                                FrameLayout.LayoutParams params3 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.MATCH_PARENT);
+                              //  params3.width = h;
+                              //  params3.height = h;
                                 params3.gravity = Gravity.CENTER;
                                 back3.setLayoutParams(params3);
 
@@ -137,8 +149,8 @@ public class DetailCalendarAdapter extends BaseAdapter {
                                 back4_color.setVisibility(View.VISIBLE);
                                 back4_color.setBackgroundColor(Global.getEffectLineColor(row.getAche_power()));
 
-                                FrameLayout.LayoutParams params4 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
-                                params4.width = h;
+                                FrameLayout.LayoutParams params4 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.WRAP_CONTENT);
+                                //params4.width = h;
                                 params4.height = h;
                                 params4.gravity = Gravity.CENTER;
                                 back4.setLayoutParams(params4);
@@ -150,5 +162,11 @@ public class DetailCalendarAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+    private String plusZero(String val) {
+        if ( Integer.parseInt(val) < 10 ) {
+            val = "0"+val;
+        }
+        return val;
     }
 }

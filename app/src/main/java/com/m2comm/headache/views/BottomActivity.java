@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.m2comm.headache.R;
+import com.m2comm.headache.module.Custom_SharedPreferences;
+import com.m2comm.headache.module.Urls;
 
 
 public class BottomActivity implements View.OnClickListener {
@@ -21,6 +23,8 @@ public class BottomActivity implements View.OnClickListener {
     private LinearLayout parent;
     private Context context;
     private Activity activity;
+    private Urls urls;
+    private Custom_SharedPreferences csp;
 
     private int[] btImgs = {
             R.id.bt1Img,
@@ -54,27 +58,35 @@ public class BottomActivity implements View.OnClickListener {
             R.drawable.bottom_img_5_click
     };
 
-    public BottomActivity(LayoutInflater inflater, int parentID, Context context, Activity activity) {
+    int clickBottom = 0;
+    public BottomActivity(LayoutInflater inflater, int parentID, Context context, Activity activity,int clickBottom) {
         this.inflater = inflater;
         ParentID = parentID;
         this.context = context;
         this.activity = activity;
+        this.clickBottom = clickBottom;
         this.init();
     }
 
     private void init () {
         this.parent = this.activity.findViewById(this.ParentID);
         View view = inflater.inflate(R.layout.activity_bottom,this.parent,true);
+        this.urls = new Urls();
+        this.csp = new Custom_SharedPreferences(context);
 
         view.findViewById(R.id.bottomBt1).setOnClickListener(this);
         view.findViewById(R.id.bottomBt2).setOnClickListener(this);
         view.findViewById(R.id.bottomBt3).setOnClickListener(this);
         view.findViewById(R.id.bottomBt4).setOnClickListener(this);
         view.findViewById(R.id.bottomBt5).setOnClickListener(this);
+
+        this.changeColor(this.clickBottom);
+
     }
 
     private void changeColor ( int num ) {
-
+        if ( num < 0 ) return;
+        this.csp.put("bottomClick",num);
         for ( int i = 0 , j = this.btImgs.length; i < j; i ++ ) {
             ImageView img = this.activity.findViewById( this.btImgs[i] );
             TextView txt = this.activity.findViewById( this.btTxts[i] );
@@ -94,35 +106,36 @@ public class BottomActivity implements View.OnClickListener {
         switch ( v.getId() ) {
 
             case R.id.bottomBt1:
-             //   this.changeColor(0);
+                this.changeColor(0);
                 intent = new Intent(this.activity , Main2Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.activity.startActivity(intent);
                 break;
 
             case R.id.bottomBt2:
-             //   this.changeColor(1);
+                //this.changeColor(1);
                 intent = new Intent(this.activity , ContentStepActivity.class);
                 this.activity.startActivity(intent);
                 break;
 
             case R.id.bottomBt3:
-                //this.changeColor(2);
+                this.changeColor(2);
                 intent = new Intent(this.activity , DetailCalendarActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.activity.startActivity(intent);
                 break;
 
             case R.id.bottomBt4:
-                //this.changeColor(3);
+                this.changeColor(3);
                 intent = new Intent(this.activity , AnalysisViewActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.activity.startActivity(intent);
                 break;
 
             case R.id.bottomBt5:
-                //this.changeColor(4);
+                this.changeColor(4);
                 intent = new Intent(this.activity , NewsActivity.class);
+                intent.putExtra("page",this.urls.getUrls.get("news"));
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 this.activity.startActivity(intent);
                 break;

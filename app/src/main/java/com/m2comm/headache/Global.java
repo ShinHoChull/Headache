@@ -43,7 +43,7 @@ public class Global {
         }
     }
 
-    public float pxToDp(Context context, float px) {
+    public static float pxToDp(Context context, float px) {
 
         // 해상도 마다 다른 density 를 반환. xxxhdpi는 density = 4
         float density = context.getResources().getDisplayMetrics().density;
@@ -105,6 +105,15 @@ public class Global {
             return null;
         }
     }
+
+    public static String getTimeToDateAndWeek(long time) {
+        try {
+            return new SimpleDateFormat("yyyy.MM.dd (EE)", Locale.getDefault()).format(time);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
 
     public static String inputTimeToStr(Long time) {
 

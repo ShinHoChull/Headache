@@ -29,7 +29,7 @@ public class Setting2 extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void init () {
-        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this);
+        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this,-1);
     }
 
     @Override
@@ -40,5 +40,11 @@ public class Setting2 extends AppCompatActivity implements View.OnClickListener 
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
     }
 }

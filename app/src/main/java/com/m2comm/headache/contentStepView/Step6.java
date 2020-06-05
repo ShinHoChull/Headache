@@ -17,7 +17,7 @@ public class Step6 implements View.OnClickListener {
 
     private LayoutInflater inflater;
     private int ParentID;
-    private LinearLayout parent;
+    private LinearLayout parent , step6Line , step6ParentV;
     private Context context;
     private Activity activity;
     private View view;
@@ -84,6 +84,8 @@ public class Step6 implements View.OnClickListener {
         this.nextBt = this.view.findViewById(R.id.nextBt);
         this.yesBt = this.view.findViewById(R.id.yesBt);
         this.noBt = this.view.findViewById(R.id.noBt);
+        this.step6Line = this.view.findViewById(R.id.step6Line);
+        this.step6ParentV = this.view.findViewById(R.id.step6ParentV);
 
         for ( int i = 0 , j = this.checkBoxIds.length; i < j; i++ ) {
             LinearLayout l = this.view.findViewById(this.checkBoxIds[i]);
@@ -109,22 +111,28 @@ public class Step6 implements View.OnClickListener {
                 this.checkedChange(i);
             }
         }
-
     }
 
     private void isHeadche(boolean isHeadache) {
         this.isHeadache = isHeadache;
         if ( isHeadache ) {
+            this.step6SaveDTO.setAche_sign_yn("Y");
             this.yesBt.setBackgroundResource(R.drawable.step5_select_board);
             this.yesBt.setTextColor(Color.parseColor("#1EA2B6"));
             this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
+            this.step6Line.setVisibility(View.VISIBLE);
+            this.step6ParentV.setVisibility(View.VISIBLE);
         } else {
+            this.step6SaveDTO.setAche_sign_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
             this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
+            this.step6Line.setVisibility(View.GONE);
+            this.step6ParentV.setVisibility(View.GONE);
         }
+        this.parentActivity.save6(this.step6SaveDTO);
     }
 
     private void checkedChange (int num) {

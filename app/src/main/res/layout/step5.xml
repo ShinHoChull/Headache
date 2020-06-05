@@ -186,9 +186,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/step5Line"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:background="#e4e6ea"/>
+                    android:background="#e4e6ea"
+                    android:orientation="vertical"/>
 
                 <LinearLayout
                     android:id="@+id/step5View1"
@@ -199,6 +201,7 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/step5gridVParent"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="7"

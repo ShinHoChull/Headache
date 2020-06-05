@@ -31,7 +31,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
 
     private LayoutInflater inflater;
     private int ParentID;
-    private LinearLayout parent , step8LinearView , step8BottomV;
+    private LinearLayout parent , step8LinearView , step8BottomV , step8Line , step8ParentV;
     private Context context;
     private Activity activity;
 
@@ -81,6 +81,8 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         this.step8LinearView = this.view.findViewById(R.id.step8View1);
         this.step8BottomV = this.view.findViewById(R.id.step8BottomV);
         this.gridView = view.findViewById(R.id.step5_gridV);
+        this.step8Line = view.findViewById(R.id.step8Line);
+        this.step8ParentV = view.findViewById(R.id.step8ParentV);
         
 
         if ( this.step8SaveDTO == null ) {
@@ -219,16 +221,23 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
     private void isHeadche(boolean isHeadache) {
         this.isHeadache = isHeadache;
         if ( isHeadache ) {
+            this.step8SaveDTO.setAche_factor_yn("Y");
             this.yesBt.setBackgroundResource(R.drawable.step5_select_board);
             this.yesBt.setTextColor(Color.parseColor("#1EA2B6"));
             this.noBt.setTextColor(Color.parseColor("#C2C2C2"));;
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
+            this.step8Line.setVisibility(View.VISIBLE);
+            this.step8ParentV.setVisibility(View.VISIBLE);
         } else {
+            this.step8SaveDTO.setAche_factor_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
             this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
+            this.step8Line.setVisibility(View.GONE);
+            this.step8ParentV.setVisibility(View.GONE);
         }
+        this.parentActivity.save8(this.step8SaveDTO);
     }
 
     @Override

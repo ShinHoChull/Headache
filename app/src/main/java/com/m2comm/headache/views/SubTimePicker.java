@@ -103,9 +103,10 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
 
         if (this.isEnd) {
             this.endDateLong = intent.getLongExtra("endDateLong",0);
-            Log.d("endDateLong",this.endDateLong+"____");
-            String reciveEndDate = Global.getTimeToStr(this.endDateLong);
-            this.endDate = new Date(Global.getStrToDate(reciveEndDate).getTime());
+            if ( this.endDateLong != 0 ) {
+                String reciveEndDate = Global.getTimeToStr(this.endDateLong);
+                this.endDate = new Date(Global.getStrToDate(reciveEndDate).getTime());
+            }
         }
 
         this.binding.nextBt.setColorFilter(Color.parseColor("#000000"));
@@ -228,7 +229,12 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
                 if (this.time.equals("")) this.time = this.cmm.getTime();
                 Intent intent = new Intent();
                 if ( this.isEnd ) {
-                    intent.putExtra("endDateTime",Global.getStrToDateTime( Global.getTimeToStr(this.endDate.getTime())+" "+this.time).getTime());
+                    if ( endDate == null ) {
+                        intent.putExtra("endDateTime",0);
+                    } else {
+                        intent.putExtra("endDateTime",Global.getStrToDateTime( Global.getTimeToStr(this.endDate.getTime())+" "+this.time).getTime());
+                    }
+
                 } else {
                     intent.putExtra("startDateTime",Global.getStrToDateTime( Global.getTimeToStr(this.startDate.getTime())+" "+this.time).getTime());
                 }
@@ -302,7 +308,7 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
             final String currentlyDateStr = arrayList.get(position);
             final ArrayList<String> dayArr = cmm.getCalendar(arrayList.get(position));
 
-            this.calendarAdapter = new SubTimeCalendarAdapter(this.innerstartDate, this.innerEndDate, dayArr, currentlyDateStr, getApplicationContext(), getLayoutInflater(), (binding.pager.getHeight()-10)/6,activity);
+            this.calendarAdapter = new SubTimeCalendarAdapter(isEnd , this.innerstartDate, this.innerEndDate, dayArr, currentlyDateStr, getApplicationContext(), getLayoutInflater(), (binding.pager.getHeight()-10)/6,activity);
             gridView.setAdapter(this.calendarAdapter);
 
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -317,14 +323,14 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
                     } else {
                         //끝날짜가 시작날짜보다 작으면 Return;
                         //끝날짜가래 미래날짜를 선택하면 Return;
-                        if ( Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position)).getTime() <= startDate.getTime() ||
+                        if ( Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position)).getTime() < startDate.getTime() ||
                         Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position)).getTime() > Global.getStrToDate(cmm.getStrRealDate()).getTime()
                         ) {
                             return;
                         }
                         endDate = Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position));
                     }
-                    calendarAdapter = new SubTimeCalendarAdapter(startDate, endDate, dayArr, currentlyDateStr, getApplicationContext(), getLayoutInflater(), (binding.pager.getHeight()-10)/6,activity);
+                    calendarAdapter = new SubTimeCalendarAdapter(isEnd ,startDate, endDate, dayArr, currentlyDateStr, getApplicationContext(), getLayoutInflater(), (binding.pager.getHeight()-10)/6,activity);
                     reloadGridView(gridView , calendarAdapter);
                 }
             });

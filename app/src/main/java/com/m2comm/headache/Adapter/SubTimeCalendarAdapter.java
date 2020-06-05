@@ -29,8 +29,9 @@ public class SubTimeCalendarAdapter extends BaseAdapter {
     Date startDate , endDate; //현재 년도랑 월
     private String currentlyDateStr;
     private CalendarModule cmm;
+    private boolean isEnd = false;
 
-    public SubTimeCalendarAdapter(Date startDate , Date endDate ,ArrayList<String> dayString,String currentlyDateStr, Context c, LayoutInflater inflater , int width,Activity activity) {
+    public SubTimeCalendarAdapter( boolean isEnd,Date startDate , Date endDate ,ArrayList<String> dayString,String currentlyDateStr, Context c, LayoutInflater inflater , int width,Activity activity) {
         this.dayString = dayString;
         this.c = c;
         this.inflater = inflater;
@@ -39,6 +40,7 @@ public class SubTimeCalendarAdapter extends BaseAdapter {
         this.endDate = endDate;
         this.currentlyDateStr = currentlyDateStr;
         this.cmm = new CalendarModule(c,activity);
+        this.isEnd = isEnd;
     }
 
 
@@ -85,7 +87,9 @@ public class SubTimeCalendarAdapter extends BaseAdapter {
             Date now_date = Global.getStrToDate(this.cmm.getStrRealDate());
 
             //현재날짜보다 후의 날짜는 색깔을 바꿔준고 아무런 이벤트 작업을 하지 않는다.
-            if( date.getTime() > now_date.getTime() || (startDate != null &&date.getTime() < startDate.getTime() ) ) {
+            if ( this.isEnd && date.getTime() < startDate.getTime() ) {
+                tv.setTextColor(Color.parseColor("#BDBDBD"));
+            } else if ( date.getTime() > now_date.getTime()  ) {
                 tv.setTextColor(Color.parseColor("#BDBDBD"));
             } else {
                 //첫번째 클릭한 시간

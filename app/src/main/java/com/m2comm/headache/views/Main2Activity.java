@@ -21,6 +21,7 @@ import com.m2comm.headache.CalendarFragment;
 import com.m2comm.headache.R;
 import com.m2comm.headache.databinding.ActivityMain2Binding;
 import com.m2comm.headache.module.CalendarModule;
+import com.m2comm.headache.module.Urls;
 import com.m2comm.headache.views.BottomActivity;
 
 import java.text.SimpleDateFormat;
@@ -41,6 +42,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
     int dateIndex = -1;
 
     ActivityMain2Binding binding;
+    Urls urls;
 
     private void regObj () {
         this.binding.nextBt.setOnClickListener(this);
@@ -62,8 +64,8 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
 
     private void init () {
 
-        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this);
-
+        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this,0);
+        this.urls = new Urls();
         this.dateStrings = new ArrayList<>();
         this.cm = new CalendarModule(this,this);
 
@@ -202,11 +204,16 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                 break;
 
             case R.id.bell:
+                intent = new Intent(this , NewsActivity.class);
+                intent.putExtra("page",this.urls.getUrls.get("notice"));
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 break;
 
             case R.id.setting:
                 intent = new Intent(this , SettingMainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 break;
 
             case R.id.diaryRecord:

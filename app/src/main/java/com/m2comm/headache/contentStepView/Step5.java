@@ -33,7 +33,7 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
 
     private LayoutInflater inflater;
     private int ParentID;
-    private LinearLayout parent , step5LinearView , step5BottomV , timeSettingV;
+    private LinearLayout parent , step5LinearView , step5BottomV , timeSettingV , step5Line ,step5gridVParent;
     private Context context;
     private Activity activity;
     private EditText hour , min;
@@ -87,6 +87,8 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
         this.yesBt = this.view.findViewById(R.id.yesBt);
         this.noBt = this.view.findViewById(R.id.noBt);
         this.timeSettingV = this.view.findViewById(R.id.timeSettingV);
+        this.step5Line = this.view.findViewById(R.id.step5Line);
+        this.step5gridVParent = this.view.findViewById(R.id.step5gridVParent);
 
         if ( this.step5SaveDTO == null ) {
             this.step5SaveDTO = new Step5SaveDTO("N",0,0,
@@ -247,6 +249,8 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
 
             this.timeSettingV.setVisibility(View.VISIBLE);
+            this.step5Line.setVisibility(View.VISIBLE);
+            this.step5gridVParent.setVisibility(View.VISIBLE);
 
         } else {
             this.step5SaveDTO.setAche_realize_yn("N");
@@ -260,7 +264,8 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
 
             this.timeSettingV.setVisibility(View.INVISIBLE);
-
+            this.step5Line.setVisibility(View.GONE);
+            this.step5gridVParent.setVisibility(View.GONE);
         }
     }
 

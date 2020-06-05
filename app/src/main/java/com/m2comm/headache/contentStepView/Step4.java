@@ -128,7 +128,7 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
     }
 
     public void addListView (String etc) {
-        Step4EtcDTO row = new  Step4EtcDTO(R.drawable.step4_type_default1,R.drawable.step4_type_click1,etc,true,false , true ,0 , "Y");
+        Step4EtcDTO row = new  Step4EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,etc,true,false , true ,0 , "Y");
         this.step4SaveDTO.getArrayList().add( row );
         this.parentActivity.save4(this.step4SaveDTO);
         reloadListView();

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.m2comm.headache.DTO.Step4DTO;
 import com.m2comm.headache.DTO.Step9DTO;
+import com.m2comm.headache.DTO.Step9Dates;
 import com.m2comm.headache.R;
 
 import java.util.ArrayList;
@@ -60,9 +61,19 @@ public class Step9GridviewAdapter extends BaseAdapter {
         }
         type_Txt.setText(row.getName());
 
-        if (row.getDrugArray() != null) {
+        int drugCountNum = 0;
+        if ( row.getDrugArray() != null ) {
+            for ( int i = 0 , j = row.getDrugArray().size(); i < j; i++) {
+                Step9Dates dateRow = row.getDrugArray().get(i);
+                if ( dateRow.getVal().equals("Y") ) {
+                    drugCountNum += 1;
+                }
+            }
+        }
+
+        if (row.getDrugArray() != null && drugCountNum > 0) {
             drugCount.setVisibility(View.VISIBLE);
-            drugCount.setText(""+row.getDrugArray().size());
+            drugCount.setText(""+drugCountNum);
         }
 
         ViewGroup.LayoutParams param = convertView.getLayoutParams();

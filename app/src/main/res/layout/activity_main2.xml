@@ -59,8 +59,24 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:padding="17dp"
+                            android:padding="15dp"
                             android:src="@drawable/main_bell" />
+                        <TextView
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="16.5dp"
+                            android:layout_gravity="right"
+                            android:gravity="center"
+                            android:textSize="10dp"
+                            android:text="0"
+                            android:textColor="@android:color/white"
+                            android:background="@drawable/main_bell_cir"
+
+                            >
+
+                        </TextView>
+
                     </FrameLayout>
 
                     <TextView
@@ -82,7 +98,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:padding="17dp"
+                            android:padding="15dp"
                             android:src="@drawable/main_setting" />
                     </LinearLayout>
 

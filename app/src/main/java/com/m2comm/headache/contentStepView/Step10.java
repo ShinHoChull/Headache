@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class Step10 implements View.OnClickListener , AdapterView.OnItemClickListener {
 
     public final static int ETC10_INPUT = 1010;
-
+    public final static int ETC10_ARRAY = 1011;
 
     private LayoutInflater inflater;
     private int ParentID;
@@ -91,7 +91,7 @@ public class Step10 implements View.OnClickListener , AdapterView.OnItemClickLis
             this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step10_type_default3,R.drawable.step10_type_click3,"가사활동\n못함",false,false,false,0 , "N"));
             this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step10_type_default4,R.drawable.step10_type_click4,"가사활동\n능률 저하",false,false,false,0 , "N"));
             this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step10_type_default5,R.drawable.step10_type_click5,"여가활동\n불참",false,false,false,0 , "N"));
-            //this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
+            this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
 
         } else {
             this.step10SaveDTO.getArrayList().get(0).setClick(this.step10SaveDTO.getAche_effect1().equals("Y"));
@@ -212,7 +212,7 @@ public class Step10 implements View.OnClickListener , AdapterView.OnItemClickLis
                     intent.putExtra("startDateLong",this.step1SaveDTO.getSdate());
                     intent.putExtra("endDateLong",this.step1SaveDTO.geteDate());
                 }
-                this.activity.startActivityForResult(intent, ETC10_INPUT);
+                this.activity.startActivityForResult(intent, ETC10_ARRAY);
 
                 break;
 

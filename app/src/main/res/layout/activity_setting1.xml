@@ -95,6 +95,7 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/id"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/nanum_bold"
@@ -130,6 +131,7 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/year"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/nanum_bold"
@@ -165,6 +167,7 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/jender"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/nanum_bold"
@@ -200,6 +203,7 @@
                             android:layout_weight="1" />
 
                         <TextView
+                            android:id="@+id/mean"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/nanum_bold"
@@ -250,6 +254,7 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                android:id="@+id/logoutBt"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="8"

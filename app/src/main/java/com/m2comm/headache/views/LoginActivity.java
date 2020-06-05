@@ -49,6 +49,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void init () {
         this.urls = new Urls();
         this.csp = new Custom_SharedPreferences(this);
+        if ( !this.csp.getValue("user_sid","").equals("") ) {
+            this.loginSuccess();
+        }
     }
 
     private void login () {
@@ -81,6 +84,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         csp.put("birth_year",response.getString("birth_year"));
                         csp.put("mens",response.getString("mens"));
                         loginSuccess();
+                    } else {
+                        Toast.makeText(getApplicationContext() , response.getString("msg"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     Toast.makeText(getApplicationContext() , "잠시후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();

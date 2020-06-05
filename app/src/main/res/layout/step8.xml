@@ -112,9 +112,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/step8Line"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:background="#e4e6ea"/>
+                    android:background="#e4e6ea"
+                    android:orientation="vertical"/>
 
                 <LinearLayout
                     android:id="@+id/step8View1"
@@ -125,12 +127,14 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/step8ParentV"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="7"
                         android:orientation="vertical"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp">
+
 
                         <LinearLayout
                             android:layout_width="match_parent"

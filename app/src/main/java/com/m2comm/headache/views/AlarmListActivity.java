@@ -38,7 +38,7 @@ public class AlarmListActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void init () {
-        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this);
+        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this,-1);
         this.arrayList = new ArrayList<>();
         byte[] week = {};
         this.arrayList.add(new AlarmDTO(new Date() , week , true , 1));

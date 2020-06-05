@@ -48,6 +48,8 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
     int nextStepNum = 8;
     int backStepNum = 6;
 
+    private LinearLayout step7Line , step7GridV;
+
     //두통 알수있는지 예true or 아니요false
     private boolean isHeadache = false;
 
@@ -84,9 +86,10 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
         this.noBt = this.view.findViewById(R.id.noBt);
         this.step7LinearView = this.view.findViewById(R.id.step7View1);
         this.step7BottomV = this.view.findViewById(R.id.step7BottomV);
+        this.step7Line = this.view.findViewById(R.id.step7Line);
+        this.step7GridV = this.view.findViewById(R.id.step7GridV);
 
         //this.list = new ArrayList<>();
-
 
 
         if ( this.step7SaveDTO == null ) {
@@ -211,16 +214,23 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
     private void isHeadche(boolean isHeadache) {
         this.isHeadache = isHeadache;
         if ( isHeadache ) {
+            this.step7SaveDTO.setAche_with_yn("Y");
             this.yesBt.setBackgroundResource(R.drawable.step5_select_board);
             this.yesBt.setTextColor(Color.parseColor("#1EA2B6"));
             this.noBt.setTextColor(Color.parseColor("#C2C2C2"));;
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
+            this.step7Line.setVisibility(View.VISIBLE);
+            this.step7GridV.setVisibility(View.VISIBLE);
         } else {
+            this.step7SaveDTO.setAche_with_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
             this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
+            this.step7Line.setVisibility(View.GONE);
+            this.step7GridV.setVisibility(View.GONE);
         }
+        this.parentActivity.save7(this.step7SaveDTO);
     }
 
     @Override

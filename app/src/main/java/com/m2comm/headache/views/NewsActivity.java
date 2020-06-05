@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.m2comm.headache.R;
 import com.m2comm.headache.databinding.ActivityNewsBinding;
+import com.m2comm.headache.module.Urls;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -26,6 +27,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
     ActivityNewsBinding binding;
     BottomActivity bottomActivity;
+    Urls urls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +42,12 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
 
     private void init() {
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_news);
+        this.urls = new Urls();
         this.binding.setNews(this);
-        this.bottomActivity = new BottomActivity(getLayoutInflater(), R.id.bottom, this, this);
+        this.bottomActivity = new BottomActivity(getLayoutInflater(), R.id.bottom, this, this,4);
         this.regObj();
+        Intent intent = getIntent();
+        String page = intent.getStringExtra("page");
 
 
         this.binding.webview.setWebViewClient(new WebviewCustomClient());
@@ -56,8 +61,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         this.binding.webview.getSettings().setBuiltInZoomControls(true);
         this.binding.webview.getSettings().setDisplayZoomControls(false);
         this.binding.webview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        this.binding.webview.loadUrl("http://ezv.kr/headache/bbs/list.php?code=news");
-
+        this.binding.webview.loadUrl(this.urls.mainUrl+page);
     }
 
     private class WebviewCustomClient extends WebViewClient {
@@ -119,4 +123,11 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
+    }
+
 }

@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import com.m2comm.headache.DTO.Step1SaveDTO;
 import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
+import com.m2comm.headache.module.CalendarModule;
 import com.m2comm.headache.views.ContentStepActivity;
 import com.m2comm.headache.views.SubTimePicker;
 
@@ -46,6 +47,8 @@ public class Step1 implements View.OnClickListener {
 
     public Step1SaveDTO step1SaveDTO;
 
+    private CalendarModule cm;
+
 
     public Step1(LayoutInflater inflater, int parentID, Context context, Activity activity , ContentStepActivity parentActivity , Step1SaveDTO step1SaveDTO) {
         this.inflater = inflater;
@@ -58,18 +61,9 @@ public class Step1 implements View.OnClickListener {
     }
 
     private void regObj () {
-        this.nextBt = this.view.findViewById(R.id.nextBt);
         this.nextBt.setOnClickListener(this);
-
-        this.calendarBt1 = this.view.findViewById(R.id.calendarBt1);
         this.calendarBt1.setOnClickListener(this);
-        this.calendarBt2 = this.view.findViewById(R.id.calendarBt2);
         this.calendarBt2.setOnClickListener(this);
-
-        this.startDateTxt = this.view.findViewById(R.id.startDate);
-        this.startTimeTxt = this.view.findViewById(R.id.startTime);
-        this.endDateTxt = this.view.findViewById(R.id.endDate);
-        this.endTimeTxt = this.view.findViewById(R.id.endTime);
     }
 
     private void init () {
@@ -77,10 +71,20 @@ public class Step1 implements View.OnClickListener {
         this.parent.removeAllViews();
 
         this.view = inflater.inflate(R.layout.step1,this.parent,true);
+        this.nextBt = this.view.findViewById(R.id.nextBt);
+        this.calendarBt1 = this.view.findViewById(R.id.calendarBt1);
+        this.calendarBt2 = this.view.findViewById(R.id.calendarBt2);
+        this.startDateTxt = this.view.findViewById(R.id.startDate);
+        this.startTimeTxt = this.view.findViewById(R.id.startTime);
+        this.endDateTxt = this.view.findViewById(R.id.endDate);
+        this.endTimeTxt = this.view.findViewById(R.id.endTime);
+        this.cm = new CalendarModule(this.context , this.activity);
         this.regObj();
 
         if ( this.step1SaveDTO == null ) {
-            this.step1SaveDTO = new Step1SaveDTO(0L , 0L ,"");
+            //새 일기 작성시에는 오늘날짜는 넣어줍니다.
+            this.step1SaveDTO = new Step1SaveDTO(Global.getStrToDateTime(this.cm.getStrRealDateTime()).getTime() , 0L ,"");
+            this.startTimeSetting(this.step1SaveDTO.getSdate());
         } else {
             this.startTimeSetting(this.step1SaveDTO.getSdate());
             this.endTimeSetting(this.step1SaveDTO.geteDate());

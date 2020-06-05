@@ -72,7 +72,7 @@ public class DetailCalendarFragment extends Fragment {
 
     private void getData (String date) {
         AndroidNetworking.post(this.urls.mainUrl+this.urls.getUrls.get("getMonthDiary"))
-                .addBodyParameter("user_sid","13")
+                .addBodyParameter("user_sid",csp.getValue("user_sid",""))
                 .addBodyParameter("year_month",date)
                 .setPriority(Priority.MEDIUM)
                 .build().getAsJSONObject(new JSONObjectRequestListener() {

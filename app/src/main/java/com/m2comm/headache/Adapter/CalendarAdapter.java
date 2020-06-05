@@ -2,6 +2,7 @@ package com.m2comm.headache.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,7 +73,13 @@ public class CalendarAdapter extends BaseAdapter {
         tv.setText(this.dayString.get(position));
 
         if (this.calendarDTOS != null) {
-            String pushDate = this.dateStr + "-" + this.dayString.get(position);
+
+            String day = this.dayString.get(position);
+            if ( !day.equals("") ) {
+                day = this.plusZero(day);
+            }
+
+            String pushDate = this.dateStr + "-" + day;
 
             for (int i = 0, j = this.calendarDTOS.size(); i < j; i++) {
                 final CalendarDTO row = this.calendarDTOS.get(i);
@@ -83,13 +90,13 @@ public class CalendarAdapter extends BaseAdapter {
                         tv.setTextColor(Color.WHITE);
                     }
 
-                    if ( row.getMens() == 1 ) {
+                    if ( row.getMens() >0 ) {
                         mens.setVisibility(View.VISIBLE);
                     }
-                    if ( row.getMedicine() == 1 ) {
+                    if ( row.getMedicine() >0 ) {
                         medicine.setVisibility(View.VISIBLE);
                     }
-                    if ( row.getEffect() == 1 ) {
+                    if ( row.getEffect() >0 ) {
                         effect.setVisibility(View.VISIBLE);
                     }
 
@@ -150,5 +157,12 @@ public class CalendarAdapter extends BaseAdapter {
         }
 
         return convertView;
+    }
+
+    private String plusZero(String val) {
+        if ( Integer.parseInt(val) < 10 ) {
+            val = "0"+val;
+        }
+        return val;
     }
 }

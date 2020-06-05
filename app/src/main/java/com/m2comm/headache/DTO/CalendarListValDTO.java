@@ -6,12 +6,14 @@ public class CalendarListValDTO {
     int ache_power;
     String ache_power_txt;
     String medicine_txt;
+    String medicine_effect_txt;
 
-    public CalendarListValDTO(int diary_sid, int ache_power, String ache_power_txt, String medicine_txt) {
+    public CalendarListValDTO(int diary_sid, int ache_power, String ache_power_txt, String medicine_txt, String medicine_effect_txt) {
         this.diary_sid = diary_sid;
         this.ache_power = ache_power;
         this.ache_power_txt = ache_power_txt;
         this.medicine_txt = medicine_txt;
+        this.medicine_effect_txt = medicine_effect_txt;
     }
 
     public void setDiary_sid(int diary_sid) {
@@ -30,6 +32,10 @@ public class CalendarListValDTO {
         this.medicine_txt = medicine_txt;
     }
 
+    public void setMedicine_effect_txt(String medicine_effect_txt) {
+        this.medicine_effect_txt = medicine_effect_txt;
+    }
+
     public int getDiary_sid() {
         return diary_sid;
     }
@@ -44,5 +50,9 @@ public class CalendarListValDTO {
 
     public String getMedicine_txt() {
         return medicine_txt;
+    }
+
+    public String getMedicine_effect_txt() {
+        return medicine_effect_txt;
     }
 }

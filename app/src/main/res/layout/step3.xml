@@ -8,7 +8,6 @@
         android:layout_height="match_parent">
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -290,6 +289,40 @@
 
                                     </LinearLayout>
 
+                                    <TextView
+                                        android:layout_marginTop="50dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_width="50dp"
+                                        android:layout_height="20dp"
+                                        android:text="오른쪽"
+                                        android:textColor="#666666"
+                                        android:textSize="15dp"/>
+
+                                    <TextView
+                                        android:layout_marginTop="50dp"
+                                        android:layout_marginLeft="285dp"
+                                        android:layout_width="50dp"
+                                        android:layout_height="20dp"
+                                        android:text="왼쪽"
+                                        android:textColor="#666666"
+                                        android:textSize="15dp"/>
+
+                                    <LinearLayout
+                                        android:layout_marginTop="14dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_width="3dp"
+                                        android:layout_height="30dp"
+                                        android:background="#9E9E9E"
+                                        />
+
+                                    <LinearLayout
+                                        android:layout_marginTop="344dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_width="3dp"
+                                        android:layout_height="30dp"
+                                        android:background="#9E9E9E"
+                                        />
+
                                 </FrameLayout>
 
                             </LinearLayout>
@@ -520,6 +553,45 @@
 
                                 </RelativeLayout>
                             </LinearLayout>
+
+
+
+                            <TextView
+                                android:layout_marginTop="50dp"
+                                android:layout_marginLeft="40dp"
+                                android:layout_width="50dp"
+                                android:layout_height="20dp"
+                                android:text="왼쪽"
+                                android:gravity="right"
+                                android:textColor="#666666"
+                                android:textSize="15dp"/>
+
+                            <TextView
+                                android:layout_marginTop="50dp"
+                                android:layout_marginLeft="285dp"
+                                android:layout_width="50dp"
+                                android:layout_height="20dp"
+                                android:gravity="right"
+                                android:text="오른쪽"
+                                android:textColor="#666666"
+                                android:textSize="15dp"/>
+
+                            <LinearLayout
+                                android:layout_marginTop="344dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="3dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="1dp"
+                                android:background="#9E9E9E"
+                                />
+
+                            <LinearLayout
+                                android:layout_marginTop="14dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="3dp"
+                                android:layout_height="30dp"
+                                android:background="#9E9E9E"
+                                />
 
                         </FrameLayout>
 

@@ -20,8 +20,11 @@ import com.m2comm.headache.DTO.Step1SaveDTO;
 import com.m2comm.headache.DTO.Step4DTO;
 import com.m2comm.headache.DTO.Step9DTO;
 import com.m2comm.headache.DTO.Step9Dates;
+import com.m2comm.headache.DTO.Step9NewSaveDTO;
 import com.m2comm.headache.DTO.Step9SaveDTO;
 import com.m2comm.headache.R;
+import com.m2comm.headache.sendDTO.Send9PixDTO;
+import com.m2comm.headache.sendDTO.Step9SendDTO;
 import com.m2comm.headache.views.ContentStepActivity;
 import com.m2comm.headache.views.DrugInput;
 import com.m2comm.headache.views.EtcInputActivity;
@@ -51,7 +54,8 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
     int nextStepNum = 10;
     int backStepNum = 8;
 
-    int itemClickRow = -1;
+
+    int itemClickRow = 0;
 
 
     int[] radioBts = {
@@ -62,10 +66,13 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
             R.id.radio5_img
     };
 
-    int radioClickNum = 0;
+    int radioClickNum = 999;
 
     private Step9SaveDTO step9SaveDTO;
     private Step1SaveDTO step1SaveDTO; //고정 날짜를 알기위해서 넘겨줬다.
+
+    private Step9NewSaveDTO step9NewSaveDTO;
+    private Step9SendDTO step9SendDTO;
 
     public Step9(LayoutInflater inflater, int parentID, Context context, Activity activity, ContentStepActivity parentActivity , Step9SaveDTO step9SaveDTO , Step1SaveDTO step1SaveDTO) {
         this.inflater = inflater;
@@ -114,31 +121,18 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
                     ,"N", "N","N","N",
                     "N","N","N",new ArrayList<Step9DTO>(),-1);
 
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default1, R.drawable.step9_type_click1, "모름", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "나라믹", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "마이그란", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "미가드", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "맥살트", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "수마트란25", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "수마트란50", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "슈그란", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "알모그란", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "이미그란", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "조믹", false, false, false,null));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false,null));
-
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default1, R.drawable.step9_type_click1, "모름", false, false, false, new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "이미그란", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "수마트란", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "슈그란", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "마이그란", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "조믹", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "나라믹", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "알모그란", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "미가드", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "크래밍", false, false, false,new ArrayList<Step9Dates>(),0));
+            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false,new ArrayList<Step9Dates>(),0));
         } else {
-            this.step9SaveDTO.getStep9DTOS().get(0).setClick(this.step9SaveDTO.getAche_medicine1().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(1).setClick(this.step9SaveDTO.getAche_medicine2().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(2).setClick(this.step9SaveDTO.getAche_medicine3().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(3).setClick(this.step9SaveDTO.getAche_medicine4().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(4).setClick(this.step9SaveDTO.getAche_medicine5().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(5).setClick(this.step9SaveDTO.getAche_medicine6().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(6).setClick(this.step9SaveDTO.getAche_medicine7().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(7).setClick(this.step9SaveDTO.getAche_medicine8().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(8).setClick(this.step9SaveDTO.getAche_medicine9().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(9).setClick(this.step9SaveDTO.getAche_medicine10().equals("Y"));
-            this.step9SaveDTO.getStep9DTOS().get(10).setClick(this.step9SaveDTO.getAche_medicine11().equals("Y"));
             this.checkRadio(this.step9SaveDTO.getAche_medicine_effect());
         }
 
@@ -180,7 +174,7 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
                 else if (position == 10) this.step9SaveDTO.setAche_medicine10("N");
 
                 row.setClick(false);
-                row.setDrugArray(null);
+                row.setDrugArray(new ArrayList<Step9Dates>());
                 this.parentActivity.save9(step9SaveDTO);
                 reloadListView();
             } else {
@@ -220,7 +214,7 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
     }
 
     public void addListView(String etc , ArrayList<Step9Dates> arrayList) {
-        this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc, R.drawable.step_type_etc, etc, true, false, true,arrayList));
+        this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc, R.drawable.step_type_etc, etc, true, false, true,arrayList,0));
         reloadListView();
     }
 

@@ -15,6 +15,7 @@ public class CalendarModule {
     private Activity a;
     private Date date;
     private String strRealDate;
+    private String strRealDateTime;
     private Calendar calendar;
     private ArrayList<String> dayList;
 
@@ -22,6 +23,8 @@ public class CalendarModule {
     final SimpleDateFormat curYearFormat = new SimpleDateFormat("yyyy", Locale.KOREA);
     final SimpleDateFormat curMonthFormat = new SimpleDateFormat("MM", Locale.KOREA);
     final SimpleDateFormat curDayFormat = new SimpleDateFormat("dd", Locale.KOREA);
+    final SimpleDateFormat curDayHour = new SimpleDateFormat("HH", Locale.KOREA);
+    final SimpleDateFormat curDayMin = new SimpleDateFormat("mm", Locale.KOREA);
 
     public CalendarModule(Context c, Activity a) {
         this.c = c;
@@ -37,6 +40,11 @@ public class CalendarModule {
         this.strRealDate = this.curYearFormat.format(this.date) + "-" +
                 this.curMonthFormat.format(this.date) + "-" +
                 this.curDayFormat.format(this.date);
+
+        this.strRealDateTime = this.curYearFormat.format(this.date) + "-" +
+                this.curMonthFormat.format(this.date) + "-" +
+                this.curDayFormat.format(this.date) + " " + this.curDayHour.format(this.date) + ":" +this.curDayMin.format(this.date);
+
     }
 
     public ArrayList<String> getCalendar( String date ) {
@@ -69,12 +77,17 @@ public class CalendarModule {
         //getActualMaximum => 마지막 일 현재날짜 기준 최대수
         //getMaximum => 마지막 일 카렌더가 가진 최대수
         for (int i = 0; i < this.calendar.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-            this.dayList.add("" + (i + 1));
+            this.dayList.add("" +  (i + 1));
         }
     }
 
+
     public String getStrRealDate() {
         return strRealDate;
+    }
+
+    public String getStrRealDateTime() {
+        return strRealDateTime;
     }
 
     public Date getDate() {

@@ -70,8 +70,9 @@ public class CalendarFragment extends Fragment {
     }
 
     private void getData (String date) {
+
         AndroidNetworking.post(this.urls.mainUrl+this.urls.getUrls.get("getMonthDiary"))
-                .addBodyParameter("user_sid","13")
+                .addBodyParameter("user_sid",csp.getValue("user_sid",""))
                 .addBodyParameter("year_month",date)
                 .setPriority(Priority.MEDIUM)
                 .build().getAsJSONObject(new JSONObjectRequestListener() {
@@ -89,6 +90,7 @@ public class CalendarFragment extends Fragment {
                 } catch (Exception e) {
                     calendarDTOS = new ArrayList<>();
                     calendarListDTOS = new ArrayList<>();
+                    Log.d("MainCareldarError",e.toString());
                 }
             }
 
@@ -96,6 +98,7 @@ public class CalendarFragment extends Fragment {
             public void onError(ANError anError) {
                 calendarDTOS = new ArrayList<>();
                 calendarListDTOS = new ArrayList<>();
+                Log.d("MainCareldarError",anError.getErrorBody());
             }
         });
     }

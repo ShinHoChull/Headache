@@ -3,6 +3,7 @@ package com.m2comm.headache.Adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,7 @@ public class DetailListViewAdapter extends BaseAdapter {
         ImageView img = null  , nextImg = null;
         LinearLayout img_Back;
         TextView headerTitle  = null , desc = null;
+
         if (row.isHeader()) {
             convertView = this.inflater.inflate(R.layout.detail_calendar_header, null);
             img = convertView.findViewById(R.id.header_icon);

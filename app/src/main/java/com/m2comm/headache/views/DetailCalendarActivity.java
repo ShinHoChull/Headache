@@ -87,7 +87,7 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
         this.csp = new Custom_SharedPreferences(this);
         this.detailDTOArr = new ArrayList<>();
 
-        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this);
+        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this,2);
 
         this.cm = new CalendarModule(this , this);
         this.dateStrings = new ArrayList<>();
@@ -112,20 +112,29 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
             }
         });
 
-        this.getData(this.cm.getStrRealDate());
+
         this.binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DetailCalendarDTO row = detailDTOArr.get(position);
-                Toast.makeText(getApplicationContext(),""+row.getDiary_key(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),""+row.getDiary_key(),Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(getApplicationContext() , ContentStepActivity.class);
 //                intent.putExtra("diary_sid",row.getDiary_key());
+               if ( row.getDiary_key()== 0 )return;
+                String desc_sub = "";
+
                 Intent intent = new Intent(getApplicationContext() , DetaiViewActivity.class);
                 intent.putExtra("diary_sid",row.getDiary_key());
+                intent.putExtra("desc",row.getDes());
                 startActivity(intent);
-
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.getData(this.cm.getStrRealDate());
     }
 
     private void listViewChange() {
@@ -137,8 +146,8 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
     private void getData (String date) {
         Log.d("year_month",this.dateStrings.get(this.dateIndex));
         AndroidNetworking.post(this.urls.mainUrl+this.urls.getUrls.get("getMonthDiary"))
-                .addBodyParameter("user_sid","13")
-                .addBodyParameter("year_month","2020-05")
+                .addBodyParameter("user_sid",csp.getValue("user_sid",""))
+                .addBodyParameter("year_month",date.trim())
                 .setPriority(Priority.MEDIUM)
                 .build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
@@ -146,30 +155,39 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
                 try {
                     Log.d("calendar_data",response.toString());
                     JSONArray cal = (JSONArray) response.get("cal");
+
                     JSONArray list = (JSONArray) response.get("list");
                     Gson gson = new Gson();
                     calendarDTOS = gson.fromJson(cal.toString(), new TypeToken<ArrayList<CalendarDTO>>(){}.getType());
                     calendarListDTOS = gson.fromJson(list.toString(), new TypeToken<ArrayList<CalendarListDTO>>(){}.getType());
 
+                    detailDTOArr = new ArrayList<>();//리스트뷰 초기화
                     for ( int i = 0 , j = calendarListDTOS.size(); i < j ; i ++ ) {
                         CalendarListDTO row = calendarListDTOS.get(i);
                         detailDTOArr.add(new DetailCalendarDTO(0,true , row.getDate_txt(),row.getDate_txt() ,0,""));
                         for ( int k = 0 , l = row.getDate_val().size(); k < l; k++ ) {
                             CalendarListValDTO valRow = row.getDate_val().get(k);
-                            detailDTOArr.add(new DetailCalendarDTO(valRow.getDiary_sid(),false , "","" ,valRow.getAche_power(),"·"+valRow.getAche_power_txt()+"\n"+"·"+valRow.getMedicine_txt()));
+                            String desc_sub = "";
+                            if ( !valRow.getMedicine_txt().equals("") ) {
+                                desc_sub = "·"+valRow.getMedicine_txt()+valRow.getMedicine_effect_txt();
+                            }
+
+                            detailDTOArr.add(new DetailCalendarDTO(valRow.getDiary_sid(),false , "","" ,
+                                    valRow.getAche_power(),"·"+valRow.getAche_power_txt()+"\n"+desc_sub));
                         }
                     }
-                    listViewChange();
-
                 } catch (Exception e) {
                     Log.d("ERRROR!",e.toString());
+                    detailDTOArr = new ArrayList<>();
                     calendarDTOS = new ArrayList<>();
                     calendarListDTOS = new ArrayList<>();
                 }
+                listViewChange();
             }
 
             @Override
             public void onError(ANError anError) {
+                detailDTOArr = new ArrayList<>();
                 calendarDTOS = new ArrayList<>();
                 calendarListDTOS = new ArrayList<>();
             }
@@ -180,6 +198,9 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
         this.dateIndex = index;
         String[] cutDateFormat = this.dateStrings.get(index).split("-");
         this.binding.thisMonth.setText(cutDateFormat[0]+"년 "+cutDateFormat[1]+"월");
+        Log.d("dataaaaaa","index="+index);
+        getData(this.dateStrings.get(index));
+        listViewChange();
     }
 
     private void getMonth() {
