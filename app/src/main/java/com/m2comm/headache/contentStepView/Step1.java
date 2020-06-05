@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class Step1 implements View.OnClickListener {
     private Activity activity;
     private ContentStepActivity parentActivity;
     private View view;
+    private ImageView callLocationBt;
 
     /*step1*/
     int nextStepNum = 2;
@@ -64,6 +66,7 @@ public class Step1 implements View.OnClickListener {
         this.nextBt.setOnClickListener(this);
         this.calendarBt1.setOnClickListener(this);
         this.calendarBt2.setOnClickListener(this);
+        this.callLocationBt.setOnClickListener(this);
     }
 
     private void init () {
@@ -79,6 +82,7 @@ public class Step1 implements View.OnClickListener {
         this.endDateTxt = this.view.findViewById(R.id.endDate);
         this.endTimeTxt = this.view.findViewById(R.id.endTime);
         this.cm = new CalendarModule(this.context , this.activity);
+        this.callLocationBt = this.view.findViewById(R.id.locationBt);
         this.regObj();
 
         if ( this.step1SaveDTO == null ) {
@@ -128,6 +132,11 @@ public class Step1 implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+
+            case R.id.locationBt:
+
+                break;
+
             case R.id.nextBt:
                 this.parentActivity.positionView(this.nextStepNum);
                 break;

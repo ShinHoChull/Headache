@@ -200,6 +200,7 @@
                             android:textSize="15dp" />
 
                         <ImageView
+                            android:id="@+id/locationBt"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
