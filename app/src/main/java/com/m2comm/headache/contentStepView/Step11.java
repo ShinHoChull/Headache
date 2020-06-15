@@ -140,6 +140,7 @@ public class Step11 implements View.OnClickListener {
             case R.id.calendarBt1:
                 intent = new Intent(this.activity , SubTimePicker.class);
                 intent.putExtra("startDateLong",this.step11SaveDTO.getMens_sdate());
+                intent.putExtra("isStep11",true);
                 this.activity.startActivityForResult(intent , BT1);
                 break;
 
@@ -152,6 +153,7 @@ public class Step11 implements View.OnClickListener {
                 intent.putExtra("isEnd",true);
                 intent.putExtra("startDateLong",this.step11SaveDTO.getMens_sdate());
                 intent.putExtra("endDateLong",this.step11SaveDTO.getMens_edate());
+                intent.putExtra("isStep11",true);
                 this.activity.startActivityForResult(intent , BT2);
                 break;
 

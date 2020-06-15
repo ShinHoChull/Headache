@@ -53,6 +53,7 @@ import com.m2comm.headache.R;
 import com.m2comm.headache.databinding.ActivityDetaiViewBinding;
 import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.module.Urls;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,6 +83,8 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
     Step10SaveDTO step10SaveDTO;
     Step11SaveDTO step11SaveDTO;
     Step12SaveDTO step12SaveDTO;
+
+    LinearLayout step1 , step2 ,step3 , step4 , step5 , step6 , step7 , step8 , step9 , step10 , step11 , step12;
 
     private Step4GridviewAdapter adapter4;
     private Step5GridviewAdapter adapter5;
@@ -155,6 +158,20 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
         this.binding.step11Next.setOnClickListener(this);
         this.binding.step12Next.setOnClickListener(this);
         this.binding.delBt.setOnClickListener(this);
+
+        this.binding.step1.setOnClickListener(this);
+        this.binding.step2.setOnClickListener(this);
+        this.binding.step3.setOnClickListener(this);
+        this.binding.step4.setOnClickListener(this);
+        this.binding.step5.setOnClickListener(this);
+        this.binding.step6.setOnClickListener(this);
+        this.binding.step7.setOnClickListener(this);
+        this.binding.step8.setOnClickListener(this);
+        this.binding.step9.setOnClickListener(this);
+        this.binding.step10.setOnClickListener(this);
+        this.binding.step11TitleV.setOnClickListener(this);
+        this.binding.step12.setOnClickListener(this);
+
     }
 
 
@@ -208,8 +225,13 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
             String[] desccut = this.desc.split("\n");
             if ( desccut.length > 1 ) {
                 String[] medicCut = desccut[1].split("\\(");
-                this.binding.mainMedicineName1.setText(medicCut[0].replace("·",""));
-                this.binding.mainMedicineName2.setText("("+medicCut[1]);
+                if ( medicCut.length > 1 ) {
+                    this.binding.mainMedicineName1.setText(medicCut[0].replace("·",""));
+                    this.binding.mainMedicineName2.setText("("+medicCut[1]);
+                } else {
+                    this.binding.mainMedicineName1.setText(medicCut[0].replace("·",""));
+                }
+
             }
         }
         if ( this.csp.getValue("mens","").equals("Y") ) {
@@ -241,7 +263,7 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
         this.binding.step2AchePower.setText(String.valueOf(this.step2SaveDTO.getAche_power()));
         this.binding.step2Icon.setImageResource(Global.icon[Global.getIconNumberReturn(this.step2SaveDTO.getAche_power())]);
         this.binding.step2IconBack.setBackgroundResource(Global.icon_back[Global.getIconNumberReturn(this.step2SaveDTO.getAche_power())]);
-        this.binding.step2Txt.setText(this.getStep2Desc(this.step2SaveDTO.getAche_power()));
+        this.binding.step2Txt.setText(this.getStep2Desc(this.step2SaveDTO.getAche_power())+" 상태입니다.");
     }
 
     private void step3Setting() {
@@ -342,7 +364,7 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
 
         if ( this.step6SaveDTO.getAche_sign1().equals("Y") ) {
             heightCount += 1;
-            this.binding.step6CheckBox.addView(createStep6CheckBox("이러한 증상은 5분에서60분간 지속된다"));
+            this.binding.step6CheckBox.addView(createStep6CheckBox("이러한 증상은 5분에서 60분간 지속된다"));
 
         }
         if ( this.step6SaveDTO.getAche_sign2().equals("Y") ) {
@@ -360,7 +382,7 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
         if ( this.step6SaveDTO.getAche_sign4().equals("Y") ) {
 
             heightCount +=1;
-            this.binding.step6CheckBox.addView(createStep6CheckBox("지그제그선(성곽모양)이 보인다."));
+            this.binding.step6CheckBox.addView(createStep6CheckBox("지그재그선(성곽모양)이 보인다."));
 
         }
         if ( this.step6SaveDTO.getAche_sign5().equals("Y") ) {
@@ -378,7 +400,7 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
         if ( this.step6SaveDTO.getAche_sign7().equals("Y") ) {
 
             heightCount +=1;
-            this.binding.step6CheckBox.addView(createStep6CheckBox("한쪽 손발이 저리거나 감각이 없다진다."));
+            this.binding.step6CheckBox.addView(createStep6CheckBox("한쪽 손발이 저리거나 감각이 없어진다."));
         }
 
         final int height =  (int)(Global.pxToDp(this,this.etcItemViewHeight)) * heightCount;
@@ -574,6 +596,15 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
         String[] cut2 = endDate.split("-");
         this.binding.step11EndDate.setText(cut2[0]);
         this.binding.step11EndTime.setText(cut2[1]);
+
+        this.weatherSetting();
+    }
+
+    public void weatherSetting() {
+        this.binding.temp.setText(String.format("%.0f",(this.step1SaveDTO.getTemp()-273.15))+"°");
+        this.binding.pressureAndHumidity.setText("습도  "+this.step1SaveDTO.getPressure()+"%"+"\n 압력 "+this.step1SaveDTO.getHumidity()+"obar");
+        this.binding.address.setText(this.step1SaveDTO.getAddress());
+        Picasso.get().load("http://openweathermap.org/img/wn/"+this.step1SaveDTO.getWeather_icon()+"@2x.png").into(binding.weatherImg);
     }
 
     private void step12Setting () {
@@ -712,7 +743,12 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
                 Log.d("stepContent_son", response.toString());
                 try {
                     long edate = response.isNull("edate") ? 0L : response.getLong("edate")*1000;
-                    step1SaveDTO = new Step1SaveDTO(response.getLong("sdate")*1000 , edate , response.getString("address"));
+                    step1SaveDTO = new Step1SaveDTO(response.getLong("sdate") * 1000, edate, response.getString("address"),
+                            response.getString("pressure").equals("")?0:response.getDouble("pressure"),response.getString("humidity").equals("")?0:response.getDouble("humidity")
+                            ,response.getString("temp").equals("")?0:response.getDouble("temp"),
+                            response.getString("weather_icon")
+                    );
+
                     step2SaveDTO = new Step2SaveDTO(response.getInt("ache_power"));
                     step3SaveDTO = new Step3SaveDTO(response.getString("ache_location1"),response.getString("ache_location2"),response.getString("ache_location3"),response.getString("ache_location4"),
                             response.getString("ache_location5"),response.getString("ache_location6"),response.getString("ache_location7"),response.getString("ache_location8"),
@@ -1005,79 +1041,98 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
             case R.id.backBt:
                 //finish();
                 break;
-
+            case R.id.step1:
             case R.id.step1Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",0);
                 startActivity(intent);
                 break;
+            case R.id.step2:
             case R.id.step2Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",1);
                 startActivity(intent);
                 break;
+            case R.id.step3:
             case R.id.step3Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",2);
                 startActivity(intent);
                 break;
+            case R.id.step4:
             case R.id.step4Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",3);
                 startActivity(intent);
                 break;
-
+            case R.id.step5:
             case R.id.step5Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",4);
                 startActivity(intent);
                 break;
-
+            case R.id.step6:
             case R.id.step6Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",5);
                 startActivity(intent);
                 break;
-
+            case R.id.step7:
             case R.id.step7Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",6);
                 startActivity(intent);
                 break;
-
+            case R.id.step8:
             case R.id.step8Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",7);
                 startActivity(intent);
                 break;
+            case R.id.step9:
             case R.id.step9Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",8);
                 startActivity(intent);
                 break;
+            case R.id.step10:
             case R.id.step10Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",9);
                 startActivity(intent);
                 break;
+            case R.id.step11TitleV:
             case R.id.step11Next:
                 intent = new Intent(this , ContentStepActivity.class);
                 intent.putExtra("diary_sid",this.diary_sid);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("step",10);
                 startActivity(intent);
                 break;
+            case R.id.step12:
             case R.id.step12Next:
                 intent = new Intent(this , ContentStepActivity.class);
+                intent.putExtra("detailGo",true);
                 intent.putExtra("diary_sid",this.diary_sid);
                 intent.putExtra("step",11);
                 startActivity(intent);
@@ -1098,7 +1153,7 @@ public class DetaiViewActivity extends AppCompatActivity implements View.OnClick
                                             if ( csp.getValue("notSaveSid","").equals(response.getString("diary_sid")) ) {
                                                 csp.put("notSaveSid","");
                                             }
-                                            Intent intent = new Intent(getApplicationContext() , Main2Activity.class);
+                                            Intent intent = new Intent(getApplicationContext() , DetailCalendarActivity.class);
                                             startActivity(intent);
                                             finish();
                                         } catch (JSONException e) {

@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void loginSuccess() {
         Intent intent = new Intent(this , Main2Activity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

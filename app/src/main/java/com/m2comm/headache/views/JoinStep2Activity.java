@@ -38,9 +38,18 @@ public class JoinStep2Activity extends AppCompatActivity implements View.OnClick
     private Custom_SharedPreferences csp;
     String[] years;
     String[] email = {
+            "선택하세요",
             "naver.com",
+            "hanmail.net",
             "gmail.com",
-            "daum.net"
+            "nate.com",
+            "hotmail.com",
+            "freechal.com",
+            "hanmir.com",
+            "korea.com",
+            "paran.com",
+            "daum.net",
+            "직접입력"
     };
     String gender = "M";//성별
     String mens = "";
@@ -122,6 +131,8 @@ public class JoinStep2Activity extends AppCompatActivity implements View.OnClick
             }
         });
 
+        this.binding.spinnerEmailDropBt.setOnClickListener(this);
+
     }
 
     private void spinnerSetEmail () {
@@ -132,7 +143,18 @@ public class JoinStep2Activity extends AppCompatActivity implements View.OnClick
         this.binding.spinnerEmail.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                binding.emailInput.setText(String.valueOf(parent.getItemAtPosition(position)));
+                if ( email[position].equals("직접입력") ) {
+                    binding.spinnerEmail.setVisibility(View.GONE);
+                    binding.emailInput.setEnabled(true);
+                    binding.emailInput.setText("");
+                    binding.emailInput.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+                } else {
+                    binding.emailInput.setText(String.valueOf(parent.getItemAtPosition(position)));
+                }
+
             }
 
             @Override
@@ -159,7 +181,9 @@ public class JoinStep2Activity extends AppCompatActivity implements View.OnClick
         this.binding.spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                binding.yearInput.setText(String.valueOf(parent.getItemAtPosition(position)));
+
+                    binding.yearInput.setText(String.valueOf(parent.getItemAtPosition(position)));
+
             }
 
             @Override
@@ -220,6 +244,9 @@ public class JoinStep2Activity extends AppCompatActivity implements View.OnClick
         } else if ( !this.binding.pw.getText().toString().equals(this.binding.repw.getText().toString()) ) {
             Toast.makeText(this , "비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
             return false;
+        } else if (this.binding.emailInput.getText().toString().equals("선택하세요")) {
+            Toast.makeText(this , "이메일을 선택해주세요.", Toast.LENGTH_SHORT).show();
+            return false;
         }
 
         AndroidNetworking.post(this.urls.mainUrl+this.urls.getUrls.get("setLogin"))
@@ -270,6 +297,11 @@ public class JoinStep2Activity extends AppCompatActivity implements View.OnClick
 
         Intent intent;
         switch (v.getId()) {
+
+            case R.id.spinner_email_dropBt:
+                this.binding.emailInput.setText("선택하세요");
+                this.binding.spinnerEmail.setVisibility(View.VISIBLE);
+                break;
 
             case R.id.backBt:
                 finish();

@@ -31,6 +31,7 @@ public class JoinStep1Activity extends AppCompatActivity implements View.OnClick
 
     private void regObj () {
         this.binding.backBt.setOnClickListener(this);
+        this.binding.backBt2.setOnClickListener(this);
         this.binding.nextBt.setOnClickListener(this);
         this.binding.allCheck.setOnClickListener(this);
         this.binding.check1.setOnClickListener(this);
@@ -120,6 +121,7 @@ public class JoinStep1Activity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.backBt2:
             case R.id.backBt:
                 finish();
                 break;
@@ -128,7 +130,7 @@ public class JoinStep1Activity extends AppCompatActivity implements View.OnClick
 
                 for ( int i = 0 , j = this.isChecks.length; i < j; i++ ) {
                     if ( !this.isChecks[i] ) {
-                        Toast.makeText(this , "필수 이용약관을 동의 해주세요.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this , "서비스 이용약관 동의에 체크해주세요.",Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }

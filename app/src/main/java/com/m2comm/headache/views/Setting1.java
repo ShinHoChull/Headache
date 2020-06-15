@@ -39,7 +39,7 @@ public class Setting1 extends AppCompatActivity implements View.OnClickListener 
         this.csp = new Custom_SharedPreferences(this);
         this.binding.id.setText(this.csp.getValue("user_id",""));
         this.binding.year.setText(this.csp.getValue("birth_year",""));
-        this.binding.jender.setText(this.csp.getValue("sex",""));
+        this.binding.jender.setText(this.csp.getValue("sex","").equals("M") ? "남자":"여자");
         if ( this.csp.getValue("mens","").equals("N") ) {
             this.binding.mean.setText("폐경");
         } else {

@@ -21,8 +21,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8"
+                android:layout_height="50dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -350,50 +349,65 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.5"
-                android:orientation="vertical">
+                android:layout_height="100dp"
+                android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2" />
+                    android:layout_weight="3"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="5"
+                    android:layout_weight="4"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:id="@+id/backBt2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/back_radius"
+                        android:layout_weight="4"
+                        android:text="비동의"
+                        android:gravity="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/nanum_bold"
+                        />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
+                        android:layout_weight="0.5"/>
 
                     <TextView
                         android:id="@+id/nextBt"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="8"
                         android:background="@drawable/next_radius"
-                        android:fontFamily="@font/nanum_bold"
+                        android:layout_weight="4"
+                        android:text="동의"
                         android:gravity="center"
-                        android:text="다음"
                         android:textColor="#FFFFFF"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:fontFamily="@font/nanum_bold"
+                        />
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3" />
+                    android:layout_weight="3"/>
 
             </LinearLayout>
 

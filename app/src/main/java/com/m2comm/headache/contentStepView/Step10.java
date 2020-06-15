@@ -21,6 +21,7 @@ import com.m2comm.headache.DTO.Step10SaveDTO;
 import com.m2comm.headache.DTO.Step1SaveDTO;
 import com.m2comm.headache.DTO.Step4DTO;
 import com.m2comm.headache.DTO.Step9Dates;
+import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
 import com.m2comm.headache.views.ContentStepActivity;
 import com.m2comm.headache.views.EtcInputActivity;
@@ -160,7 +161,9 @@ public class Step10 implements View.OnClickListener , AdapterView.OnItemClickLis
     }
 
     public void addListView (String etc) {
-        this.step10SaveDTO.getArrayList().add( new Step10EtcDTO(R.drawable.step_type_etc, R.drawable.step_type_etc, etc,true,false, true,0,"Y") );
+        this.step10SaveDTO.getArrayList().remove(this.step10SaveDTO.getArrayList().size()-1);
+        this.step10SaveDTO.getArrayList().add( new Step10EtcDTO(R.drawable.step_type_etc_add, R.drawable.step_type_etc_add, etc,true,false, true,0,"Y") );
+        this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
         reloadListView();
     }
 
@@ -201,18 +204,26 @@ public class Step10 implements View.OnClickListener , AdapterView.OnItemClickLis
         });
     }
 
-
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
+
             case R.id.nextBt:
-                Intent intent = new Intent(this.activity, Step9DatePicker.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                if ( this.step1SaveDTO != null ) {
-                    intent.putExtra("startDateLong",this.step1SaveDTO.getSdate());
-                    intent.putExtra("endDateLong",this.step1SaveDTO.geteDate());
+
+                if ( step1SaveDTO.geteDate() != 0 && !Global.getTimeToStr(step1SaveDTO.getSdate()).equals(Global.getTimeToStr(step1SaveDTO.geteDate())) ) {
+                    Intent intent = new Intent(this.activity, Step9DatePicker.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+                    if ( this.step1SaveDTO != null ) {
+                        intent.putExtra("startDateLong",this.step1SaveDTO.getSdate());
+                        intent.putExtra("endDateLong",this.step1SaveDTO.geteDate());
+                    }
+                    intent.putExtra("step10",true);
+                    this.activity.startActivityForResult(intent, ETC10_ARRAY);
+                } else {
+                    this.parentActivity.positionView(this.nextStepNum);
                 }
-                this.activity.startActivityForResult(intent, ETC10_ARRAY);
 
                 break;
 

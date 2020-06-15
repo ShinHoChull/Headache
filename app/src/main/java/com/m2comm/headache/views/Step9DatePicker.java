@@ -42,7 +42,7 @@ public class Step9DatePicker extends AppCompatActivity implements View.OnClickLi
     Date date;
 
     Long startDateLong , endDateLong;
-
+    boolean isStep10 = false;
     int dateIndex = -1;
 
     private void regObj() {
@@ -87,7 +87,6 @@ public class Step9DatePicker extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onPageSelected(int position) {
-
                 changeDate(position);
             }
 
@@ -100,7 +99,12 @@ public class Step9DatePicker extends AppCompatActivity implements View.OnClickLi
         Intent intent = getIntent();
         this.startDateLong = intent.getLongExtra("startDateLong",0L);
         this.endDateLong = intent.getLongExtra("endDateLong",0L);
+        this.isStep10 = intent.getBooleanExtra("step10",false);
         Log.d("nowDate",Global.getTimeToStr(this.startDateLong));
+
+        if (this.isStep10) {
+            this.binding.txt.setText("영향을 받은 날짜를 선택해 주세요");
+        }
 
     }
 

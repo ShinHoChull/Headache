@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="subTime"
-            type="com.m2comm.headache.views.SubTimePicker" />
+            name="alarmPicker"
+            type="com.m2comm.headache.views.AlarmPicker" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -49,12 +49,11 @@
                         android:background="@drawable/sub_time_activity">
 
                         <TextView
-                            android:id="@+id/title"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/nanum"
                             android:gravity="center"
-                            android:text="두통 시작일을 선택해 주세요."
+                            android:text="알림시간 선택"
                             android:textColor="@android:color/white"
                             android:textSize="14dp" />
                     </LinearLayout>
@@ -67,6 +66,7 @@
                         android:orientation="horizontal">
 
                         <FrameLayout
+                            android:visibility="gone"
                             android:id="@+id/dateBt"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -114,13 +114,6 @@
                                 android:textColor="#222222"
                                 android:textSize="16dp" />
 
-                            <LinearLayout
-                                android:id="@+id/timeBtLine"
-                                android:layout_width="match_parent"
-                                android:layout_height="3dp"
-                                android:layout_gravity="bottom"
-                                android:background="#222222"
-                                android:orientation="vertical"/>
 
                         </FrameLayout>
                     </LinearLayout>
@@ -141,6 +134,7 @@
                             android:layout_marginRight="7dp">
 
                             <LinearLayout
+                                android:visibility="gone"
                                 android:id="@+id/calendarView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -275,6 +269,7 @@
                             </LinearLayout>
 
                             <TimePicker
+                                android:visibility="visible"
                                 android:id="@+id/timepicker"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

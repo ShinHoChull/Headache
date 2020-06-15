@@ -98,12 +98,6 @@ public class Step2 implements View.OnClickListener, View.OnTouchListener {
             public void run() {
                 cursorFrameHeight = cursor_frame.getHeight();
                 cursorHeight();
-                if ( step2SaveDTO == null ) {
-                    step2SaveDTO = new Step2SaveDTO(1);
-                    getHeight(step2SaveDTO.getAche_power()-1);
-                } else {
-                    getHeight(step2SaveDTO.getAche_power()-1);
-                }
             }
         });
 
@@ -112,8 +106,14 @@ public class Step2 implements View.OnClickListener, View.OnTouchListener {
     private void cursorHeight() {
 
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.height = (int) (cursorFrameHeight / 8);
+        layoutParams.height = (int) (cursorFrameHeight / 8.5);
         cursor.setLayoutParams(layoutParams);
+
+        if ( step2SaveDTO == null ) {
+            step2SaveDTO = new Step2SaveDTO(1);
+        }
+
+        getHeight(step2SaveDTO.getAche_power()-1);
 
 //        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT , 30);
 //        this.cursor.setLayoutParams(params);
@@ -136,14 +136,20 @@ public class Step2 implements View.OnClickListener, View.OnTouchListener {
         }
     }
 
-
     private void getHeight(int num) {
         this.step2SaveDTO.setAche_power(num+1);
         this.parentActivity.save2(this.step2SaveDTO);
 
-        int margin = (cursorFrameHeight / 60);
+        int margin = (cursorFrameHeight / 70);
+        int stateH = (cursorFrameHeight / 10);
         if (num == 9) {
-            cursor.setY(0);
+            cursor.setY(margin);
+        } else if ( num == 8 || num == 7 ){
+            cursor.setY(stateH * (10 - ( num + 1 )) + margin);
+        } else if (num == 6 || num == 5 || num == 4) {
+            cursor.setY(stateH * (10 - ( num + 1 )));
+        } else if (num == 0) {
+            cursor.setY((float) (cursorFrameHeight - stateH*1.25));
         } else {
             cursor.setY((float) ((cursorFrameHeight - ((cursorFrameHeight / 10) * (num+1))))-margin);
         }

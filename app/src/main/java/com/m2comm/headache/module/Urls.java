@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Urls {
 
-    public String mainUrl = "http://ezv.kr/headache";
+    public String mainUrl = "https://ezv.kr:4447/headache";
 
     public HashMap<String, String> getUrls = new HashMap<String, String>() {
         {
@@ -17,6 +17,8 @@ public class Urls {
             put("notice","/bbs/list.php?code=notice");
             put("news","/bbs/list.php?code=news");
             put("del","/diary/del_diary.php");
+            put("getETC","/diary/get_etc_medicine.php");
+            put("getNotiCount","/bbs/get_new_count.php");
         }
     };
 

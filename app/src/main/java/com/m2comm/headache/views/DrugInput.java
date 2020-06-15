@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.m2comm.headache.DTO.Step9Dates;
+import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
 import com.m2comm.headache.contentStepView.Step1;
 import com.m2comm.headache.contentStepView.Step10;
@@ -24,6 +25,7 @@ import com.m2comm.headache.contentStepView.Step8;
 import com.m2comm.headache.contentStepView.Step9;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DrugInput extends AppCompatActivity implements View.OnClickListener {
 
@@ -71,6 +73,7 @@ public class DrugInput extends AppCompatActivity implements View.OnClickListener
         }
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -84,12 +87,21 @@ public class DrugInput extends AppCompatActivity implements View.OnClickListener
                     Toast.makeText(this, "약물을 입력해 주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if ( this.endDateLong != 0 && !Global.getTimeToStr(this.startDateLong).equals(Global.getTimeToStr(this.endDateLong)) ) {
+                    Intent intent = new Intent(this, Step9DatePicker.class);
+                    intent.putExtra("startDateLong",this.startDateLong);
+                    intent.putExtra("endDateLong",this.endDateLong);
+                    startActivityForResult(intent, Step9.ETC9_INPUT2);
+                    this.parentV.setVisibility(View.INVISIBLE);
+                } else {
+                    ArrayList<Step9Dates> dateArry = new ArrayList<Step9Dates>(Arrays.asList(new Step9Dates(Global.getTimeToStr(startDateLong),"Y")));
+                    Intent intent = new Intent();
+                    intent.putExtra("input1",this.input1.getText().toString());
+                    intent.putExtra("dates",dateArry);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
 
-                Intent intent = new Intent(this, Step9DatePicker.class);
-                intent.putExtra("startDateLong",this.startDateLong);
-                intent.putExtra("endDateLong",this.endDateLong);
-                startActivityForResult(intent, Step9.ETC9_INPUT2);
-                this.parentV.setVisibility(View.INVISIBLE);
 
                 break;
 

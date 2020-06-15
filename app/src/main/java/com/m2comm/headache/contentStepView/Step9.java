@@ -22,6 +22,7 @@ import com.m2comm.headache.DTO.Step9DTO;
 import com.m2comm.headache.DTO.Step9Dates;
 import com.m2comm.headache.DTO.Step9NewSaveDTO;
 import com.m2comm.headache.DTO.Step9SaveDTO;
+import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
 import com.m2comm.headache.sendDTO.Send9PixDTO;
 import com.m2comm.headache.sendDTO.Step9SendDTO;
@@ -31,6 +32,7 @@ import com.m2comm.headache.views.EtcInputActivity;
 import com.m2comm.headache.views.Step9DatePicker;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -97,7 +99,6 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
         this.radio3.setOnClickListener(this);
         this.radio4.setOnClickListener(this);
         this.radio5.setOnClickListener(this);
-        
     }
 
     private void init() {
@@ -119,7 +120,7 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
 
             this.step9SaveDTO = new Step9SaveDTO("N","N","N","N"
                     ,"N", "N","N","N",
-                    "N","N","N",new ArrayList<Step9DTO>(),-1);
+                    "N","N","N",new ArrayList<Step9DTO>(),999);
 
             this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default1, R.drawable.step9_type_click1, "모름", false, false, false, new ArrayList<Step9Dates>(),0));
             this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "이미그란", false, false, false,new ArrayList<Step9Dates>(),0));
@@ -145,7 +146,8 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Step9DTO row = this.step9SaveDTO.getStep9DTOS().get(position);
-        if (row.getEtcBt()) {
+        if (row.getEtcBt() ) {
+            //종료일이 선택이 안되면 클릭.
             getEtcActivity();
         } else {
 
@@ -177,14 +179,26 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
                 row.setDrugArray(new ArrayList<Step9Dates>());
                 this.parentActivity.save9(step9SaveDTO);
                 reloadListView();
+
             } else {
                 this.itemClickRow = position;
-                Intent intent = new Intent(this.activity, Step9DatePicker.class);
-                if ( this.step1SaveDTO != null ) {
-                    intent.putExtra("startDateLong",this.step1SaveDTO.getSdate());
-                    intent.putExtra("endDateLong",this.step1SaveDTO.geteDate());
+
+                if ( step1SaveDTO.geteDate() != 0 && !Global.getTimeToStr(step1SaveDTO.getSdate()).equals(Global.getTimeToStr(step1SaveDTO.geteDate())) ) {
+
+                    Intent intent = new Intent(this.activity, Step9DatePicker.class);
+                    if ( this.step1SaveDTO != null ) {
+                        intent.putExtra("startDateLong",this.step1SaveDTO.getSdate());
+                        intent.putExtra("endDateLong",this.step1SaveDTO.geteDate());
+                    }
+                    this.activity.startActivityForResult(intent, ETC9_INPUT2);
+                } else {
+                    row.setClick(true);
+                    row.setDrugArray(new ArrayList<Step9Dates>(Arrays.asList(new Step9Dates(Global.getTimeToStr(step1SaveDTO.getSdate()),"Y"))));
+                    this.parentActivity.save9(step9SaveDTO);
+                    reloadListView();
                 }
-                this.activity.startActivityForResult(intent, ETC9_INPUT2);
+
+
             }
         }
     }
@@ -214,7 +228,9 @@ public class Step9 implements View.OnClickListener, AdapterView.OnItemClickListe
     }
 
     public void addListView(String etc , ArrayList<Step9Dates> arrayList) {
-        this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc, R.drawable.step_type_etc, etc, true, false, true,arrayList,0));
+        this.step9SaveDTO.getStep9DTOS().remove(this.step9SaveDTO.getStep9DTOS().size()-1);
+        this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc_add, R.drawable.step_type_etc_add, etc, true, false, true,arrayList,0));
+        this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false,new ArrayList<Step9Dates>(),0));
         reloadListView();
     }
 

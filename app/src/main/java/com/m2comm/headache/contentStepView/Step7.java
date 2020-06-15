@@ -32,7 +32,7 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
 
     private LayoutInflater inflater;
     private int ParentID;
-    private LinearLayout parent , step7LinearView , step7BottomV;
+    private LinearLayout parent , step7LinearView , step7BottomV , step5BottomV2;
     private Context context;
     private Activity activity;
 
@@ -43,7 +43,7 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
     ContentStepActivity parentActivity;
 
     //step6
-    TextView nextBt , backBt , yesBt , noBt;
+    TextView nextBt , backBt , yesBt , noBt , nextBt2 , backBt2;
 
     int nextStepNum = 8;
     int backStepNum = 6;
@@ -72,6 +72,8 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
         this.backBt.setOnClickListener(this);
         this.yesBt.setOnClickListener(this);
         this.noBt.setOnClickListener(this);
+        this.nextBt2.setOnClickListener(this);
+        this.backBt2.setOnClickListener(this);
 
     }
 
@@ -88,29 +90,32 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
         this.step7BottomV = this.view.findViewById(R.id.step7BottomV);
         this.step7Line = this.view.findViewById(R.id.step7Line);
         this.step7GridV = this.view.findViewById(R.id.step7GridV);
+        this.step5BottomV2 = this.view.findViewById(R.id.step5BottomV2);
+        this.nextBt2 = this.view.findViewById(R.id.nextBt2);
+        this.backBt2 = this.view.findViewById(R.id.backBt2);
 
         //this.list = new ArrayList<>();
 
 
         if ( this.step7SaveDTO == null ) {
 
-            this.step7SaveDTO = new Step7SaveDTO("N","N","N","N","N",
-                    "N","N","N","N",
-                    "N","N","N","N",new ArrayList<Step7EtcDTO>());
-            this.isHeadche(false);
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default1,R.drawable.step7_type_click1,"소화가 안됨",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default2,R.drawable.step7_type_click2,"울렁거림",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default3,R.drawable.step7_type_click3,"구토",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default4,R.drawable.step7_type_click4,"어지럼증",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default5,R.drawable.step7_type_click5,"움직임에\n의해 악화",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default6,R.drawable.step7_type_click6,"빛에 예민",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default7,R.drawable.step7_type_click7,"소리에 예민",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default8,R.drawable.step7_type_click8,"냄새에 예민",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default9,R.drawable.step7_type_click9,"뒷목통증/\n뻐근함/당김",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default10,R.drawable.step7_type_click10,"어깨통증",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default11,R.drawable.step7_type_click11,"눈물/눈충혈",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default12,R.drawable.step7_type_click12,"콧물/코막힘",false,false,false,0 , "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
+//            this.step7SaveDTO = new Step7SaveDTO("N","N","N","N","N",
+//                    "N","N","N","N",
+//                    "N","N","N","N",new ArrayList<Step7EtcDTO>());
+//            this.isHeadche(false);
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default1,R.drawable.step7_type_click1,"소화가 안됨",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default2,R.drawable.step7_type_click2,"울렁거림",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default3,R.drawable.step7_type_click3,"구토",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default4,R.drawable.step7_type_click4,"어지럼증",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default5,R.drawable.step7_type_click5,"움직임에\n의해 악화",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default6,R.drawable.step7_type_click6,"빛에 예민",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default7,R.drawable.step7_type_click7,"소리에 예민",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default8,R.drawable.step7_type_click8,"냄새에 예민",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default9,R.drawable.step7_type_click9,"뒷목통증/\n뻐근함/당김",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default10,R.drawable.step7_type_click10,"어깨통증",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default11,R.drawable.step7_type_click11,"눈물/눈충혈",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default12,R.drawable.step7_type_click12,"콧물/코막힘",false,false,false,0 , "N"));
+//            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
 
         } else {
             this.isHeadche(this.step7SaveDTO.getAche_with_yn().equals("Y"));
@@ -176,7 +181,9 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
     }
 
     public void addListView (String etc) {
-        this.step7SaveDTO.getStep7EtcDTOS().add( new Step7EtcDTO(R.drawable.step_type_etc, R.drawable.step_type_etc, etc,true,false, true,0,"Y") );
+        this.step7SaveDTO.getStep7EtcDTOS().remove(this.step7SaveDTO.getStep7EtcDTOS().size()-1);
+        this.step7SaveDTO.getStep7EtcDTOS().add( new Step7EtcDTO(R.drawable.step_type_etc_add, R.drawable.step_type_etc_add, etc,true,false, true,0,"Y") );
+        this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
         reloadListView();
     }
 
@@ -221,6 +228,8 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
             this.step7Line.setVisibility(View.VISIBLE);
             this.step7GridV.setVisibility(View.VISIBLE);
+            this.step5BottomV2.setVisibility(View.GONE);
+            this.step7BottomV.setVisibility(View.VISIBLE);
         } else {
             this.step7SaveDTO.setAche_with_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
@@ -229,6 +238,8 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
             this.step7Line.setVisibility(View.GONE);
             this.step7GridV.setVisibility(View.GONE);
+            this.step5BottomV2.setVisibility(View.VISIBLE);
+            this.step7BottomV.setVisibility(View.INVISIBLE);
         }
         this.parentActivity.save7(this.step7SaveDTO);
     }
@@ -236,10 +247,12 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.nextBt2:
             case R.id.nextBt:
                 this.parentActivity.positionView(this.nextStepNum);
                 break;
 
+            case R.id.backBt2:
             case R.id.backBt:
                 this.parentActivity.positionView(this.backStepNum);
                 break;

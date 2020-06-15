@@ -4,24 +4,19 @@ import java.util.Date;
 
 public class AlarmDTO {
 
-    private Date date;
-    private byte[] week;
+    private String time;
     private boolean isPush;
     private int alarmId;
 
-    public AlarmDTO(Date date, byte[] week, boolean isPush, int alarmId) {
-        this.date = date;
-        this.week = week;
+
+    public AlarmDTO(String time, boolean isPush, int alarmId) {
+        this.time = time;
         this.isPush = isPush;
         this.alarmId = alarmId;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setWeek(byte[] week) {
-        this.week = week;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public void setPush(boolean push) {
@@ -32,12 +27,8 @@ public class AlarmDTO {
         this.alarmId = alarmId;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public byte[] getWeek() {
-        return week;
+    public String getTime() {
+        return time;
     }
 
     public boolean isPush() {

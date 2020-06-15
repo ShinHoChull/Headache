@@ -298,6 +298,7 @@
                         </LinearLayout>
                         <!--step0-->
                         <LinearLayout
+                            android:id="@+id/step1"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:orientation="horizontal"
@@ -439,31 +440,32 @@
                                                 android:layout_weight="0.5" />
 
                                             <TextView
+                                                android:id="@+id/temp"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="2"
                                                 android:gravity="center"
-                                                android:text="21°"
                                                 android:textColor="#000000"
                                                 android:textSize="40dp"
                                                 android:textStyle="bold" />
 
                                             <TextView
+                                                android:id="@+id/pressureAndHumidity"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="4"
                                                 android:gravity="center_vertical"
                                                 android:paddingStart="5dp"
-                                                android:text="습도 49%\n압력 1029.0mbar"
                                                 android:textColor="#8C8F99"
                                                 android:textSize="16dp" />
 
                                             <ImageView
+                                                android:id="@+id/weatherImg"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="2.5"
                                                 android:padding="13dp"
-                                                android:src="@drawable/step1_windy_1" />
+                                                 />
 
                                         </LinearLayout>
 
@@ -478,17 +480,18 @@
                                             android:layout_weight="2.9">
 
                                             <TextView
+                                                android:id="@+id/address"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="8"
                                                 android:fontFamily="@font/nanum"
                                                 android:gravity="center_vertical"
                                                 android:paddingStart="10dp"
-                                                android:text="∙ 서울특별시 성동구 성수2가 1동 323"
                                                 android:textColor="#666666"
                                                 android:textSize="15dp" />
 
                                             <ImageView
+                                                android:visibility="gone"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="2"
@@ -590,6 +593,7 @@
                         </LinearLayout>
                         <!--step1-->
                         <LinearLayout
+                            android:id="@+id/step2"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -706,6 +710,7 @@
                         </LinearLayout>
                         <!--step2-->
                         <LinearLayout
+                            android:id="@+id/step3"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -1259,6 +1264,7 @@
                         </LinearLayout>
                         <!--step3-->
                         <LinearLayout
+                            android:id="@+id/step4"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -1333,6 +1339,7 @@
                         </LinearLayout>
                         <!--step4-->
                         <LinearLayout
+                            android:id="@+id/step5"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -1529,6 +1536,7 @@
                         </LinearLayout>
                         <!--step5-->
                         <LinearLayout
+                            android:id="@+id/step6"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -1627,6 +1635,7 @@
                         </LinearLayout>
                         <!--step6-->
                         <LinearLayout
+                            android:id="@+id/step7"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -1738,6 +1747,7 @@
                         </LinearLayout>
                         <!--step7-->
                         <LinearLayout
+                            android:id="@+id/step8"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -1849,6 +1859,7 @@
                         </LinearLayout>
                         <!--step8-->
                         <LinearLayout
+                            android:id="@+id/step9"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -1884,6 +1895,7 @@
                             android:orientation="vertical"></LinearLayout>
                         <!--step9-->
                         <LinearLayout
+                            android:id="@+id/step10"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
@@ -2160,6 +2172,7 @@
                         </LinearLayout>
                         <!--step11-->
                         <LinearLayout
+                            android:id="@+id/step12"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">

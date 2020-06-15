@@ -31,7 +31,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
 
     private LayoutInflater inflater;
     private int ParentID;
-    private LinearLayout parent , step8LinearView , step8BottomV , step8Line , step8ParentV;
+    private LinearLayout parent , step8LinearView , step8BottomV , step5BottomV2 , step8Line , step8ParentV;
     private Context context;
     private Activity activity;
 
@@ -41,7 +41,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
     ContentStepActivity parentActivity;
 
     //step8
-    TextView nextBt , backBt , yesBt , noBt;
+    TextView nextBt , backBt , yesBt , noBt , nextBt2 , backBt2;
 
     int nextStepNum = 9;
     int backStepNum = 7;
@@ -67,6 +67,8 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         this.backBt.setOnClickListener(this);
         this.yesBt.setOnClickListener(this);
         this.noBt.setOnClickListener(this);
+        this.nextBt2.setOnClickListener(this);
+        this.backBt2.setOnClickListener(this);
     }
 
     private void init () {
@@ -83,6 +85,10 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         this.gridView = view.findViewById(R.id.step5_gridV);
         this.step8Line = view.findViewById(R.id.step8Line);
         this.step8ParentV = view.findViewById(R.id.step8ParentV);
+
+        this.step5BottomV2 = this.view.findViewById(R.id.step5BottomV2);
+        this.nextBt2 = this.view.findViewById(R.id.nextBt2);
+        this.backBt2 = this.view.findViewById(R.id.backBt2);
         
 
         if ( this.step8SaveDTO == null ) {
@@ -183,7 +189,9 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
     }
 
     public void addListView (String etc) {
-        this.step8SaveDTO.getArrayList().add( new Step8EtcDTO(R.drawable.step_type_etc, R.drawable.step_type_etc, etc,true,false, true,0,"Y") );
+        this.step8SaveDTO.getArrayList().remove(this.step8SaveDTO.getArrayList().size()-1);
+        this.step8SaveDTO.getArrayList().add( new Step8EtcDTO(R.drawable.step_type_etc_add, R.drawable.step_type_etc_add, etc,true,false, true,0,"Y") );
+        this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
         reloadListView();
     }
 
@@ -228,6 +236,9 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
             this.step8Line.setVisibility(View.VISIBLE);
             this.step8ParentV.setVisibility(View.VISIBLE);
+
+            this.step5BottomV2.setVisibility(View.GONE);
+            this.step8BottomV.setVisibility(View.VISIBLE);
         } else {
             this.step8SaveDTO.setAche_factor_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
@@ -236,6 +247,8 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
             this.step8Line.setVisibility(View.GONE);
             this.step8ParentV.setVisibility(View.GONE);
+            this.step5BottomV2.setVisibility(View.VISIBLE);
+            this.step8BottomV.setVisibility(View.INVISIBLE);
         }
         this.parentActivity.save8(this.step8SaveDTO);
     }
@@ -243,10 +256,12 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.nextBt2:
             case R.id.nextBt:
                 this.parentActivity.positionView(this.nextStepNum);
                 break;
 
+            case R.id.backBt2:
             case R.id.backBt:
                 this.parentActivity.positionView(this.backStepNum);
                 break;

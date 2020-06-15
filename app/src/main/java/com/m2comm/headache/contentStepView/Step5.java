@@ -33,7 +33,7 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
 
     private LayoutInflater inflater;
     private int ParentID;
-    private LinearLayout parent , step5LinearView , step5BottomV , timeSettingV , step5Line ,step5gridVParent;
+    private LinearLayout parent , step5LinearView , step5BottomV ,step5BottomV2 ,  timeSettingV , step5Line ,step5gridVParent;
     private Context context;
     private Activity activity;
     private EditText hour , min;
@@ -47,7 +47,7 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
     private boolean isHeadache = false;
 
     //step5
-    TextView nextBt , backBt , yesBt , noBt ;
+    TextView nextBt , backBt , yesBt , noBt ,nextBt2 , backBt2;
 
     int nextStepNum = 6;
     int backStepNum = 4;
@@ -69,8 +69,14 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
     private void regObj () {
         this.nextBt.setOnClickListener(this);
         this.backBt.setOnClickListener(this);
+
+        this.nextBt2.setOnClickListener(this);
+        this.backBt2.setOnClickListener(this);
+
         this.yesBt.setOnClickListener(this);
         this.noBt.setOnClickListener(this);
+
+
     }
 
     private void init () {
@@ -84,6 +90,10 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
         this.step5BottomV = this.view.findViewById(R.id.step5BottomV);
         this.nextBt = this.view.findViewById(R.id.nextBt);
         this.backBt = this.view.findViewById(R.id.backBt);
+        this.step5BottomV2 = this.view.findViewById(R.id.step5BottomV2);
+        this.nextBt2 = this.view.findViewById(R.id.nextBt2);
+        this.backBt2 = this.view.findViewById(R.id.backBt2);
+
         this.yesBt = this.view.findViewById(R.id.yesBt);
         this.noBt = this.view.findViewById(R.id.noBt);
         this.timeSettingV = this.view.findViewById(R.id.timeSettingV);
@@ -91,23 +101,33 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
         this.step5gridVParent = this.view.findViewById(R.id.step5gridVParent);
 
         if ( this.step5SaveDTO == null ) {
-            this.step5SaveDTO = new Step5SaveDTO("N",0,0,
-                    "N","N","N","N",
-                    "N","N","N","N",new ArrayList<Step5EtcDTO>());
-            this.isHeadche(false);
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default1,R.drawable.step5_type_click1,"아플 것 같은\n느낌",false,false,false,0 , "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default2,R.drawable.step5_type_click2,"뒷목통증\n뻐근함/당김",false,false,false,0 , "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default3,R.drawable.step5_type_click3,"하품",false,false,false,0 , "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default4,R.drawable.step5_type_click4,"피로",false,false,false,0 , "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default5,R.drawable.step5_type_click5,"집중력저하",false,false,false,0 , "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default6,R.drawable.step5_type_click6,"기분변화",false,false,false,0 , "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default7,R.drawable.step5_type_click7,"식욕변화",false,false,false,0 , "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default8,R.drawable.step5_type_click8,"빛/소리/\n냄새에 과민",false,false,false,0 , "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0 , "N"));
+//            this.step5SaveDTO = new Step5SaveDTO("N",0,0,
+//                    "N","N","N","N",
+//                    "N","N","N","N",new ArrayList<Step5EtcDTO>());
+//            this.isHeadche(false);
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default1,R.drawable.step5_type_click1,"아플 것 같은\n느낌",false,false,false,0 , "N"));
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default2,R.drawable.step5_type_click2,"뒷목통증\n뻐근함/당김",false,false,false,0 , "N"));
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default3,R.drawable.step5_type_click3,"하품",false,false,false,0 , "N"));
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default4,R.drawable.step5_type_click4,"피로",false,false,false,0 , "N"));
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default5,R.drawable.step5_type_click5,"집중력저하",false,false,false,0 , "N"));
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default6,R.drawable.step5_type_click6,"기분변화",false,false,false,0 , "N"));
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default7,R.drawable.step5_type_click7,"식욕변화",false,false,false,0 , "N"));
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default8,R.drawable.step5_type_click8,"빛/소리/\n냄새에 과민",false,false,false,0 , "N"));
+//            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0 , "N"));
         } else {
             this.isHeadche(this.step5SaveDTO.getAche_realize_yn().equals("Y"));
-            this.hour.setText(String.valueOf(this.step5SaveDTO.getAche_realize_hour()));
-            this.min.setText(String.valueOf(this.step5SaveDTO.getAche_realize_minute()));
+            if ( this.step5SaveDTO.getAche_realize_hour() == 0 ) {
+                this.hour.setText("");
+            } else {
+                this.hour.setText(String.valueOf(this.step5SaveDTO.getAche_realize_hour()));
+            }
+
+            if ( this.step5SaveDTO.getAche_realize_minute() == 0 ) {
+                this.min.setText("");
+            } else {
+                this.min.setText(String.valueOf(this.step5SaveDTO.getAche_realize_minute()));
+            }
+
             this.step5SaveDTO.getArrayList().get(0).setClick(this.step5SaveDTO.getAche_realize1().equals("Y"));
             this.step5SaveDTO.getArrayList().get(1).setClick(this.step5SaveDTO.getAche_realize2().equals("Y"));
             this.step5SaveDTO.getArrayList().get(2).setClick(this.step5SaveDTO.getAche_realize3().equals("Y"));
@@ -202,7 +222,9 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
     }
 
     public void addListView (String etc) {
-        this.step5SaveDTO.getArrayList().add( new Step5EtcDTO(R.drawable.step_type_etc, R.drawable.step_type_etc, etc,true,false, true,0,"Y") );
+        this.step5SaveDTO.getArrayList().remove(this.step5SaveDTO.getArrayList().size()-1);
+        this.step5SaveDTO.getArrayList().add( new Step5EtcDTO(R.drawable.step_type_etc_add, R.drawable.step_type_etc_add, etc,true,false, true,0,"Y") );
+        this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0 , "N"));
         this.parentActivity.save5(this.step5SaveDTO);
         reloadListView();
     }
@@ -251,6 +273,8 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
             this.timeSettingV.setVisibility(View.VISIBLE);
             this.step5Line.setVisibility(View.VISIBLE);
             this.step5gridVParent.setVisibility(View.VISIBLE);
+            this.step5BottomV2.setVisibility(View.GONE);
+            this.step5BottomV.setVisibility(View.VISIBLE);
 
         } else {
             this.step5SaveDTO.setAche_realize_yn("N");
@@ -266,16 +290,21 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
             this.timeSettingV.setVisibility(View.INVISIBLE);
             this.step5Line.setVisibility(View.GONE);
             this.step5gridVParent.setVisibility(View.GONE);
+            this.step5BottomV2.setVisibility(View.VISIBLE);
+            this.step5BottomV.setVisibility(View.INVISIBLE);
+
         }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.nextBt2:
             case R.id.nextBt:
                 this.parentActivity.positionView(this.nextStepNum);
                 break;
 
+            case R.id.backBt2:
             case R.id.backBt:
                 this.parentActivity.positionView(this.backStepNum);
                 break;

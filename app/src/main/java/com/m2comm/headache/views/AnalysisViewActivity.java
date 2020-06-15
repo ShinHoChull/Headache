@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -61,7 +62,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
             R.id.monthBt3
     };
 
-    private int defaultNum = 3;
+    private int defaultNum = 1;
 
     private void regObj () {
         this.binding.backBt.setOnClickListener(this);
@@ -81,13 +82,19 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void init () {
-        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this,3);
+
         this.csp = new Custom_SharedPreferences(this);
         this.urls = new Urls();
         this.analyGraphDTOS = new ArrayList<>();
         this.analyRankDTOArrayList = new ArrayList<>();
 
-        this.changeButton(this.binding.monthBt2,this.defaultNum);
+        this.changeButton(this.binding.monthBt1,this.defaultNum);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this,3);
     }
 
     private void btReset () {
@@ -116,6 +123,8 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
             public void onResponse(JSONObject response) {
                 Log.d("responseData",response.toString()) ;
                 try {
+                    if ( !response.isNull("alert_txt")) Toast.makeText(getApplicationContext() , response.getString("alert_txt"),Toast.LENGTH_SHORT).show();
+
                     JSONObject obj =  response.getJSONObject("tot");
                     Log.d("response_data",obj.getString("ache_day"));
                     analyTotDTO = new AnalyTotDTO(obj.getString("ache_day"),obj.getString("medicine_day"),
@@ -124,10 +133,11 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
 
                     if ( !response.isNull("graph") ) {
                         JSONArray graphs = response.getJSONArray("graph");
+                        analyGraphDTOS = new ArrayList<>();
                         for ( int i = 0 , j = graphs.length(); i < j ; i++ ) {
                             JSONObject row1 = (JSONObject) graphs.get(i);
                             analyGraphDTOS.add(new AnalyGraphDTO(row1.getInt("month"),
-                                    row1.getInt("ache_day"),
+                                    Integer.parseInt(row1.getString("ache_day")),
                                     row1.getInt("medicine_day"),
                                     row1.getInt("effect_day"),
                                     row1.isNull("ache_power") ? 0:row1.getInt("ache_power")));
@@ -187,9 +197,9 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
 
     private int step5IconReturn(String txt) {
         int icon = R.drawable.step_type_etc;
-        if ( txt.equals("아플 것 같은\n느낌") ) {
+        if ( txt.equals("아플 것 같은느낌") ) {
             icon = R.drawable.step5_type_click1;
-        } else if ( txt.equals("뒷목통증\n뻐근함/당김") ){
+        } else if ( txt.equals("뒷목통증 뻐근함/당김") ){
             icon = R.drawable.step5_type_click2;
         } else if ( txt.equals("하품") ){
             icon = R.drawable.step5_type_click3;
@@ -201,10 +211,10 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
             icon = R.drawable.step5_type_click6;
         } else if ( txt.equals("식욕변화") ){
             icon = R.drawable.step5_type_click7;
-        } else if ( txt.equals("빛/소리/\n냄새에 과민") ){
+        } else if ( txt.equals("빛/소리/냄새에 과민") ){
             icon = R.drawable.step5_type_click8;
         } else {
-            icon = R.drawable.step_type_etc;
+            icon = R.drawable.step_type_etc_add_click;
         }
         return icon;
     }
@@ -217,7 +227,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
             icon = R.drawable.step8_type_click2;
         } else if ( txt.equals("수면부족") ){
             icon = R.drawable.step8_type_click3;
-        } else if ( txt.equals("낮잠 또는\n늦잠") ){
+        } else if ( txt.equals("낮잠 또는 늦잠") ){
             icon = R.drawable.step8_type_click4;
         } else if ( txt.equals("주말") ){
             icon = R.drawable.step8_type_click5;
@@ -242,7 +252,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
         } else if ( txt.equals("월경") ){
             icon = R.drawable.step8_type_click15;
         } else {
-            icon = R.drawable.step_type_etc;
+            icon = R.drawable.step_type_etc_add_click;
         }
         return icon;
     }
@@ -256,16 +266,37 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void step5Setting() {
+        if ( this.analyRankDTOArrayList.size() < 1 ) {
+            this.binding.reallizeParent.setVisibility(View.GONE);
+            return;
+        }
         this.adapter = new AnalysisGridviewAdapter(this.analyReallizeDTOArrayList,getLayoutInflater());
         this.binding.step5GridV.setAdapter(this.adapter);
     }
 
     private void step6Setting() {
+        if ( this.factorDTOArrayList.size() < 1 ) {
+            this.binding.factorParent.setVisibility(View.GONE);
+            return;
+        }
         this.adapter2 = new AnalysisGridviewAdapter(this.factorDTOArrayList,getLayoutInflater());
         this.binding.step6GridV.setAdapter(this.adapter2);
     }
 
     private void rank() {
+
+        if ( this.analyRankDTOArrayList.size() <= 0 ) {
+            this.binding.rankAllTopParent.setVisibility(View.GONE);
+            return;
+        } else if (this.analyRankDTOArrayList.size() < 2) {
+            this.binding.rank2TopParent.setVisibility(View.GONE);
+            this.binding.rankAllTopParent.post(new Runnable() {
+                @Override
+                public void run() {
+                    binding.rankAllTopParent.getLayoutParams().height = binding.rankAllTopParent.getLayoutParams().height / 2;
+                }
+            });
+        }
 
         this.binding.rank1Title.setText("·"+analyRankDTOArrayList.get(0).getMedicine_txt());
         this.binding.rankParent1.post(new Runnable() {
@@ -292,7 +323,6 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                     } else if ( analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("2시간 이후") ) {
                         rank11H =  (h / rankMaxHour) * analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getVal();
                     }
-
                 }
 
                 LinearLayout.LayoutParams layoutParams5 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1.5f);
@@ -323,6 +353,10 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+        if ( this.analyRankDTOArrayList.size() < 2 ) {
+            return;
+        }
+
         this.binding.rank2Title.setText("·"+analyRankDTOArrayList.get(1).getMedicine_txt());
         this.binding.rankParent2.post(new Runnable() {
             @Override
@@ -336,16 +370,17 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 int rank15H = 0;
 
                 for ( int i = 0 , j = analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().size() ; i < j ; i++ ) {
-                    if ( i == 0 ) {
-                        rank11H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( i == 1 ) {
-                        rank12H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( i == 2 ) {
-                        rank13H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( i == 3 ) {
-                        rank14H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( i == 5 ) {
+
+                    if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("효과 없음") ) {
                         rank15H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
+                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("30분 이내") ){
+                        rank14H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
+                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("1시간 이내") ) {
+                        rank13H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
+                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("2시간 이내") ) {
+                        rank12H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
+                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("2시간 이후") ) {
+                        rank11H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
                     }
                 }
 
@@ -412,6 +447,18 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
+    private int graphColorSetting (int num) {
+        if ( num <= 3 ) {
+            return R.drawable.graph_bar1;
+        } else if ( num <= 6 ) {
+            return R.drawable.graph_bar2;
+        } else if ( num <= 9 ) {
+            return R.drawable.graph_bar3;
+        } else {
+            return R.drawable.graph_bar4;
+        }
+    }
+
     private void graph1Setting () {
 
         this.binding.medicine1.setText(String.valueOf(this.analyGraphDTOS.get(0).getMedicine_day()));
@@ -427,6 +474,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams.height = graph11H;
                 layoutParams.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
                 binding.graph11.setLayoutParams(layoutParams);
+                binding.graph11In.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(0).getAche_power()));
             }
         });
     }
@@ -454,18 +502,19 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams3.height = graph23H;
                 layoutParams3.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
                 binding.graph23.setLayoutParams(layoutParams3);
+                binding.graph23In.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(2).getAche_power()));
 
                 LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,2.7f);
                 layoutParams2.height = graph22H;
                 layoutParams2.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
                 binding.graph22.setLayoutParams(layoutParams2);
-
+                binding.graph22In.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(1).getAche_power()));
 
                 LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,2.7f);
                 layoutParams1.height = graph21H;
                 layoutParams1.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
                 binding.graph21.setLayoutParams(layoutParams1);
-
+                binding.graph21In.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(0).getAche_power()));
 
             }
         });
@@ -498,12 +547,13 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 int graph35H = (h / graphMaxDay) * analyGraphDTOS.get(4).getAche_day();
                 int graph36H = (h / graphMaxDay) * analyGraphDTOS.get(5).getAche_day();
 
-                Log.d("graph36H",graph36H+"__");
-                Log.d("graph35H",graph35H+"__");
-                Log.d("graph34H",graph34H+"__");
-                Log.d("graph33H",graph33H+"__");
-                Log.d("graph32H",graph32H+"__");
-                Log.d("graph31H",graph31H+"__");
+
+                Log.d("graph36H",analyGraphDTOS.get(5).getAche_day()+"__");
+                Log.d("graph35H",analyGraphDTOS.get(4).getAche_day()+"__");
+                Log.d("graph34H",analyGraphDTOS.get(3).getAche_day()+"__");
+                Log.d("graph33H",analyGraphDTOS.get(2).getAche_day()+"__");
+                Log.d("graph32H",analyGraphDTOS.get(1).getAche_day()+"__");
+                Log.d("graph31H",analyGraphDTOS.get(0).getAche_day()+"__");
 
                 LinearLayout.LayoutParams layoutParams6 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT,1f);
                 layoutParams6.height = graph36H;
@@ -511,7 +561,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams6.leftMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 layoutParams6.rightMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 binding.graph36.setLayoutParams(layoutParams6);
-
+                binding.graph36.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(5).getAche_power()));
 
                 LinearLayout.LayoutParams layoutParams5 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1f);
                 layoutParams5.height = graph35H;
@@ -519,6 +569,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams5.leftMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 layoutParams5.rightMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 binding.graph35.setLayoutParams(layoutParams5);
+                binding.graph35.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(4).getAche_power()));
 
                 LinearLayout.LayoutParams layoutParams4 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1f);
                 layoutParams4.height = graph34H;
@@ -526,6 +577,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams4.leftMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 layoutParams4.rightMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 binding.graph34.setLayoutParams(layoutParams4);
+                binding.graph34.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(3).getAche_power()));
 
                 LinearLayout.LayoutParams layoutParams3 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1f);
                 layoutParams3.height = graph33H;
@@ -533,6 +585,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams3.leftMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 layoutParams3.rightMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 binding.graph33.setLayoutParams(layoutParams3);
+                binding.graph33.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(2).getAche_power()));
 
                 LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1f);
                 layoutParams2.height = graph32H;
@@ -540,6 +593,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams2.leftMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 layoutParams2.rightMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 binding.graph32.setLayoutParams(layoutParams2);
+                binding.graph32.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(1).getAche_power()));
 
                 LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1f);
                 layoutParams1.height = graph31H;
@@ -547,6 +601,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams1.leftMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 layoutParams1.rightMargin = (int)Global.pxToDp(getApplicationContext(),100);
                 binding.graph31.setLayoutParams(layoutParams1);
+                binding.graph31.setBackgroundResource(graphColorSetting(analyGraphDTOS.get(0).getAche_power()));
 
             }
         });

@@ -28,6 +28,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     ActivityNewsBinding binding;
     BottomActivity bottomActivity;
     Urls urls;
+    String page = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,10 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_news);
         this.urls = new Urls();
         this.binding.setNews(this);
-        this.bottomActivity = new BottomActivity(getLayoutInflater(), R.id.bottom, this, this,4);
+
         this.regObj();
         Intent intent = getIntent();
-        String page = intent.getStringExtra("page");
+        this.page = intent.getStringExtra("page");
 
 
         this.binding.webview.setWebViewClient(new WebviewCustomClient());
@@ -62,6 +63,15 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         this.binding.webview.getSettings().setDisplayZoomControls(false);
         this.binding.webview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         this.binding.webview.loadUrl(this.urls.mainUrl+page);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (this.page.contains("news")) {
+            this.bottomActivity = new BottomActivity(getLayoutInflater(), R.id.bottom, this, this,4);
+        }
+
     }
 
     private class WebviewCustomClient extends WebViewClient {
@@ -111,8 +121,6 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(getApplicationContext(), "서버와 연결이 끊어졌습니다", Toast.LENGTH_SHORT).show();
             view.loadUrl("about:blank");
         }
-
-
     }
 
     @Override
@@ -129,5 +137,4 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         super.finish();
         overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
     }
-
 }

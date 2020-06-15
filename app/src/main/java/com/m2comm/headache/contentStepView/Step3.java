@@ -2,8 +2,10 @@ package com.m2comm.headache.contentStepView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -45,7 +47,10 @@ public class Step3 implements View.OnClickListener {
     Step3SaveDTO step3SaveDTO;
 
     boolean[] isCheckImgs = {
-      false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+            false,false,false,false,
+            false,false,false,false,
+            false,false,false,false,
+            false,false,false
     };
 
     int[] btIds = {
@@ -113,7 +118,9 @@ public class Step3 implements View.OnClickListener {
                     "N","N","N","N",
                     "N","N","N","N",
                     "N","N","N");
+
         } else {
+
             this.isCheckImgs[0] = !this.step3SaveDTO.getAche_location1().equals("Y");
             this.isCheckImgs[1] = !this.step3SaveDTO.getAche_location2().equals("Y");
             this.isCheckImgs[2] = !this.step3SaveDTO.getAche_location3().equals("Y");
@@ -130,12 +137,23 @@ public class Step3 implements View.OnClickListener {
             this.isCheckImgs[13] = !this.step3SaveDTO.getAche_location14().equals("Y");
             this.isCheckImgs[14] = !this.step3SaveDTO.getAche_location15().equals("Y");
 
-
             for ( int i = 0 , j = this.isCheckImgs.length; i < j; i++ ) {
                 FrameLayout f = this.view.findViewById(this.btIds[i]);
                 checkImg(f);
             }
         }
+
+        this.scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                if ( scrollView.getScrollY() >  view2.getHeight()) {
+                    backGoBt.setVisibility(View.GONE);
+                } else {
+                    backGoBt.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
     private void saveChecked() {

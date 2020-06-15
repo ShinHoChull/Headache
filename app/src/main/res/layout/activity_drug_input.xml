@@ -66,6 +66,8 @@
                     android:gravity="left|center_vertical"
                     android:paddingStart="10dp"
                     android:inputType="text"
+                    android:hint="약제명을 입력해 주세요."
+                    android:textColorHint="#222222"
                     />
 
                 <LinearLayout

@@ -3,6 +3,8 @@
     package="com.m2comm.headache">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -12,50 +14,98 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.NewsActivity"></activity>
+
+        <activity android:name=".views.AlarmPicker"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".views.NewsActivity"
+            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".views.Step9DatePicker"
-            android:theme="@style/Theme.AppCompat.Translucent"></activity>
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".views.DrugInput"
-            android:theme="@style/Theme.AppCompat.Translucent" />
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".views.ClauseView"
-            android:theme="@style/Theme.AppCompat.Translucent" />
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".views.EtcInputActivity"
-            android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".views.IntroActivity">
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.IntroActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.AnalysisViewActivity" />
-        <activity android:name=".views.DetaiViewActivity" >
+
+        <activity android:name=".views.AnalysisViewActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.DetaiViewActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".views.AlarmListActivity" />
-        <activity android:name=".views.Setting4" />
-        <activity android:name=".views.Setting2" />
-        <activity android:name=".views.Setting1" />
-        <activity android:name=".views.SettingMainActivity"></activity>
-        <activity android:name=".views.JoinStepSuccess" />
-        <activity android:name=".views.JoinStep2Activity"></activity>
-        <activity android:name=".views.JoinStep1Activity" />
-        <activity android:name=".views.LoginActivity" />
-        <activity android:name=".views.ContentStepActivity"></activity>
+        <activity android:name=".views.AlarmListActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".views.Setting4"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.Setting2"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.Setting1"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.SettingMainActivity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".views.JoinStepSuccess"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.JoinStep2Activity"
+            android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".views.JoinStep1Activity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.LoginActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.ContentStepActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
         <activity
             android:name=".views.SubTimePicker"
-            android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".views.DetailCalendarActivity" >
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:screenOrientation="portrait"/>
 
+        <activity android:name=".views.DetailCalendarActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".views.Main2Activity">
 
+        <activity android:name=".views.Main2Activity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".TestActivity" />
+
+        <activity android:name=".TestActivity"/>
+        <receiver android:name="com.m2comm.headache.module.AlarmReceiver" />
     </application>
 
 </manifest>

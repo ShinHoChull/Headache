@@ -37,8 +37,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.85"
+                            android:layout_height="50dp"
                             android:orientation="horizontal">
 
                             <ImageView
@@ -134,7 +133,7 @@
                                             android:textColor="#222222"
                                             android:textColorHint="#222222"
                                             android:textSize="14dp"
-                                            android:layout_margin="3dp"
+                                            android:layout_margin="4dp"
                                             android:background="#FFFFFF"/>
                                     </LinearLayout>
 
@@ -165,8 +164,10 @@
                                                 android:layout_weight="7.5"
                                                 android:fontFamily="@font/nanum"
                                                 android:gravity="center_vertical"
-                                                android:hint="아이디(이메일)"
+                                                android:hint="직접입력"
                                                 android:paddingStart="10dp"
+                                                android:background="#FFFFFF"
+                                                android:layout_margin="4dp"
                                                 android:textColor="#222222"
                                                 android:textColorHint="#222222"
                                                 android:textSize="14dp"
@@ -175,6 +176,7 @@
 
 
                                             <ImageView
+                                                android:id="@+id/spinner_email_dropBt"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="2.5"
@@ -239,7 +241,7 @@
                                             android:textColor="#222222"
                                             android:textColorHint="#222222"
                                             android:textSize="18dp"
-                                            android:layout_margin="3dp"
+                                            android:layout_margin="4dp"
                                             android:background="#FFFFFF"/>
                                     </LinearLayout>
                                 </LinearLayout>
@@ -317,7 +319,7 @@
                                             android:textColor="#222222"
                                             android:textColorHint="#222222"
                                             android:textSize="18dp"
-                                            android:layout_margin="3dp"
+                                            android:layout_margin="4dp"
                                             android:background="#FFFFFF"/>
                                     </LinearLayout>
                                 </LinearLayout>

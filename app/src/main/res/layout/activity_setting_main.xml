@@ -211,6 +211,10 @@
                             android:padding="25dp"
                             android:src="@drawable/setting_next" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="#dedede" />
 
                     <LinearLayout
                         android:id="@+id/option5"

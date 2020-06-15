@@ -57,20 +57,13 @@
                     android:layout_weight="7.5"
                     android:background="#FFFFFF">
 
-                    <EditText
-                        android:id="@+id/input1"
+                    <WebView
+                        android:id="@+id/webview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="20dp"
                         android:layout_weight="6"
-                        android:background="@drawable/step1_day_board"
-                        android:fontFamily="@font/nanum"
-                        android:gravity="left"
-                        android:padding="3dp"
-                        android:paddingStart="10dp"
-                        android:text="약관"
-                        android:textColor="#222222"
-                        android:textSize="14dp" />
+                        android:background="#FFFFFF"
+                         />
 
                 </LinearLayout>
 

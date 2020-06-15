@@ -32,6 +32,7 @@ import com.m2comm.headache.Global;
 import com.m2comm.headache.SubTimeCalendarFragment;
 import com.m2comm.headache.R;
 import com.m2comm.headache.databinding.ActivitySubTimePickerBinding;
+import com.m2comm.headache.module.CalendarModule;
 import com.m2comm.headache.module.CalendarMonthModule;
 
 import java.text.SimpleDateFormat;
@@ -49,6 +50,7 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
 
     int dateIndex = -1;
     CalendarMonthModule cmm;
+    private CalendarModule cm;
     ArrayList<String> dateStrings;
     ArrayList<String> dayStringArr;
     NewPagerAdapter newPagerAdapter;
@@ -65,6 +67,7 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
 
     //endDate 설정하게 하기.
     private boolean isEnd = false;
+    private boolean isStep11 = false;
 
     private Activity activity;
     private void regObj() {
@@ -89,25 +92,44 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
     private void init() {
 
         this.cmm = new CalendarMonthModule(this, this);
+        this.cm = new CalendarModule(this , this);
         this.dateStrings = new ArrayList<>();
 
         Intent intent = getIntent();
         //시작날짜 가져오기
         this.startDateLong = intent.getLongExtra("startDateLong",0);
         this.isEnd = intent.getBooleanExtra("isEnd",false);
+        this.isStep11 = intent.getBooleanExtra("isStep11",false);
+
         Log.d("dataaa",this.startDateLong+"____");
         if ( this.startDateLong != 0 ) {
             String reciveStartDate = Global.getTimeToStr(this.startDateLong);
             this.startDate = new Date(Global.getStrToDate(reciveStartDate).getTime());
         }
 
+        if ( this.isStep11 ) {
+            this.binding.title.setText("월경 시작일을 선택해 주세요.");
+        }
+
         if (this.isEnd) {
+            if ( this.isStep11 ) {
+                this.binding.title.setText("월경 종료일을 선택해 주세요.");
+            } else {
+                this.binding.title.setText("두통 종료일을 선택해 주세요.");
+            }
+
             this.endDateLong = intent.getLongExtra("endDateLong",0);
             if ( this.endDateLong != 0 ) {
                 String reciveEndDate = Global.getTimeToStr(this.endDateLong);
                 this.endDate = new Date(Global.getStrToDate(reciveEndDate).getTime());
+            } else {
+                String reciveEndDate = Global.getTimeToStr(this.startDateLong);
+                this.endDate = new Date(Global.getStrToDate(reciveEndDate).getTime());
+                this.endDateLong = endDate.getTime();
             }
         }
+
+
 
         this.binding.nextBt.setColorFilter(Color.parseColor("#000000"));
         this.binding.backBt.setColorFilter(Color.parseColor("#000000"));

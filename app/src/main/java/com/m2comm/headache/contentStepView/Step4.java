@@ -78,13 +78,18 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
         //this.list = new ArrayList<>();
 
         if ( this.step4SaveDTO == null ) {
-            this.step4SaveDTO = new Step4SaveDTO("N","N","N","N","N",new ArrayList<Step4EtcDTO>());
-            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default1,R.drawable.step4_type_click1,"욱신거림",false,false , false ,0 , "N"));
-            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default2,R.drawable.step4_type_click2,"조임",false,false, false,0,"N"));
-            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default3,R.drawable.step4_type_click3,"터질듯함",false,false, false,0,"N"));
-            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default4,R.drawable.step4_type_click4,"찌름",false,false, false,0,"N"));
-            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default5,R.drawable.step4_type_click5,"따끔따끔",false,false, false,0,"N"));
-            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0,"N"));
+//            if ( step4SaveDTO.getArrayList() == null ) {
+//                this.step4SaveDTO = new Step4SaveDTO("N","N","N","N","N",new ArrayList<Step4EtcDTO>());
+//            } else {
+//                this.step4SaveDTO = new Step4SaveDTO("N","N","N","N","N",this.step4SaveDTO.getArrayList());
+//            }
+//
+//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default1,R.drawable.step4_type_click1,"욱신거림",false,false , false ,0 , "N"));
+//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default2,R.drawable.step4_type_click2,"조임",false,false, false,0,"N"));
+//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default3,R.drawable.step4_type_click3,"터질듯함",false,false, false,0,"N"));
+//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default4,R.drawable.step4_type_click4,"찌름",false,false, false,0,"N"));
+//            //this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default5,R.drawable.step4_type_click5,"따끔따끔",false,false, false,0,"N"));
+//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0,"N"));
         } else {
 
             this.step4SaveDTO.getArrayList().get(0).setClick(this.step4SaveDTO.getAche_type1().equals("Y"));
@@ -128,8 +133,10 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
     }
 
     public void addListView (String etc) {
-        Step4EtcDTO row = new  Step4EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,etc,true,false , true ,0 , "Y");
+        Step4EtcDTO row = new  Step4EtcDTO(R.drawable.step_type_etc_add,R.drawable.step_type_etc_add,etc,true,false , true ,0 , "Y");
+        this.step4SaveDTO.getArrayList().remove(this.step4SaveDTO.getArrayList().size()-1);
         this.step4SaveDTO.getArrayList().add( row );
+        this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0,"N"));
         this.parentActivity.save4(this.step4SaveDTO);
         reloadListView();
     }

@@ -108,7 +108,7 @@ public class CalendarAdapter extends BaseAdapter {
 
                             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                             params.width = h;
-                            params.height = h;
+                            params.height = h-3;
                             params.gravity = Gravity.CENTER;
                             back1.setLayoutParams(params);
                             back1.setRadius(h);
@@ -123,7 +123,7 @@ public class CalendarAdapter extends BaseAdapter {
 
                                 FrameLayout.LayoutParams params2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
                                 params2.width = h;
-                                params2.height = h;
+                                params2.height = h-3;
                                 params2.gravity = Gravity.CENTER;
                                 back2.setLayoutParams(params2);
 
@@ -134,7 +134,7 @@ public class CalendarAdapter extends BaseAdapter {
 
                                 FrameLayout.LayoutParams params3 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
                                 params3.width = h;
-                                params3.height = h;
+                                params3.height = h-3;
                                 params3.gravity = Gravity.CENTER;
                                 back3.setLayoutParams(params3);
 
@@ -146,7 +146,7 @@ public class CalendarAdapter extends BaseAdapter {
 
                                 FrameLayout.LayoutParams params4 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT , ViewGroup.LayoutParams.WRAP_CONTENT);
                                 params4.width = h;
-                                params4.height = h;
+                                params4.height = h-3;
                                 params4.gravity = Gravity.CENTER;
                                 back4.setLayoutParams(params4);
                             }

@@ -71,8 +71,8 @@ public class Step9GridviewAdapter extends BaseAdapter {
             }
         }
 
-        if (row.getDrugArray() != null && drugCountNum > 0) {
-            drugCount.setVisibility(View.VISIBLE);
+        if (row.getDrugArray() != null && drugCountNum > 1) {
+            //drugCount.setVisibility(View.VISIBLE);
             drugCount.setText(""+drugCountNum);
         }
 
