@@ -54,7 +54,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
 
     ActivityMain2Binding binding;
     Urls urls;
-    GpsTracker gpsTracker;
+    //GpsTracker gpsTracker;
 
     private void regObj () {
         this.binding.nextBt.setOnClickListener(this);

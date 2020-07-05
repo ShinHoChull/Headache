@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,10 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".views.NewsActivity"></activity>
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="9hcpsz5vyy" />
+
+        <activity android:name=".NaverMapSelectActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".views.NewsActivity" />
         <activity
             android:name=".views.Step9DatePicker"
-            android:theme="@style/Theme.AppCompat.Translucent"></activity>
+            android:theme="@style/Theme.AppCompat.Translucent" />
         <activity
             android:name=".views.DrugInput"
             android:theme="@style/Theme.AppCompat.Translucent" />
@@ -28,35 +40,25 @@
             android:name=".views.EtcInputActivity"
             android:theme="@style/Theme.AppCompat.Translucent" />
         <activity android:name=".views.IntroActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".views.AnalysisViewActivity" />
-        <activity android:name=".views.DetaiViewActivity" >
-
-        </activity>
+        <activity android:name=".views.DetaiViewActivity"></activity>
         <activity android:name=".views.AlarmListActivity" />
         <activity android:name=".views.Setting4" />
         <activity android:name=".views.Setting2" />
         <activity android:name=".views.Setting1" />
-        <activity android:name=".views.SettingMainActivity"></activity>
+        <activity android:name=".views.SettingMainActivity" />
         <activity android:name=".views.JoinStepSuccess" />
-        <activity android:name=".views.JoinStep2Activity"></activity>
+        <activity android:name=".views.JoinStep2Activity" />
         <activity android:name=".views.JoinStep1Activity" />
         <activity android:name=".views.LoginActivity" />
-        <activity android:name=".views.ContentStepActivity"></activity>
+        <activity android:name=".views.ContentStepActivity" />
         <activity
             android:name=".views.SubTimePicker"
             android:theme="@style/Theme.AppCompat.Translucent" />
-        <activity android:name=".views.DetailCalendarActivity" >
-
-        </activity>
-        <activity android:name=".views.Main2Activity">
-
-        </activity>
+        <activity android:name=".views.DetailCalendarActivity"></activity>
+        <activity android:name=".views.Main2Activity"></activity>
         <activity android:name=".TestActivity" />
     </application>
 
