@@ -1,7 +1,9 @@
 package com.m2comm.headache.contentStepView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,16 +22,18 @@ import com.m2comm.headache.DTO.Step10EtcDTO;
 import com.m2comm.headache.DTO.Step10SaveDTO;
 import com.m2comm.headache.DTO.Step1SaveDTO;
 import com.m2comm.headache.DTO.Step4DTO;
+import com.m2comm.headache.DTO.Step9DTO;
 import com.m2comm.headache.DTO.Step9Dates;
 import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
+import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.views.ContentStepActivity;
 import com.m2comm.headache.views.EtcInputActivity;
 import com.m2comm.headache.views.Step9DatePicker;
 
 import java.util.ArrayList;
 
-public class Step10 implements View.OnClickListener , AdapterView.OnItemClickListener {
+public class Step10 implements View.OnClickListener , AdapterView.OnItemClickListener , AdapterView.OnItemLongClickListener {
 
     public final static int ETC10_INPUT = 1010;
     public final static int ETC10_ARRAY = 1011;
@@ -48,11 +52,12 @@ public class Step10 implements View.OnClickListener , AdapterView.OnItemClickLis
     //step10
     TextView nextBt , backBt;
 
-    int nextStepNum = 11;
+    int nextStepNum = 12;
     int backStepNum = 9;
 
     Step10SaveDTO step10SaveDTO;
     private Step1SaveDTO step1SaveDTO; //고정 날짜를 알기위해서 넘겨줬다.
+    private Custom_SharedPreferences csp;
 
     public Step10(LayoutInflater inflater, int parentID, Context context, Activity activity , ContentStepActivity parentActivity , Step10SaveDTO step10SaveDTO , Step1SaveDTO step1SaveDTO) {
         this.inflater = inflater;
@@ -104,8 +109,33 @@ public class Step10 implements View.OnClickListener , AdapterView.OnItemClickLis
 
         this.adapter = new Step10GridviewAdapter( this.step10SaveDTO.getArrayList() , this.activity.getLayoutInflater());
         this.gridView.setAdapter(this.adapter);
+        this.csp = new Custom_SharedPreferences(this.context);
         this.gridView.setOnItemClickListener(this);
+        this.gridView.setOnItemLongClickListener(this);
 
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+        Step10EtcDTO row = this.step10SaveDTO.getArrayList().get(position);
+        if (row.getEtcBt() || !row.getEtc()) return true;
+
+        new AlertDialog.Builder(activity).setTitle("안내").setMessage("해당 항목을 삭제 하시겠습니까?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        step10SaveDTO.getArrayList().remove(position);
+                        parentActivity.removeETC(step10SaveDTO.getArrayList().get(position).getKey());
+                        reloadListView();
+                    }
+                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
+        return true;
     }
 
     @Override
@@ -194,7 +224,7 @@ public class Step10 implements View.OnClickListener , AdapterView.OnItemClickLis
                             public void run() {
                                 Log.d("gridViewHeight=",((int)Math.ceil((double)step10SaveDTO.getArrayList().size() / 4) )+"_");
                                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                                layoutParams.height = (int) ((bottomHeight/1.5) + (400 * Math.ceil((double)step10SaveDTO.getArrayList().size() / 4)));
+                                layoutParams.height = (int) ((bottomHeight/1.5) + (500 * Math.ceil((double)step10SaveDTO.getArrayList().size() / 4)));
                                 gridView.setLayoutParams(layoutParams);
                             }
                         });
@@ -222,9 +252,11 @@ public class Step10 implements View.OnClickListener , AdapterView.OnItemClickLis
                     intent.putExtra("step10",true);
                     this.activity.startActivityForResult(intent, ETC10_ARRAY);
                 } else {
+                    this.step10SaveDTO.getAche_effect_date_val_Array().add(new Step9Dates(Global.getTimeToStr(this.step1SaveDTO.getSdate()),"Y"));
+                    this.parentActivity.save10(this.step10SaveDTO);
+
                     this.parentActivity.positionView(this.nextStepNum);
                 }
-
                 break;
 
             case R.id.backBt:

@@ -22,8 +22,8 @@ public class SettingMainActivity extends AppCompatActivity implements View.OnCli
         this.binding.option2.setOnClickListener(this);
         this.binding.option3.setOnClickListener(this);
         this.binding.option4.setOnClickListener(this);
-        this.binding.option5.setOnClickListener(this);
-        this.binding.setting3CheckBt.setOnClickListener(this);
+        //this.binding.option5.setOnClickListener(this);
+        //this.binding.setting3CheckBt.setOnClickListener(this);
     }
 
     @Override
@@ -42,15 +42,15 @@ public class SettingMainActivity extends AppCompatActivity implements View.OnCli
         this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this,-1);
     }
 
-    private void isCheck() {
-        if ( this.isCheck ) {
-            this.binding.setting3CheckBt.setImageResource(R.drawable.setting_cehck_off);
-            this.isCheck = false;
-        } else {
-            this.binding.setting3CheckBt.setImageResource(R.drawable.setting_cehck_on);
-            this.isCheck = true;
-        }
-    }
+//    private void isCheck() {
+//        if ( this.isCheck ) {
+//            this.binding.setting3CheckBt.setImageResource(R.drawable.setting_cehck_off);
+//            this.isCheck = false;
+//        } else {
+//            this.binding.setting3CheckBt.setImageResource(R.drawable.setting_cehck_on);
+//            this.isCheck = true;
+//        }
+//    }
 
     @Override
     public void onClick(View v) {
@@ -84,10 +84,6 @@ public class SettingMainActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.option5:
-                break;
-
-            case R.id.setting3CheckBt:
-                this.isCheck();
                 break;
 
         }

@@ -9,11 +9,13 @@ public class Step9SendDTO {
     String content;
     int check_num;
     ArrayList<Step9Dates> date_val;
+    int effect;
 
-    public Step9SendDTO(int key, String content, int check_num, ArrayList<Step9Dates> date_val) {
+    public Step9SendDTO(int key, String content, int check_num, ArrayList<Step9Dates> date_val, int effect) {
         this.key = key;
         this.content = content;
         this.check_num = check_num;
         this.date_val = date_val;
+        this.effect = effect;
     }
 }

@@ -1,11 +1,14 @@
 package com.m2comm.headache;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +25,11 @@ import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.module.Urls;
 import com.m2comm.headache.DTO.CalendarDTO;
 import com.m2comm.headache.DTO.CalendarListDTO;
+import com.m2comm.headache.views.ContentStepActivity;
+import com.m2comm.headache.views.Main2Activity;
+import com.m2comm.headache.views.MensActivity;
+import com.m2comm.headache.views.MensDetailViewActivity;
+import com.m2comm.headache.views.SubTimePicker;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,7 +57,6 @@ public class CalendarFragment extends Fragment {
         args.putStringArrayList("dateArr",dayArr);
         fragment.setArguments(args);
         return fragment;
-
     }
 
     @Override
@@ -79,7 +86,7 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Log.d("getMonthDiary",response.toString());
+                    Log.d("getMonthDiary=",response.toString());
                     JSONArray cal = (JSONArray) response.get("cal");
                     JSONArray list = (JSONArray) response.get("list");
                     Gson gson = new Gson();
@@ -115,6 +122,12 @@ public class CalendarFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.calendar_fragment , container , false);
+        TextView meanBt = view.findViewById(R.id.mensBt);
+
+        if ( this.csp.getValue("sex","").equals("M") || this.csp.getValue("mens","").equals("N") ) {
+            meanBt.setVisibility(View.GONE);
+        }
+
         this.gridView = view.findViewById(R.id.calendar);
         this.gridView.post(new Runnable() {
             @Override
@@ -125,9 +138,26 @@ public class CalendarFragment extends Fragment {
             }
         });
 
+        view.findViewById(R.id.mensBt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext() , MensActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
 
+//                Intent intent = new Intent(getContext() , SubTimePicker.class);
+//                intent.putExtra("startDateLong",0);
+//                intent.putExtra("isMean",true);
+//                startActivity(intent);
+            }
+        });
 
-        //tv.setText(this.dayArr.size());
+        view.findViewById(R.id.todayBt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((Main2Activity)getContext()).todayBt();
+            }
+        });
 
         return view;
     }

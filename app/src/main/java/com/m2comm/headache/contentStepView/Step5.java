@@ -1,13 +1,16 @@
 package com.m2comm.headache.contentStepView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 import com.m2comm.headache.Adapter.Step4GridviewAdapter;
 import com.m2comm.headache.Adapter.Step5GridviewAdapter;
 import com.m2comm.headache.DTO.Step4DTO;
+import com.m2comm.headache.DTO.Step4EtcDTO;
 import com.m2comm.headache.DTO.Step5EtcDTO;
 import com.m2comm.headache.DTO.Step5SaveDTO;
 import com.m2comm.headache.R;
@@ -27,7 +31,7 @@ import com.m2comm.headache.views.EtcInputActivity;
 
 import java.util.ArrayList;
 
-public class Step5 implements View.OnClickListener , AdapterView.OnItemClickListener{
+public class Step5 implements View.OnClickListener , AdapterView.OnItemClickListener , AdapterView.OnItemLongClickListener {
 
     public final static int ETC5_INPUT = 555;
 
@@ -44,7 +48,7 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
     View view;
 
     //두통 알수있는지 예true or 아니요false
-    private boolean isHeadache = false;
+    private String isHeadache = "";
 
     //step5
     TextView nextBt , backBt , yesBt , noBt ,nextBt2 , backBt2;
@@ -75,8 +79,6 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
 
         this.yesBt.setOnClickListener(this);
         this.noBt.setOnClickListener(this);
-
-
     }
 
     private void init () {
@@ -115,7 +117,7 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
 //            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default8,R.drawable.step5_type_click8,"빛/소리/\n냄새에 과민",false,false,false,0 , "N"));
 //            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0 , "N"));
         } else {
-            this.isHeadche(this.step5SaveDTO.getAche_realize_yn().equals("Y"));
+            this.isHeadche(this.step5SaveDTO.getAche_realize_yn());
             if ( this.step5SaveDTO.getAche_realize_hour() == 0 ) {
                 this.hour.setText("");
             } else {
@@ -141,6 +143,7 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
         this.adapter = new Step5GridviewAdapter( this.step5SaveDTO.getArrayList() , this.activity.getLayoutInflater());
         this.gridView.setAdapter(this.adapter);
         this.gridView.setOnItemClickListener(this);
+        this.gridView.setOnItemLongClickListener(this);
 
         this.hour.addTextChangedListener(new TextWatcher() {
             @Override
@@ -154,7 +157,6 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
                     step5SaveDTO.setAche_realize_hour(Integer.parseInt(s.toString()));
                     parentActivity.save5(step5SaveDTO);
                 }
-
             }
 
             @Override
@@ -175,7 +177,6 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
                     step5SaveDTO.setAche_realize_minute(Integer.parseInt(s.toString()));
                     parentActivity.save5(step5SaveDTO);
                 }
-
             }
 
             @Override
@@ -184,8 +185,47 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
             }
         });
 
+        this.hour.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hour.onTouchEvent(event);
+                hour.setSelection(hour.getText().length());
+                return true;
+            }
+        });
+
+        this.min.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                min.onTouchEvent(event);
+                min.setSelection(min.getText().length());
+                return true;
+            }
+        });
     }
 
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+        Step5EtcDTO row = this.step5SaveDTO.getArrayList().get(position);
+        if (row.getEtcBt() || !row.getEtc()) return true;
+
+        new AlertDialog.Builder(activity).setTitle("안내").setMessage("해당 항목을 삭제 하시겠습니까?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        parentActivity.removeETC(step5SaveDTO.getArrayList().get(position).getKey());
+                        step5SaveDTO.getArrayList().remove(position);
+                        reloadListView();
+                    }
+                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
+        return true;
+    }
 
     @Override
     public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
@@ -251,7 +291,7 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
                     public void run() {
                         Log.d("gridViewHeight=",((int)Math.ceil((double)step5SaveDTO.getArrayList().size() / 4) )+"_");
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        layoutParams.height = (int) (titleHeight + (400 * Math.ceil((double)step5SaveDTO.getArrayList().size() / 4)));
+                        layoutParams.height = (int) (titleHeight + (500 * Math.ceil((double)step5SaveDTO.getArrayList().size() / 4)));
                         step5LinearView.setLayoutParams(layoutParams);
                     }
                 });
@@ -259,24 +299,26 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
         });
     }
 
-    private void isHeadche(boolean isHeadache) {
+    private void isHeadche(String isHeadache) {
+        Log.d("isHeadChe=",isHeadache);
+
         this.isHeadache = isHeadache;
-        if ( isHeadache ) {
+        if ( isHeadache.equals("Y") ) {
             this.step5SaveDTO.setAche_realize_yn("Y");
             this.parentActivity.save5(this.step5SaveDTO);
 
             this.yesBt.setBackgroundResource(R.drawable.step5_select_board);
             this.yesBt.setTextColor(Color.parseColor("#1EA2B6"));
-            this.noBt.setTextColor(Color.parseColor("#C2C2C2"));;
+            this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
 
-            this.timeSettingV.setVisibility(View.VISIBLE);
-            this.step5Line.setVisibility(View.VISIBLE);
-            this.step5gridVParent.setVisibility(View.VISIBLE);
+            //this.timeSettingV.setVisibility(View.VISIBLE);
+//            this.step5Line.setVisibility(View.VISIBLE);
+//            this.step5gridVParent.setVisibility(View.VISIBLE);
             this.step5BottomV2.setVisibility(View.GONE);
-            this.step5BottomV.setVisibility(View.VISIBLE);
+//            this.step5BottomV.setVisibility(View.VISIBLE);
 
-        } else {
+        } else if ( isHeadache.equals("N") ) {
             this.step5SaveDTO.setAche_realize_yn("N");
             this.step5SaveDTO.setAche_realize_hour(0);
             this.step5SaveDTO.setAche_realize_minute(0);
@@ -287,12 +329,17 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
 
-            this.timeSettingV.setVisibility(View.INVISIBLE);
-            this.step5Line.setVisibility(View.GONE);
-            this.step5gridVParent.setVisibility(View.GONE);
-            this.step5BottomV2.setVisibility(View.VISIBLE);
-            this.step5BottomV.setVisibility(View.INVISIBLE);
+//            this.timeSettingV.setVisibility(View.GONE);
+//            this.step5Line.setVisibility(View.GONE);
+//            this.step5gridVParent.setVisibility(View.GONE);
+//            this.step5BottomV2.setVisibility(View.VISIBLE);
+//            this.step5BottomV.setVisibility(View.INVISIBLE);
 
+        } else {
+            this.yesBt.setBackgroundColor(Color.TRANSPARENT);
+            this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
+            this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
+            this.noBt.setBackgroundColor(Color.TRANSPARENT);
         }
     }
 
@@ -310,10 +357,10 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
                 break;
 
             case R.id.yesBt:
-                this.isHeadche(true);
+                this.isHeadche("Y");
                 break;
             case R.id.noBt:
-                this.isHeadche(false);
+                this.isHeadche("N");
                 break;
         }
     }

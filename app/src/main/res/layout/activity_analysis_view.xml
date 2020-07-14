@@ -1725,10 +1725,10 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
-                                                        android:text="10"
+                                                        android:text="10≥"
                                                         android:textColor="#666666"
                                                         android:textSize="13dp" />
 
@@ -1750,7 +1750,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="8"
@@ -1775,7 +1775,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="6"
@@ -1800,7 +1800,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="4"
@@ -1825,7 +1825,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="2"
@@ -1850,7 +1850,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="0"
@@ -2142,10 +2142,10 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
-                                                        android:text="10"
+                                                        android:text="10≥"
                                                         android:textColor="#666666"
                                                         android:textSize="13dp" />
 
@@ -2167,7 +2167,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="8"
@@ -2192,7 +2192,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="6"
@@ -2217,7 +2217,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="4"
@@ -2242,7 +2242,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="2"
@@ -2267,7 +2267,7 @@
                                                     android:orientation="horizontal">
 
                                                     <TextView
-                                                        android:layout_width="20dp"
+                                                        android:layout_width="25dp"
                                                         android:layout_height="match_parent"
                                                         android:gravity="center"
                                                         android:text="0"

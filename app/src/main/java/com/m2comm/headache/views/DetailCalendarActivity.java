@@ -58,8 +58,10 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
     private CalendarModule cm;
     ContentViewPagerAdapter contentViewPagerAdapter;
     int dateIndex = -1;
+    int todayIndex = -1;
 
     boolean isList = false;
+    boolean isOnemoreView = true;
 
     private ArrayList<CalendarDTO> calendarDTOS;
     private ArrayList<CalendarListDTO> calendarListDTOS;
@@ -69,6 +71,7 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
         this.binding.getListBt.setOnClickListener(this);
         this.binding.nextBt.setOnClickListener(this);
         this.binding.backBt.setOnClickListener(this);
+        this.binding.today.setOnClickListener(this);
     }
 
     @Override
@@ -86,8 +89,6 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
         this.urls = new Urls();
         this.csp = new Custom_SharedPreferences(this);
         this.detailDTOArr = new ArrayList<>();
-
-
 
         this.cm = new CalendarModule(this, this);
         this.dateStrings = new ArrayList<>();
@@ -111,7 +112,6 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
 
             }
         });
-
 
         this.binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -137,12 +137,14 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
         Log.d("year_month", this.dateStrings.get(this.dateIndex));
         this.getData(this.dateStrings.get(this.dateIndex));
         this.bottomActivity = new BottomActivity(getLayoutInflater(), R.id.bottom, this, this, 2);
+
     }
 
     private void listViewChange() {
         Log.d("detailListArraySize", this.detailDTOArr.size() + "_");
         this.detailListViewAdapter = new DetailListViewAdapter(this.detailDTOArr, this, this, getLayoutInflater());
         this.binding.listview.setAdapter(this.detailListViewAdapter);
+
     }
 
     private void getData(final String date) {
@@ -183,10 +185,12 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
                             detailDTOArr.add(new DetailCalendarDTO(valRow.getDiary_sid(), false, "", "",
                                     valRow.getAche_power(), "·" + valRow.getAche_power_txt() + "\n" + desc_sub));
                             listViewChange();
+                            if ( isOnemoreView ) {
+                                isOnemoreView = false;
+                                calendarChange();
+                            }
                         }
                     }
-
-
                 } catch (Exception e) {
                     Log.d("ERRROR!", e.toString());
                     detailDTOArr = new ArrayList<>();
@@ -232,6 +236,7 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
 
             if (curYearFormat.format(cal.getTime()).equals(cutDateFormat[0]) && curMonthFormat.format(cal.getTime()).equals(cutDateFormat[1])) {
                 this.dateIndex = i;
+                this.todayIndex = i;
             }
 
             this.dateStrings.add(curYearFormat.format(cal.getTime()) + "-" + curMonthFormat.format(cal.getTime()));
@@ -279,6 +284,11 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
 
         switch (v.getId()) {
 
+            case R.id.today:
+                this.binding.pager.setCurrentItem(this.todayIndex);
+                this.changeDate(this.todayIndex);
+                break;
+
             case R.id.nextBt:
                 this.dateIndex = this.dateIndex + 1;
                 Log.d("dateIndex=", this.dateIndex + "");
@@ -307,31 +317,34 @@ public class DetailCalendarActivity extends AppCompatActivity implements View.On
                 break;
 
             case R.id.getListBt:
-
-                if (this.isList) {
-                    this.isList = false;
-                    this.binding.listTxt.setText("목록");
-                    LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) this.binding.pagerParent.getLayoutParams();
-                    params1.weight = 5.9f;
-                    this.binding.pagerParent.setLayoutParams(params1);
-
-                    LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) this.binding.listviewParent.getLayoutParams();
-                    params2.weight = 2.3f;
-                    this.binding.listviewParent.setLayoutParams(params2);
-
-                } else {
-                    this.isList = true;
-                    this.binding.listTxt.setText("달력");
-                    LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) this.binding.pagerParent.getLayoutParams();
-                    params1.weight = 0;
-                    this.binding.pagerParent.setLayoutParams(params1);
-
-                    LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) this.binding.listviewParent.getLayoutParams();
-                    params2.weight = 8.2f;
-                    this.binding.listviewParent.setLayoutParams(params2);
-                }
+                this.calendarChange();
                 break;
         }
+    }
 
+    private void calendarChange() {
+
+        if (this.isList) {
+            this.isList = false;
+            this.binding.listTxt.setText("목록");
+            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) this.binding.pagerParent.getLayoutParams();
+            params1.weight = 5.9f;
+            this.binding.pagerParent.setLayoutParams(params1);
+
+            LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) this.binding.listviewParent.getLayoutParams();
+            params2.weight = 2.3f;
+            this.binding.listviewParent.setLayoutParams(params2);
+
+        } else {
+            this.isList = true;
+            this.binding.listTxt.setText("달력");
+            LinearLayout.LayoutParams params1 = (LinearLayout.LayoutParams) this.binding.pagerParent.getLayoutParams();
+            params1.weight = 0;
+            this.binding.pagerParent.setLayoutParams(params1);
+
+            LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) this.binding.listviewParent.getLayoutParams();
+            params2.weight = 8.2f;
+            this.binding.listviewParent.setLayoutParams(params2);
+        }
     }
 }

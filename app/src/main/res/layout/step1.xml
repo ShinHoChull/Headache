@@ -83,6 +83,7 @@
                         android:layout_weight="3">
 
                         <TextView
+                            android:visibility="invisible"
                             android:id="@+id/calendarBt1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -251,6 +252,7 @@
                         android:layout_weight="3">
 
                         <TextView
+                            android:visibility="invisible"
                             android:id="@+id/calendarBt2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

@@ -1,5 +1,6 @@
 package com.m2comm.headache;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import com.m2comm.headache.DTO.CalendarDTO;
 import com.m2comm.headache.DTO.CalendarListDTO;
 import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.module.Urls;
+import com.m2comm.headache.views.SubTimePicker;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -112,7 +114,7 @@ public class DetailCalendarFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.calendar_fragment , container , false);
+        View view = inflater.inflate(R.layout.detail_calendar_fragment , container , false);
         this.gridView = view.findViewById(R.id.calendar);
         this.gridView.post(new Runnable() {
             @Override
@@ -122,6 +124,16 @@ public class DetailCalendarFragment extends Fragment {
                 gridView.setAdapter(calendarAdapter);
             }
         });
+
+//        view.findViewById(R.id.meanBt).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getContext() , SubTimePicker.class);
+//                intent.putExtra("startDateLong",0);
+//                intent.putExtra("isMean",true);
+//                startActivity(intent);
+//            }
+//        });
 
 
 

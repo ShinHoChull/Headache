@@ -1,7 +1,9 @@
 package com.m2comm.headache.contentStepView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.m2comm.headache.Adapter.Step4GridviewAdapter;
 import com.m2comm.headache.DTO.Step4DTO;
@@ -24,7 +27,7 @@ import com.m2comm.headache.views.EtcInputActivity;
 
 import java.util.ArrayList;
 
-public class Step4 implements View.OnClickListener , AdapterView.OnItemClickListener {
+public class Step4 implements View.OnClickListener , AdapterView.OnItemClickListener , AdapterView.OnItemLongClickListener {
 
     public final static int ETC4_INPUT = 444;
 
@@ -110,6 +113,7 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
         this.adapter = new Step4GridviewAdapter( this.step4SaveDTO.getArrayList() , this.activity.getLayoutInflater());
         this.gridView.setAdapter(this.adapter);
         this.gridView.setOnItemClickListener(this);
+        this.gridView.setOnItemLongClickListener(this);
 
     }
 
@@ -122,9 +126,8 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
                 step4LinearView.post(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("gridViewHeight=",((int)Math.ceil((double)step4SaveDTO.getArrayList().size() / 4) )+"_");
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        layoutParams.height = (int) (titleHeight + (400 * Math.ceil((double)step4SaveDTO.getArrayList().size() / 4)));
+                        layoutParams.height = (int) (titleHeight + (500 * Math.ceil((double)step4SaveDTO.getArrayList().size() / 4)));
                         step4LinearView.setLayoutParams(layoutParams);
                     }
                 });
@@ -146,6 +149,29 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
         this.adapter = new Step4GridviewAdapter( this.step4SaveDTO.getArrayList() , this.activity.getLayoutInflater() );
         this.gridView.setAdapter( this.adapter );
         this.adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+        Step4EtcDTO row = this.step4SaveDTO.getArrayList().get(position);
+        if (row.getEtcBt() || !row.getEtc()) return true;
+
+        new AlertDialog.Builder(activity).setTitle("안내").setMessage("해당 항목을 삭제 하시겠습니까?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        parentActivity.removeETC(step4SaveDTO.getArrayList().get(position).getKey());
+                        step4SaveDTO.getArrayList().remove(position);
+                        reloadListView();
+                    }
+                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
+        return true;
     }
 
     @Override

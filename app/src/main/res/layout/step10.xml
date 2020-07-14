@@ -134,10 +134,10 @@
 
 
                     <LinearLayout
-                        android:layout_width="1.5dp"
+                        android:layout_width="1dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="-90dp"
-                        android:background="#aaaaaa"
+                        android:background="#99aaaaaa"
                         android:layout_gravity="center"
                         />
                 </FrameLayout>

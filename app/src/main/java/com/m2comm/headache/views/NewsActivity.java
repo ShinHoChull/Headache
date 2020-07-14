@@ -68,10 +68,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        if (this.page.contains("news")) {
-            this.bottomActivity = new BottomActivity(getLayoutInflater(), R.id.bottom, this, this,4);
-        }
-
+        this.bottomActivity = new BottomActivity(getLayoutInflater(), R.id.bottom, this, this,4);
     }
 
     private class WebviewCustomClient extends WebViewClient {

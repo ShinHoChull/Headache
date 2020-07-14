@@ -13,9 +13,10 @@ import android.widget.Toast;
 
 import com.m2comm.headache.DTO.Step12SaveDTO;
 import com.m2comm.headache.R;
+import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.views.ContentStepActivity;
 
-public class Step12  implements View.OnClickListener {
+public class Step12 implements View.OnClickListener {
 
     private LayoutInflater inflater;
     private int ParentID;
@@ -24,20 +25,20 @@ public class Step12  implements View.OnClickListener {
     private Activity activity;
 
     private EditText editText;
-
+    private Custom_SharedPreferences csp;
     ContentStepActivity parentActivity;
     View view;
 
     //step10
-    TextView  backBt;
+    TextView backBt;
     LinearLayout saveBt;
 
     int nextStepNum = 13;
-    int backStepNum = 11;
+    int backStepNum = 10;
 
     Step12SaveDTO step12SaveDTO;
 
-    public Step12(LayoutInflater inflater, int parentID, Context context, Activity activity, ContentStepActivity parentActivity , Step12SaveDTO step12SaveDTO) {
+    public Step12(LayoutInflater inflater, int parentID, Context context, Activity activity, ContentStepActivity parentActivity, Step12SaveDTO step12SaveDTO) {
         this.inflater = inflater;
         ParentID = parentID;
         this.context = context;
@@ -48,19 +49,20 @@ public class Step12  implements View.OnClickListener {
         this.regObj();
     }
 
-    private void regObj () {
+    private void regObj() {
         this.saveBt.setOnClickListener(this);
         this.backBt.setOnClickListener(this);
     }
 
 
-    private void init () {
+    private void init() {
         this.parent = this.activity.findViewById(this.ParentID);
         this.parent.removeAllViews();
-        this.view = inflater.inflate(R.layout.step12,this.parent,true);
+        this.view = inflater.inflate(R.layout.step12, this.parent, true);
         this.saveBt = this.view.findViewById(R.id.saveBt);
         this.backBt = this.view.findViewById(R.id.backBt);
         this.editText = this.view.findViewById(R.id.step12_desc);
+        this.csp = new Custom_SharedPreferences(this.context);
 
         if (this.step12SaveDTO == null) {
             this.step12SaveDTO = new Step12SaveDTO("");

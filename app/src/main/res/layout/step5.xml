@@ -83,8 +83,13 @@
                                 android:text="예"
                                 android:gravity="center"
                                 android:textSize="18dp"
-                                android:textColor="#1EA2B6"
-                                android:background="@drawable/step5_select_board"/>
+                                android:textColor="#C2C2C2"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="2px"
+                                android:layout_height="match_parent"
+                                android:background="#DEDEDE"/>
 
                             <TextView
                                 android:id="@+id/noBt"
@@ -105,6 +110,68 @@
                             />
 
                         <LinearLayout
+                            android:id="@+id/timeSettingV1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="3"
+                                android:text="두통 발생"
+                                android:gravity="center_vertical|right"
+                                android:textSize="16dp"
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#000000"/>
+
+                            <EditText
+                                android:gravity="center_vertical|right"
+                                android:layout_margin="5dp"
+                                android:id="@+id/hourInput"
+                                android:inputType="number"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:textColor="#000000"
+                                android:backgroundTint="#000000"
+                                android:textSize="20dp"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="시간"
+                                android:gravity="center_vertical"
+                                android:textSize="16dp"
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#000000"/>
+                            <EditText
+                                android:gravity="center_vertical|right"
+                                android:layout_margin="5dp"
+                                android:id="@+id/minuteInput"
+                                android:inputType="number"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:textColor="#000000"
+                                android:backgroundTint="#000000"
+                                android:textSize="20dp"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:text="분 "
+                                android:gravity="center_vertical"
+                                android:textSize="16dp"
+                                android:fontFamily="@font/nanum"
+                                android:textColor="#000000"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/timeSettingV"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -120,7 +187,7 @@
                                 <EditText
                                     android:gravity="center_vertical|right"
                                     android:layout_margin="5dp"
-                                    android:id="@+id/hourInput"
+                                    android:id="@+id/hourInput_"
                                     android:inputType="number"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
@@ -153,7 +220,7 @@
                                 <EditText
                                     android:gravity="center_vertical|right"
                                     android:layout_margin="5dp"
-                                    android:id="@+id/minuteInput"
+                                    android:id="@+id/minuteInput_"
                                     android:inputType="number"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
@@ -177,7 +244,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_weight="0.5"
                             />
 
                     </LinearLayout>
@@ -294,14 +361,13 @@
                             android:layout_weight="3"/>
 
                     </LinearLayout>
-
                 </LinearLayout>
-
 
             </LinearLayout>
         </ScrollView>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/step5BottomV2"
             android:layout_width="match_parent"
             android:layout_height="100dp"

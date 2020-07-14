@@ -23,7 +23,33 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3" />
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="8.8"
+                    >
+                    <ImageView
+                        android:id="@+id/closeBt"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/popup_close"
+                        android:layout_gravity="bottom|right"
+                        android:layout_marginBottom="15dp"/>
+
+                </FrameLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,6 +86,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/dateTimeParentV"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="0.9"
@@ -310,7 +337,7 @@
                             android:gravity="center"
                             android:text="취소"
                             android:textColor="#222222"
-                            android:textSize="18dp" />
+                            android:textSize="16dp" />
 
                         <LinearLayout
                             android:layout_width="2px"
@@ -326,7 +353,7 @@
                             android:gravity="center"
                             android:text="확인"
                             android:textColor="#222222"
-                            android:textSize="18dp" />
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>

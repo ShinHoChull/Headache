@@ -1,7 +1,9 @@
 package com.m2comm.headache.contentStepView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import com.m2comm.headache.Adapter.Step4GridviewAdapter;
 import com.m2comm.headache.Adapter.Step7GridviewAdapter;
 import com.m2comm.headache.Adapter.Step8GridviewAdapter;
+import com.m2comm.headache.DTO.Step7EtcDTO;
 import com.m2comm.headache.DTO.Step8EtcDTO;
 import com.m2comm.headache.DTO.Step8EtcDTO;
 import com.m2comm.headache.DTO.Step8SaveDTO;
@@ -25,7 +28,7 @@ import com.m2comm.headache.views.EtcInputActivity;
 
 import java.util.ArrayList;
 
-public class Step8 implements View.OnClickListener , AdapterView.OnItemClickListener{
+public class Step8 implements View.OnClickListener , AdapterView.OnItemClickListener , AdapterView.OnItemLongClickListener {
 
     public final static int ETC8_INPUT = 888;
 
@@ -47,7 +50,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
     int backStepNum = 7;
 
     //두통 알수있는지 예true or 아니요false
-    private boolean isHeadache = false;
+    private String isHeadache = "";
     Step8SaveDTO step8SaveDTO;
 
     public Step8(LayoutInflater inflater, int parentID, Context context, Activity activity, ContentStepActivity parentActivity , Step8SaveDTO step8SaveDTO) {
@@ -92,11 +95,11 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         
 
         if ( this.step8SaveDTO == null ) {
-            this.step8SaveDTO = new Step8SaveDTO("N","N","N","N","N",
+            this.step8SaveDTO = new Step8SaveDTO("","N","N","N","N",
                     "N","N","N","N",
                     "N","N","N","N",
                     "N","N","N",new ArrayList<Step8EtcDTO>());
-            this.isHeadche(false);
+
 
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default1,R.drawable.step8_type_click1,"스트레스",false,false,false,0 , "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default2,R.drawable.step8_type_click2,"피로",false,false,false,0 , "N"));
@@ -117,7 +120,6 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
 
         } else {
 
-            this.isHeadche(this.step8SaveDTO.getAche_factor_yn().equals("Y"));
             this.step8SaveDTO.getArrayList().get(0).setClick(this.step8SaveDTO.getAche_factor1().equals("Y"));
             this.step8SaveDTO.getArrayList().get(1).setClick(this.step8SaveDTO.getAche_factor2().equals("Y"));
             this.step8SaveDTO.getArrayList().get(2).setClick(this.step8SaveDTO.getAche_factor3().equals("Y"));
@@ -134,10 +136,35 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
             this.step8SaveDTO.getArrayList().get(13).setClick(this.step8SaveDTO.getAche_factor14().equals("Y"));
             this.step8SaveDTO.getArrayList().get(14).setClick(this.step8SaveDTO.getAche_factor15().equals("Y"));
         }
+        this.isHeadche(this.step8SaveDTO.getAche_factor_yn());
 
         this.adapter = new Step8GridviewAdapter( this.step8SaveDTO.getArrayList() , this.activity.getLayoutInflater());
         this.gridView.setAdapter(this.adapter);
         this.gridView.setOnItemClickListener(this);
+        this.gridView.setOnItemLongClickListener(this);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+        Step8EtcDTO row = this.step8SaveDTO.getArrayList().get(position);
+        if (row.getEtcBt() || !row.getEtc()) return true;
+
+        new AlertDialog.Builder(activity).setTitle("안내").setMessage("해당 항목을 삭제 하시겠습니까?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        parentActivity.removeETC(step8SaveDTO.getArrayList().get(position).getKey());
+                        step8SaveDTO.getArrayList().remove(position);
+                        reloadListView();
+                    }
+                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
+        return true;
     }
 
     @Override
@@ -217,38 +244,43 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
                     public void run() {
                         Log.d("gridViewHeight=",((int)Math.ceil((double)step8SaveDTO.getArrayList().size() / 4) )+"_");
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        layoutParams.height = (int) (titleHeight + (400 * Math.ceil((double)step8SaveDTO.getArrayList().size() / 4)));
+                        layoutParams.height = (int) (titleHeight + (500 * Math.ceil((double)step8SaveDTO.getArrayList().size() / 4)));
                         step8LinearView.setLayoutParams(layoutParams);
                     }
                 });
             }
         });
-
     }
 
-    private void isHeadche(boolean isHeadache) {
+    private void isHeadche(String isHeadache) {
         this.isHeadache = isHeadache;
-        if ( isHeadache ) {
+        if ( isHeadache.equals("Y") ) {
             this.step8SaveDTO.setAche_factor_yn("Y");
             this.yesBt.setBackgroundResource(R.drawable.step5_select_board);
             this.yesBt.setTextColor(Color.parseColor("#1EA2B6"));
             this.noBt.setTextColor(Color.parseColor("#C2C2C2"));;
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
-            this.step8Line.setVisibility(View.VISIBLE);
-            this.step8ParentV.setVisibility(View.VISIBLE);
 
-            this.step5BottomV2.setVisibility(View.GONE);
+//            this.step8Line.setVisibility(View.VISIBLE);
+//            this.step8ParentV.setVisibility(View.VISIBLE);
+//            this.step5BottomV2.setVisibility(View.GONE);
             this.step8BottomV.setVisibility(View.VISIBLE);
-        } else {
+        } else if ( isHeadache.equals("N") ) {
             this.step8SaveDTO.setAche_factor_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
             this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
-            this.step8Line.setVisibility(View.GONE);
-            this.step8ParentV.setVisibility(View.GONE);
-            this.step5BottomV2.setVisibility(View.VISIBLE);
-            this.step8BottomV.setVisibility(View.INVISIBLE);
+
+//            this.step8Line.setVisibility(View.GONE);
+//            this.step8ParentV.setVisibility(View.GONE);
+//            this.step5BottomV2.setVisibility(View.VISIBLE);
+//            this.step8BottomV.setVisibility(View.INVISIBLE);
+        } else {
+            this.yesBt.setBackgroundColor(Color.TRANSPARENT);
+            this.noBt.setBackgroundColor(Color.TRANSPARENT);
+            this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
+            this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
         }
         this.parentActivity.save8(this.step8SaveDTO);
     }
@@ -267,10 +299,10 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
                 break;
 
             case R.id.yesBt:
-                this.isHeadche(true);
+                this.isHeadche("Y");
                 break;
             case R.id.noBt:
-                this.isHeadche(false);
+                this.isHeadche("N");
                 break;
         }
     }

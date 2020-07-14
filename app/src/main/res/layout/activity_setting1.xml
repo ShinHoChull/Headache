@@ -178,11 +178,14 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/meanVLine"
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="#dedede" />
+                        android:background="#dedede"
+                        android:orientation="vertical"/>
 
                     <LinearLayout
+                        android:id="@+id/meanV"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:orientation="horizontal">

@@ -28,10 +28,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class AlarmListActivity extends AppCompatActivity implements View.OnClickListener {
 
-    int ALARM_NUM = 999;
+    public static int ALARM_NUM = 999;
+    public static int ALARM_MODIFY_NUM = 1212;
     String TAG = "AlarmListActivity1";
 
     BottomActivity bottomActivity;
@@ -57,7 +59,16 @@ public class AlarmListActivity extends AppCompatActivity implements View.OnClick
         this.init();
         this.regObj();
 
+
+        //this.arrayList.add(new AlarmDTO(new Date() , week , true , 1));
+//        this.adapter = new AlarmListAdapter( this , this ,this.arrayList, getLayoutInflater() );
+//        this.binding.listview.setAdapter(this.adapter);
+        this.reloadAlarm();
+    }
+
+    public void reloadAlarm() {
         if ( !this.csp.getValue("alarmList","").equals("") ) {
+            this.arrayList.clear();
             try {
                 JSONObject obj = new JSONObject(this.csp.getValue("alarmList",""));
                 JSONArray arr = obj.getJSONArray("alarmList");
@@ -68,11 +79,8 @@ public class AlarmListActivity extends AppCompatActivity implements View.OnClick
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            this.adapterChanger();
         }
-
-        //this.arrayList.add(new AlarmDTO(new Date() , week , true , 1));
-        this.adapter = new AlarmListAdapter( this , this ,this.arrayList, getLayoutInflater() );
-        this.binding.listview.setAdapter(this.adapter);
     }
 
     private void init () {
@@ -110,7 +118,15 @@ public class AlarmListActivity extends AppCompatActivity implements View.OnClick
             assert data != null;
             if ( requestCode == ALARM_NUM ) {
                 String time = data.getStringExtra("time");
-                this.arrayList.add(new AlarmDTO(data.getStringExtra("time")  , true , this.arrayList.size()+1));
+
+                int alarmId = 0;
+                if ( this.arrayList.size() > 0 ) {
+                    AlarmDTO row = this.arrayList.get(this.arrayList.size()-1);
+                    alarmId = row.getAlarmId()+1;
+                }
+
+                Log.d("alarmID=",alarmId+"_");
+                this.arrayList.add(new AlarmDTO(data.getStringExtra("time")  , true , alarmId));
                 this.adapterChanger();
 
                 JSONObject obj = new JSONObject();
@@ -130,21 +146,57 @@ public class AlarmListActivity extends AppCompatActivity implements View.OnClick
                     Log.d("error",e.toString());
                 }
                 csp.put("alarmList",obj.toString());
+                this.addAlarm(alarmId , data.getStringExtra("time"));
 
-                Intent intent = new Intent(this, AlarmReceiver.class);
-                long triggerTime = 0;
-                long intervalTime = 24 * 60 * 60 * 1000;// 24시간
-                intent.putExtra("alarmNum",this.arrayList.size());
-                intent.putExtra("pushCode","base");
-                String[] timeCut = time.split(":");
-                PendingIntent pending = PendingIntent.getBroadcast(this , this.arrayList.size() , intent , 0);
-                triggerTime = setTriggerTime(Integer.parseInt(timeCut[0]),Integer.parseInt(timeCut[1]));
-                mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, intervalTime, pending);
+            } else if ( requestCode == ALARM_MODIFY_NUM ) {
 
+                String time = data.getStringExtra("time");
+                int num = data.getIntExtra("num",-1);
+                JSONObject obj = new JSONObject();
+                try {
+                    JSONArray jArray = new JSONArray();
+                    for (int i = 0 , j = this.arrayList.size(); i < j ; i++) {
+                        JSONObject sObj = new JSONObject();
+                        AlarmDTO row = this.arrayList.get(i);
+                        sObj.put("id",row.getAlarmId());
+                        if ( row.getAlarmId() == num ) {
+                            sObj.put("time",time);
+                        } else {
+                            sObj.put("time",row.getTime());
+                        }
+                        sObj.put("isPush",row.isPush());
+                        jArray.put(sObj);
+                    }
+                    obj.put("alarmList",jArray);
 
+                } catch (Exception e) {
+                    Log.d("error",e.toString());
+                }
+                csp.put("alarmList",obj.toString());
+                this.reloadAlarm();
+                this.cancelAlarm(num);
+                this.addAlarm(num , time);
             }
         }
+    }
 
+
+    private void addAlarm ( int alarmId , String time) {
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        long triggerTime = 0;
+        long intervalTime = 24 * 60 * 60 * 1000;// 24시간
+        intent.putExtra("alarmNum",alarmId);
+        intent.putExtra("pushCode","base");
+        String[] timeCut = time.split(":");
+        PendingIntent pending = PendingIntent.getBroadcast(this , alarmId , intent , 0);
+        triggerTime = setTriggerTime(Integer.parseInt(timeCut[0]),Integer.parseInt(timeCut[1]));
+        mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, intervalTime, pending);
+    }
+
+    public void cancelAlarm (int alarmNum) {
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pIntent = PendingIntent.getBroadcast(this , alarmNum , intent,0);
+        mAlarmManager.cancel(pIntent);
     }
 
     private long setTriggerTime(int hour , int min)
@@ -163,6 +215,12 @@ public class AlarmListActivity extends AppCompatActivity implements View.OnClick
             triggerTime += 1000 * 60 * 60 * 24;
 
         return triggerTime;
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
     }
 
 

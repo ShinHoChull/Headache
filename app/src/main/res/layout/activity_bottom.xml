@@ -87,7 +87,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="4"
                     android:gravity="center"
-                    android:text="두통일기"
+                    android:text="일기쓰기"
                     android:textColor="#222222"
                     android:textSize="12dp" />
 
@@ -132,7 +132,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="4"
                     android:gravity="center"
-                    android:text="캘린더"
+                    android:text="일기목록"
                     android:textColor="#222222"
                     android:textSize="12dp" />
 

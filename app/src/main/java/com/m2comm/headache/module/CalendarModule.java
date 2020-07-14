@@ -44,7 +44,6 @@ public class CalendarModule {
         this.strRealDateTime = this.curYearFormat.format(this.date) + "-" +
                 this.curMonthFormat.format(this.date) + "-" +
                 this.curDayFormat.format(this.date) + " " + this.curDayHour.format(this.date) + ":" +this.curDayMin.format(this.date);
-
     }
 
     public ArrayList<String> getCalendar( String date ) {

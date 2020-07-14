@@ -7,7 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -198,9 +197,31 @@
                                                     android:src="@drawable/step3_check" />
                                             </FrameLayout>
 
+                                            <FrameLayout
+                                                android:visibility="visible"
+                                                android:id="@+id/bt5_1"
+                                                android:layout_width="101dp"
+                                                android:layout_height="82dp"
+                                                android:layout_marginLeft="36.6dp"
+                                                android:layout_marginTop="120dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click5_1"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_marginLeft="10dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
+
+
 
                                             <FrameLayout
-
+                                                android:visibility="gone"
                                                 android:id="@+id/bt5"
                                                 android:layout_width="101.5dp"
                                                 android:layout_height="147dp"
@@ -219,9 +240,31 @@
                                                     android:src="@drawable/step3_check" />
                                             </FrameLayout>
 
+                                            <FrameLayout
+                                                android:visibility="visible"
+                                                android:id="@+id/bt6_1"
+                                                android:layout_width="101dp"
+                                                android:layout_height="82dp"
+                                                android:layout_marginLeft="136.6dp"
+                                                android:layout_marginTop="120dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click6_1"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:layout_marginRight="10dp"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
+
+
 
                                             <FrameLayout
-
+                                                android:visibility="gone"
                                                 android:id="@+id/bt6"
                                                 android:layout_width="101.5dp"
                                                 android:layout_height="147dp"
@@ -242,12 +285,11 @@
 
 
                                             <FrameLayout
-
                                                 android:id="@+id/bt7"
                                                 android:layout_width="71.5dp"
-                                                android:layout_height="100dp"
-                                                android:layout_marginLeft="66dp"
-                                                android:layout_marginTop="224.8dp">
+                                                android:layout_height="102dp"
+                                                android:layout_marginLeft="65.5dp"
+                                                android:layout_marginTop="224dp">
                                                 <ImageView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
@@ -262,14 +304,32 @@
                                                     android:src="@drawable/step3_check" />
                                             </FrameLayout>
 
+                                            <FrameLayout
+                                                android:visibility="visible"
+                                                android:id="@+id/bt5_2"
+                                                android:layout_width="89dp"
+                                                android:layout_height="68dp"
+                                                android:layout_marginLeft="48.5dp"
+                                                android:layout_marginTop="198dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click5_2"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
 
                                             <FrameLayout
-
                                                 android:id="@+id/bt8"
                                                 android:layout_width="71.5dp"
-                                                android:layout_height="100dp"
-                                                android:layout_marginLeft="136.9dp"
-                                                android:layout_marginTop="224.8dp">
+                                                android:layout_height="102dp"
+                                                android:layout_marginLeft="136.4dp"
+                                                android:layout_marginTop="224dp">
                                                 <ImageView
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
@@ -280,6 +340,26 @@
                                                     android:layout_width="20dp"
                                                     android:layout_height="20dp"
                                                     android:layout_marginRight="10dp"
+                                                    android:layout_gravity="center"
+                                                    android:src="@drawable/step3_check" />
+                                            </FrameLayout>
+
+                                            <FrameLayout
+                                                android:visibility="visible"
+                                                android:id="@+id/bt6_2"
+                                                android:layout_width="89dp"
+                                                android:layout_height="68dp"
+                                                android:layout_marginLeft="136.5dp"
+                                                android:layout_marginTop="198dp">
+                                                <ImageView
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+                                                    android:scaleType="fitXY"
+                                                    android:src="@drawable/step3_front_click6_2"
+                                                    android:visibility="visible" />
+                                                <ImageView
+                                                    android:layout_width="20dp"
+                                                    android:layout_height="20dp"
                                                     android:layout_gravity="center"
                                                     android:src="@drawable/step3_check" />
                                             </FrameLayout>
@@ -324,11 +404,8 @@
                                         />
 
                                 </FrameLayout>
-
                             </LinearLayout>
-
                         </LinearLayout>
-
 
                     </LinearLayout>
 
@@ -482,7 +559,7 @@
                                         android:id="@+id/bt14"
                                         android:layout_width="142dp"
                                         android:layout_height="64dp"
-                                        android:layout_marginLeft="28dp"
+                                        android:layout_marginLeft="27dp"
                                         android:layout_marginTop="280dp">
 
                                         <ImageView
@@ -501,13 +578,11 @@
                                             android:src="@drawable/step3_check" />
                                     </FrameLayout>
 
-
                                     <FrameLayout
-
                                         android:id="@+id/bt15"
                                         android:layout_width="142dp"
                                         android:layout_height="64dp"
-                                        android:layout_marginLeft="168dp"
+                                        android:layout_marginLeft="167.5dp"
                                         android:layout_marginTop="280dp">
                                         <ImageView
                                             android:layout_width="match_parent"
@@ -525,9 +600,57 @@
                                     </FrameLayout>
 
 
+                                    <FrameLayout
+                                        android:visibility="visible"
+                                        android:id="@+id/bt13_1"
+                                        android:layout_width="59.2dp"
+                                        android:layout_height="74dp"
+                                        android:layout_marginLeft="109.5dp"
+                                        android:layout_marginTop="233dp">
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click5_1"
+                                            android:visibility="visible" />
+
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="10dp"
+                                            android:src="@drawable/step3_check" />
+
+                                    </FrameLayout>
 
                                     <FrameLayout
+                                        android:visibility="visible"
+                                        android:id="@+id/bt13_2"
+                                        android:layout_width="60dp"
+                                        android:layout_height="74dp"
+                                        android:layout_marginLeft="167dp"
+                                        android:layout_marginTop="233dp">
 
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/step3_back_click5_2"
+                                            android:visibility="visible" />
+
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="10dp"
+                                            android:src="@drawable/step3_check" />
+
+                                    </FrameLayout>
+
+
+                                    <FrameLayout
+                                        android:visibility="gone"
                                         android:id="@+id/bt13"
                                         android:layout_width="116.5dp"
                                         android:layout_height="74dp"

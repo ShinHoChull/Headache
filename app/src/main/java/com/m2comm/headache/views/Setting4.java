@@ -15,11 +15,13 @@ public class Setting4 extends AppCompatActivity implements View.OnClickListener 
     BottomActivity bottomActivity;
     ActivitySetting4Binding binding;
     private boolean isCheck = true;
+    private boolean isCheck2 = true;
 
-    private void regObj () {
+    private void regObj() {
         this.binding.backBt.setOnClickListener(this);
         this.binding.option2.setOnClickListener(this);
         this.binding.setting3CheckBt.setOnClickListener(this);
+        this.binding.setting3CheckBt2.setOnClickListener(this);
     }
 
     @Override
@@ -27,7 +29,7 @@ public class Setting4 extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting4);
 
-        this.binding = DataBindingUtil.setContentView(this,R.layout.activity_setting4);
+        this.binding = DataBindingUtil.setContentView(this, R.layout.activity_setting4);
         this.binding.setSetting4(this);
 
         this.init();
@@ -35,7 +37,7 @@ public class Setting4 extends AppCompatActivity implements View.OnClickListener 
     }
 
     private void isCheck() {
-        if ( this.isCheck ) {
+        if (this.isCheck) {
             this.binding.setting3CheckBt.setImageResource(R.drawable.setting_cehck_off);
             this.isCheck = false;
         } else {
@@ -44,8 +46,18 @@ public class Setting4 extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
-    private void init () {
-        this.bottomActivity = new BottomActivity(getLayoutInflater() , R.id.bottom , this , this,-1);
+    private void isCheck2() {
+        if (this.isCheck2) {
+            this.binding.setting3CheckBt2.setImageResource(R.drawable.setting_cehck_off);
+            this.isCheck2 = false;
+        } else {
+            this.binding.setting3CheckBt2.setImageResource(R.drawable.setting_cehck_on);
+            this.isCheck2 = true;
+        }
+    }
+
+    private void init() {
+        this.bottomActivity = new BottomActivity(getLayoutInflater(), R.id.bottom, this, this, -1);
 
     }
 
@@ -59,12 +71,17 @@ public class Setting4 extends AppCompatActivity implements View.OnClickListener 
                 break;
 
             case R.id.option2:
-                intent = new Intent(this , AlarmListActivity.class);
+                intent = new Intent(this, AlarmListActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                 break;
 
             case R.id.setting3CheckBt:
                 this.isCheck();
+                break;
+
+            case R.id.setting3CheckBt2:
+                this.isCheck2();
                 break;
         }
     }
@@ -75,3 +92,4 @@ public class Setting4 extends AppCompatActivity implements View.OnClickListener 
         overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
     }
 }
+

@@ -14,6 +14,7 @@ import com.m2comm.headache.DTO.Step11SaveDTO;
 import com.m2comm.headache.DTO.Step1SaveDTO;
 import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
+import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.views.ContentStepActivity;
 import com.m2comm.headache.views.SubTimePicker;
 
@@ -27,6 +28,7 @@ public class Step11 implements View.OnClickListener {
     private LinearLayout parent;
     private Context context;
     private Activity activity;
+    private Custom_SharedPreferences csp;
 
     View view;
     ContentStepActivity parentActivity;
@@ -67,7 +69,6 @@ public class Step11 implements View.OnClickListener {
 
         this.calendarBt1.setOnClickListener(this);
         this.calendarBt2.setOnClickListener(this);
-
     }
 
     private void init () {
@@ -82,6 +83,7 @@ public class Step11 implements View.OnClickListener {
         this.startTimeTxt = this.view.findViewById(R.id.startTime);
         this.endDateTxt = this.view.findViewById(R.id.endDate);
         this.endTimeTxt = this.view.findViewById(R.id.endTime);
+        this.csp = new Custom_SharedPreferences(this.context);
 
         if ( this.step11SaveDTO == null ) {
             this.step11SaveDTO = new Step11SaveDTO(0L , 0L );

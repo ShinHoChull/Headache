@@ -53,7 +53,7 @@ public class Step6 implements View.OnClickListener {
     };
 
     //두통 알수있는지 예true or 아니요false
-    private boolean isHeadache = false;
+    private String isHeadache = "";
 
     private Step6SaveDTO step6SaveDTO;
 
@@ -94,11 +94,9 @@ public class Step6 implements View.OnClickListener {
         }
 
         if ( this.step6SaveDTO == null ) {
-            this.step6SaveDTO = new Step6SaveDTO("N","N","N",
+            this.step6SaveDTO = new Step6SaveDTO("","N","N",
                     "N","N","N","N","N");
-            this.isHeadche(false);
         } else {
-            this.isHeadche(this.step6SaveDTO.getAche_sign_yn().equals("Y"));
             this.check[0] = this.step6SaveDTO.getAche_sign1().equals("Y")? "N":"Y";
             this.check[1] = this.step6SaveDTO.getAche_sign2().equals("Y")? "N":"Y";
             this.check[2] = this.step6SaveDTO.getAche_sign3().equals("Y")? "N":"Y";
@@ -111,26 +109,34 @@ public class Step6 implements View.OnClickListener {
                 this.checkedChange(i);
             }
         }
+        this.isHeadche(this.step6SaveDTO.getAche_sign_yn());
     }
 
-    private void isHeadche(boolean isHeadache) {
+    private void isHeadche(String isHeadache) {
         this.isHeadache = isHeadache;
-        if ( isHeadache ) {
+        if ( isHeadache.equals("Y") ) {
             this.step6SaveDTO.setAche_sign_yn("Y");
             this.yesBt.setBackgroundResource(R.drawable.step5_select_board);
             this.yesBt.setTextColor(Color.parseColor("#1EA2B6"));
             this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
-            this.step6Line.setVisibility(View.VISIBLE);
-            this.step6ParentV.setVisibility(View.VISIBLE);
-        } else {
+
+//            this.step6Line.setVisibility(View.VISIBLE);
+//            this.step6ParentV.setVisibility(View.VISIBLE);
+        } else if ( isHeadache.equals("N") ) {
             this.step6SaveDTO.setAche_sign_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
             this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
-            this.step6Line.setVisibility(View.GONE);
-            this.step6ParentV.setVisibility(View.GONE);
+
+//            this.step6Line.setVisibility(View.GONE);
+//            this.step6ParentV.setVisibility(View.GONE);
+        } else {
+            this.yesBt.setBackgroundColor(Color.TRANSPARENT);
+            this.noBt.setBackgroundColor(Color.TRANSPARENT);
+            this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
+            this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
         }
         this.parentActivity.save6(this.step6SaveDTO);
     }
@@ -167,10 +173,10 @@ public class Step6 implements View.OnClickListener {
                 break;
 
             case R.id.yesBt:
-                this.isHeadche(true);
+                this.isHeadche("Y");
                 break;
             case R.id.noBt:
-                this.isHeadche(false);
+                this.isHeadche("N");
                 break;
 
             case R.id.checkbox1:

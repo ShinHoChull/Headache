@@ -51,7 +51,7 @@ public class JoinStep2Activity extends AppCompatActivity implements View.OnClick
             "daum.net",
             "직접입력"
     };
-    String gender = "M";//성별
+    String gender = "W";//성별
     String mens = "";
 
     int endMinusYear = 100;
@@ -132,7 +132,7 @@ public class JoinStep2Activity extends AppCompatActivity implements View.OnClick
         });
 
         this.binding.spinnerEmailDropBt.setOnClickListener(this);
-
+        this.setBoyGirlCheck(0);
     }
 
     private void spinnerSetEmail () {

@@ -63,7 +63,7 @@ public class Step5GridviewAdapter extends BaseAdapter {
             if(param == null) {
                 param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
-            param.height = 350;
+            param.height = 430;
             convertView.setLayoutParams(param);
 
 

@@ -20,6 +20,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.m2comm.headache.DTO.AlarmDTO;
 import com.m2comm.headache.R;
+import com.m2comm.headache.views.Main2Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,82 +51,39 @@ public class AlarmReceiver extends BroadcastReceiver {
             Log.d("kkkk", "num=" + num);
             Log.d("pushCode", "code=" + code);
 
-            if ( !this.csp.getValue("alarmList","").equals("") ) {
+            if (code.equals("content")) {
+                Intent popupIntent = new Intent(context, Main2Activity.class);
+                popupIntent.putExtra("action", "diary");
+                this.sendPush(context, popupIntent , "종료되지 않은 일기가 있습니다.");
+                return;
+            }
+
+            if (!this.csp.getValue("alarmList", "").equals("")) {
                 try {
-                    JSONObject obj = new JSONObject(this.csp.getValue("alarmList",""));
+                    JSONObject obj = new JSONObject(this.csp.getValue("alarmList", ""));
                     JSONArray arr = obj.getJSONArray("alarmList");
-                    for ( int i = 0 , j = arr.length() ; i < j; i++ ) {
+                    for (int i = 0, j = arr.length(); i < j; i++) {
                         JSONObject row = arr.getJSONObject(i);
-                        this.arrayList.add(new AlarmDTO(row.getString("time"),row.getBoolean("isPush"),row.getInt("id")));
+                        this.arrayList.add(new AlarmDTO(row.getString("time"), row.getBoolean("isPush"), row.getInt("id")));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     this.arrayList = new ArrayList<>();
                 }
             }
-            Log.d("pushSize=",this.arrayList.size()+"_");
-            AlarmDTO row = this.arrayList.get(num-1);
-            Log.d("isPush = ",row.isPush()+"__");
+            Log.d("pushSize=", this.arrayList.size() + "_");
+            AlarmDTO row = this.arrayList.get(num);
+            Log.d("isPush = ", row.isPush() + "__");
 
-            if ( row.isPush() ) {
-                this.sendPush(context, intent);
+            if (row.isPush()) {
+                this.sendPush(context, intent, "예방약을 복용할 시간입니다.");
             } else {
-                this.cancelAlarm(context,num);
+                this.cancelAlarm(context, num);
             }
-            //전송된 푸시가 활성화가 아닐때 등록된 푸시를 삭제...
-//                ScheduleDTO scheduleDTO = this.scheduleDAO.find(scheduleNum);
-//                if ( scheduleDTO != null ) {
-//                    if (!scheduleDTO.isRun()) {
-//                        this.cancelAlarm(context,num);
-//                        return;
-//                    }
-//                    Log.d("schedu",scheduleDTO.getEdate());
-//                    //저장한 날짜 Month를 +1 해서 번거로운 작업을 해야한다....
-//                    Calendar cal = Calendar.getInstance();
-//                    cal.setTime(new Date());
-//                    String nCal = cal.get(Calendar.YEAR)+"."+(cal.get(Calendar.MONTH)+1)+"."+cal.get(Calendar.DATE);
-//                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd", Locale.KOREA);
-//
-//                    try{
-//                        Date nDate = dateFormat.parse(nCal);
-//                        Date eDate = dateFormat.parse(scheduleDTO.getEdate());
-//                        //예약 푸시가 발송된 시간이 저장된 스케줄 날짜보다 후이면 종료시킨다.
-//                        if (nDate.getTime() > eDate.getTime()) {
-//                            this.cancelAlarm(context,num);
-//                            return;
-//                        }
-//                    } catch (Exception e) {
-//                        Log.d("alarmReceiverError",e.toString());
-//                    }
-//                }
-
-//                Calendar cal = Calendar.getInstance();
-//                cal.setTime(new Date());
-//                if (week[Integer.valueOf(cal.get(Calendar.DAY_OF_WEEK))] == 1) {
-//                    ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
-//                    ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
-//                    Log.d("activityManager","Actiivtymanager="+cn.getClassName());
-//                    if ( cn.getClassName().contains("m2comm") ) {
-//                        Bundle bun = new Bundle();
-//                        Intent popupIntent = new Intent(context, PopupActivity.class);
-//                        popupIntent.putExtra("state", 4);
-//                        popupIntent.putExtras(bun);
-//                        PendingIntent pie= PendingIntent.getActivity(context, 0, popupIntent, PendingIntent.FLAG_ONE_SHOT);
-//                        try {
-//                            pie.send();
-//                        } catch (PendingIntent.CanceledException e) {
-//                            Log.d("serviceError",e.toString());
-//                        }
-//                    } else {
-//                        this.sendPush(context, intent);
-//                    }
-//                }
-            // 알람 울리기.
         }
-
     }
 
-    public void sendPush(Context context, Intent intent) {
+    public void sendPush(Context context, Intent intent , String text) {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationCompat.Builder builder;
@@ -143,7 +101,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher))
                 .setTicker(context.getResources().getText(R.string.app_name))
                 .setContentTitle(context.getResources().getText(R.string.app_name))
-                .setContentText("약물을 복용하셨나요?")
+                .setContentText("예방약을 복용할 시간입니다.")
                 .setPriority(NotificationCompat.PRIORITY_MAX); //최대로 펼침
 
         builder.setContentIntent(pendingIntent);

@@ -85,8 +85,12 @@
                                 android:text="예"
                                 android:gravity="center"
                                 android:textSize="18dp"
-                                android:textColor="#1EA2B6"
-                                android:background="@drawable/step5_select_board"/>
+                                android:textColor="#C2C2C2"
+                                />
+                            <LinearLayout
+                                android:layout_width="2px"
+                                android:layout_height="match_parent"
+                                android:background="#DEDEDE"/>
 
                             <TextView
                                 android:id="@+id/noBt"
@@ -228,6 +232,7 @@
         </ScrollView>
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/step5BottomV2"
             android:layout_width="match_parent"
             android:layout_height="100dp"

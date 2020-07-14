@@ -9,11 +9,11 @@ public class Step1SaveDTO {
     private double temp;
     private String weather_icon;
 
-    public Step1SaveDTO(Long sdate, Long eDate, String address) {
-        this.sdate = sdate;
-        this.eDate = eDate;
-        this.address = address;
-    }
+//    public Step1SaveDTO(Long sdate, Long eDate, String address) {
+//        this.sdate = sdate;
+//        this.eDate = eDate;
+//        this.address = address;
+//    }
 
     public Step1SaveDTO(Long sdate, Long eDate, String address, double pressure, double humidity, double temp, String weather_icon) {
         this.sdate = sdate;

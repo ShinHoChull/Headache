@@ -97,7 +97,6 @@
                 android:layout_weight="5"
                 >
 
-
                 <!--graph Start-->
                 <LinearLayout
                     android:layout_margin="10dp"
@@ -108,7 +107,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.9"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -124,7 +123,7 @@
                                 android:gravity="center_vertical"
                                 android:text="10"
                                 android:textColor="#e02936"
-                                android:textSize="20dp" />
+                                android:textSize="18dp" />
 
                             <FrameLayout
                                 android:id="@+id/no10"
@@ -136,12 +135,13 @@
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="5">
+                                android:layout_weight="5"
+                                android:gravity="center">
 
                                 <ImageView
-                                    android:padding="3dp"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="40dp"
                                     android:layout_height="match_parent"
+                                    android:layout_gravity="center"
                                     android:src="@drawable/step2_small_4"
                                     />
                             </LinearLayout>
@@ -175,7 +175,7 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_weight="2.7"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -196,9 +196,10 @@
                                     android:layout_weight="3.5"
                                     android:fontFamily="@font/nanum_bold"
                                     android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
                                     android:text="9"
                                     android:textColor="#db6802"
-                                    android:textSize="20dp" />
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no9"
@@ -247,9 +248,10 @@
                                     android:layout_weight="3.5"
                                     android:fontFamily="@font/nanum_bold"
                                     android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
                                     android:text="8"
                                     android:textColor="#db6802"
-                                    android:textSize="20dp" />
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no8"
@@ -298,9 +300,10 @@
                                     android:layout_weight="3.5"
                                     android:fontFamily="@font/nanum_bold"
                                     android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
                                     android:text="7"
                                     android:textColor="#db6802"
-                                    android:textSize="20dp" />
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no7"
@@ -344,10 +347,10 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"/>
                                 <ImageView
-                                    android:padding="3dp"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="40dp"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/step2_small_3"
+                                    android:layout_gravity="center"
                                     android:layout_weight="1"/>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -385,7 +388,7 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_weight="2.7"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -406,9 +409,10 @@
                                     android:layout_weight="3.5"
                                     android:fontFamily="@font/nanum_bold"
                                     android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
                                     android:text="6"
                                     android:textColor="#e9aa00"
-                                    android:textSize="20dp" />
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no6"
@@ -455,9 +459,10 @@
                                     android:layout_weight="3.5"
                                     android:fontFamily="@font/nanum_bold"
                                     android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
                                     android:text="5"
                                     android:textColor="#e9aa00"
-                                    android:textSize="20dp" />
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no5"
@@ -505,9 +510,10 @@
                                     android:layout_weight="3.5"
                                     android:fontFamily="@font/nanum_bold"
                                     android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
                                     android:text="4"
                                     android:textColor="#e9aa00"
-                                    android:textSize="20dp" />
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no4"
@@ -551,10 +557,10 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"/>
                                 <ImageView
-                                    android:padding="3dp"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="40dp"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/step2_small_2"
+                                    android:layout_gravity="center"
                                     android:layout_weight="1"/>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -592,7 +598,7 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_weight="3.6"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -613,9 +619,10 @@
                                     android:layout_weight="3.5"
                                     android:fontFamily="@font/nanum_bold"
                                     android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
                                     android:text="3"
                                     android:textColor="#d2e340"
-                                    android:textSize="20dp" />
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no3"
@@ -662,9 +669,10 @@
                                     android:layout_weight="3.5"
                                     android:fontFamily="@font/nanum_bold"
                                     android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
                                     android:text="2"
                                     android:textColor="#d2e340"
-                                    android:textSize="20dp" />
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no2"
@@ -714,10 +722,57 @@
                                     android:gravity="center_vertical"
                                     android:text="1"
                                     android:textColor="#d2e340"
-                                    android:textSize="20dp" />
+                                    android:paddingStart="4dp"
+                                    android:textSize="18dp" />
 
                                 <FrameLayout
                                     android:id="@+id/no1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2.5"
+                                    android:background="#d2e340"></FrameLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="5">
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3.5"
+                                    android:fontFamily="@font/nanum_bold"
+                                    android:gravity="center_vertical"
+                                    android:text="0"
+                                    android:textColor="#d2e340"
+                                    android:paddingStart="4dp"
+                                    android:textSize="18dp" />
+
+                                <FrameLayout
+                                    android:id="@+id/no0"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="2.5"
@@ -758,10 +813,10 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"/>
                                 <ImageView
-                                    android:padding="3dp"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="40dp"
                                     android:layout_height="match_parent"
                                     android:src="@drawable/step2_small_1"
+                                    android:layout_gravity="center"
                                     android:layout_weight="1"/>
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -774,13 +829,10 @@
                     <!--graph group 3 end-->
 
 
-
                 </LinearLayout>
                 <!--graph End-->
 
-
                 <LinearLayout
-                    android:layout_marginTop="10dp"
                     android:id="@+id/cursor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -789,13 +841,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        >
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="2.15"/>
 
                         <ImageView
+                            android:id="@+id/cursor_icon"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:src="@drawable/step2_cusor"

@@ -25,7 +25,7 @@ public class IntroActivity extends AppCompatActivity {
 
         final String deviceid = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
         csp.put("deviceid", deviceid);
-
+        csp.put("isOff",true);
         this.moveMain();
     }
 

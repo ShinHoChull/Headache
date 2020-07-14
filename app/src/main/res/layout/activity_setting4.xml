@@ -69,7 +69,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="210dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -78,10 +78,13 @@
                         android:layout_height="70dp"
                         android:orientation="horizontal">
 
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.5" />
+                            android:layout_weight="2"
+                            android:padding="22dp"
+                            android:src="@drawable/setting4_1"
+                            android:scaleType="fitEnd"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -101,7 +104,44 @@
                             android:padding="10dp"
                             android:src="@drawable/setting_cehck_on" />
 
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="#dedede" />
+
+                    <LinearLayout
+                        android:id="@+id/option5"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:padding="22dp"
+                            android:src="@drawable/setting4_2"
+                            android:scaleType="fitEnd"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/nanum"
+                            android:gravity="center_vertical"
+                            android:text="두통뉴스 업데이트 알림"
+                            android:textColor="#222222"
+                            android:textSize="18dp" />
+
+                        <ImageView
+                            android:id="@+id/setting3CheckBt2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:padding="10dp"
+                            android:src="@drawable/setting_cehck_on" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -115,11 +155,13 @@
                         android:layout_height="70dp"
                         android:orientation="horizontal">
 
-
-                        <LinearLayout
+                        <ImageView
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="0.5" />
+                            android:layout_weight="2"
+                            android:padding="22dp"
+                            android:src="@drawable/setting4_3"
+                            android:scaleType="fitEnd"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -138,6 +180,8 @@
                             android:padding="25dp"
                             android:src="@drawable/setting_next" />
                     </LinearLayout>
+
+
 
                 </LinearLayout>
                 <!--Option1 Group End-->

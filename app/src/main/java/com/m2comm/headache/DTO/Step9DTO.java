@@ -12,9 +12,9 @@ public class Step9DTO {
     private Boolean isClick;
     private ArrayList<Step9Dates> drugArray;
     private int key;
+    private int effect;
 
-    public Step9DTO(int default_icon, int click_icon, String name, Boolean etc , boolean etcBt , boolean isClick , ArrayList<Step9Dates> drugArray, int key) {
-        this.key = key;
+    public Step9DTO(int default_icon, int click_icon, String name, Boolean etc, Boolean etcBt, Boolean isClick, ArrayList<Step9Dates> drugArray, int key, int effect) {
         this.default_icon = default_icon;
         this.click_icon = click_icon;
         this.name = name;
@@ -22,6 +22,16 @@ public class Step9DTO {
         this.etcBt = etcBt;
         this.isClick = isClick;
         this.drugArray = drugArray;
+        this.key = key;
+        this.effect = effect;
+    }
+
+    public void setEffect(int effect) {
+        this.effect = effect;
+    }
+
+    public int getEffect() {
+        return effect;
     }
 
     public void setKey(int key) {

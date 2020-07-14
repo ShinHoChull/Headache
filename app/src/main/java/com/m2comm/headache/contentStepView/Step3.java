@@ -50,7 +50,8 @@ public class Step3 implements View.OnClickListener {
             false,false,false,false,
             false,false,false,false,
             false,false,false,false,
-            false,false,false
+            false,false,false,false,
+            false,false
     };
 
     int[] btIds = {
@@ -58,15 +59,18 @@ public class Step3 implements View.OnClickListener {
             R.id.bt2,
             R.id.bt3,
             R.id.bt4,
-            R.id.bt5,
-            R.id.bt6,
+            R.id.bt5_1,
+            R.id.bt5_2,
+            R.id.bt6_1,
+            R.id.bt6_2,
             R.id.bt7,
             R.id.bt8,
             R.id.bt9,
             R.id.bt10,
             R.id.bt11,
             R.id.bt12,
-            R.id.bt13,
+            R.id.bt13_1,
+            R.id.bt13_2,
             R.id.bt14,
             R.id.bt15,
     };
@@ -117,7 +121,8 @@ public class Step3 implements View.OnClickListener {
                     "N","N","N","N",
                     "N","N","N","N",
                     "N","N","N","N",
-                    "N","N","N");
+                    "N","N","N","N",
+                    "N","N");
 
         } else {
 
@@ -136,6 +141,9 @@ public class Step3 implements View.OnClickListener {
             this.isCheckImgs[12] = !this.step3SaveDTO.getAche_location13().equals("Y");
             this.isCheckImgs[13] = !this.step3SaveDTO.getAche_location14().equals("Y");
             this.isCheckImgs[14] = !this.step3SaveDTO.getAche_location15().equals("Y");
+            this.isCheckImgs[15] = !this.step3SaveDTO.getAche_location16().equals("Y");
+            this.isCheckImgs[16] = !this.step3SaveDTO.getAche_location17().equals("Y");
+            this.isCheckImgs[17] = !this.step3SaveDTO.getAche_location18().equals("Y");
 
             for ( int i = 0 , j = this.isCheckImgs.length; i < j; i++ ) {
                 FrameLayout f = this.view.findViewById(this.btIds[i]);
@@ -172,6 +180,10 @@ public class Step3 implements View.OnClickListener {
         this.step3SaveDTO.setAche_location13(this.isCheckImgs[12] ? "Y" : "N");
         this.step3SaveDTO.setAche_location14(this.isCheckImgs[13] ? "Y" : "N");
         this.step3SaveDTO.setAche_location15(this.isCheckImgs[14] ? "Y" : "N");
+        this.step3SaveDTO.setAche_location16(this.isCheckImgs[15] ? "Y" : "N");
+        this.step3SaveDTO.setAche_location17(this.isCheckImgs[16] ? "Y" : "N");
+        this.step3SaveDTO.setAche_location18(this.isCheckImgs[17] ? "Y" : "N");
+
         this.parentActivity.save3(this.step3SaveDTO);
     }
 
@@ -216,15 +228,18 @@ public class Step3 implements View.OnClickListener {
             case R.id.bt2:
             case R.id.bt3:
             case R.id.bt4:
-            case R.id.bt5:
-            case R.id.bt6:
+            case R.id.bt5_1:
+            case R.id.bt5_2:
+            case R.id.bt6_1:
+            case R.id.bt6_2:
             case R.id.bt7:
             case R.id.bt8:
             case R.id.bt9:
             case R.id.bt10:
             case R.id.bt11:
             case R.id.bt12:
-            case R.id.bt13:
+            case R.id.bt13_1:
+            case R.id.bt13_2:
             case R.id.bt14:
             case R.id.bt15:
                 this.checkImg((FrameLayout) v);

@@ -1,6 +1,7 @@
 package com.m2comm.headache.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import com.m2comm.headache.DTO.CalendarDTO;
 import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
 import com.m2comm.headache.module.CirView;
+import com.m2comm.headache.views.ContentStepActivity;
+import com.m2comm.headache.views.DetaiViewActivity;
 
 import java.util.ArrayList;
 
@@ -85,6 +88,18 @@ public class DetailCalendarAdapter extends BaseAdapter {
                 final CalendarDTO row = this.calendarDTOS.get(i);
 
                 if (row.getDate().equals(pushDate)) {
+
+                    convertView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if ( row.getDiary_sid() > 0 ) {
+                                Intent intent = new Intent(c , DetaiViewActivity.class);
+                                intent.putExtra("diary_sid",row.getDiary_sid());
+                                c.startActivity(intent);
+                            }
+                        }
+                    });
+
                     if (row.getChk_num() > 1) {
                         count.setVisibility(View.VISIBLE);
                         count.setText(String.valueOf(row.getChk_num()));

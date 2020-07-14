@@ -68,7 +68,6 @@
                         android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -81,11 +80,15 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:background="@drawable/step5_select_board"
                                 android:gravity="center"
                                 android:text="예"
-                                android:textColor="#1EA2B6"
+                                android:textColor="#C2C2C2"
                                 android:textSize="18dp" />
+
+                            <LinearLayout
+                                android:layout_width="2px"
+                                android:layout_height="match_parent"
+                                android:background="#DEDEDE"/>
 
                             <TextView
                                 android:id="@+id/noBt"
@@ -140,13 +143,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="120dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1" />
+                                android:layout_weight="0.5" />
 
                             <ImageView
                                 android:layout_width="0dp"
@@ -157,7 +160,7 @@
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1" />
+                                android:layout_weight="0.5" />
 
                         </LinearLayout>
 
@@ -170,7 +173,7 @@
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.8" />
+                                android:layout_weight="0.2" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -211,7 +214,7 @@
                                                 android:gravity="center_vertical"
                                                 android:text="이러한 증상은 5분에서 60분간 지속된다"
                                                 android:textColor="#666666"
-                                                android:textSize="13dp" />
+                                                android:textSize="16dp" />
 
                                         </LinearLayout>
 
@@ -244,7 +247,7 @@
                                                 android:gravity="center_vertical"
                                                 android:text="이러한 증상은 5분이상 동안 서서히 나타나기 시작한다."
                                                 android:textColor="#666666"
-                                                android:textSize="13dp" />
+                                                android:textSize="16dp" />
 
                                         </LinearLayout>
 
@@ -277,7 +280,7 @@
                                                 android:gravity="center_vertical"
                                                 android:text="시야 중 보이지 않는 부분이 있다."
                                                 android:textColor="#666666"
-                                                android:textSize="13dp" />
+                                                android:textSize="16dp" />
 
                                         </LinearLayout>
 
@@ -310,7 +313,7 @@
                                                 android:gravity="center_vertical"
                                                 android:text="지그재그선(성곽모양)이 보인다."
                                                 android:textColor="#666666"
-                                                android:textSize="13dp" />
+                                                android:textSize="16dp" />
 
                                         </LinearLayout>
 
@@ -343,7 +346,7 @@
                                                 android:gravity="center_vertical"
                                                 android:text="이러한 증상이 오른쪽 또는 왼쪽 한쪽에서만 나타난다."
                                                 android:textColor="#666666"
-                                                android:textSize="13dp" />
+                                                android:textSize="16dp" />
 
                                         </LinearLayout>
 
@@ -376,7 +379,7 @@
                                                 android:gravity="center_vertical"
                                                 android:text="단어가 잘 떠오르지 않거나 말이 어둔해진다."
                                                 android:textColor="#666666"
-                                                android:textSize="13dp" />
+                                                android:textSize="16dp" />
 
                                         </LinearLayout>
 
@@ -409,14 +412,10 @@
                                                 android:gravity="center_vertical"
                                                 android:text="한쪽 손발이 저리거나 감각이 없어진다."
                                                 android:textColor="#666666"
-                                                android:textSize="13dp" />
-
+                                                android:textSize="16dp" />
                                         </LinearLayout>
-
                                     </LinearLayout>
-
                                 </LinearLayout>
-
 
                             </LinearLayout>
 
@@ -424,7 +423,7 @@
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.8" />
+                                android:layout_weight="0.5" />
 
                         </LinearLayout>
 

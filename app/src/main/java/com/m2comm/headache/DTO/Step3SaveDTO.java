@@ -17,12 +17,12 @@ public class Step3SaveDTO {
     String ache_location13;
     String ache_location14;
     String ache_location15;
+    String ache_location16;
+    String ache_location17;
+    String ache_location18;
 
 
-    public Step3SaveDTO(String ache_location1, String ache_location2, String ache_location3, String ache_location4,
-                        String ache_location5, String ache_location6, String ache_location7, String ache_location8,
-                        String ache_location9, String ache_location10, String ache_location11, String ache_location12,
-                        String ache_location13, String ache_location14 , String ache_location15) {
+    public Step3SaveDTO(String ache_location1, String ache_location2, String ache_location3, String ache_location4, String ache_location5, String ache_location6, String ache_location7, String ache_location8, String ache_location9, String ache_location10, String ache_location11, String ache_location12, String ache_location13, String ache_location14, String ache_location15, String ache_location16, String ache_location17, String ache_location18) {
         this.ache_location1 = ache_location1;
         this.ache_location2 = ache_location2;
         this.ache_location3 = ache_location3;
@@ -38,6 +38,33 @@ public class Step3SaveDTO {
         this.ache_location13 = ache_location13;
         this.ache_location14 = ache_location14;
         this.ache_location15 = ache_location15;
+        this.ache_location16 = ache_location16;
+        this.ache_location17 = ache_location17;
+        this.ache_location18 = ache_location18;
+    }
+
+    public void setAche_location16(String ache_location16) {
+        this.ache_location16 = ache_location16;
+    }
+
+    public void setAche_location17(String ache_location17) {
+        this.ache_location17 = ache_location17;
+    }
+
+    public void setAche_location18(String ache_location18) {
+        this.ache_location18 = ache_location18;
+    }
+
+    public String getAche_location16() {
+        return ache_location16;
+    }
+
+    public String getAche_location17() {
+        return ache_location17;
+    }
+
+    public String getAche_location18() {
+        return ache_location18;
     }
 
     public void setAche_location15(String ache_location15) {

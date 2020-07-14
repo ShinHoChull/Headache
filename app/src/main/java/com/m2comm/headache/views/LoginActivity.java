@@ -83,6 +83,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         csp.put("sex",response.getString("sex"));
                         csp.put("birth_year",response.getString("birth_year"));
                         csp.put("mens",response.getString("mens"));
+                        csp.put("notSaveSid", "");
+                        csp.put("saveStartDate", "");
+                        csp.put("notSaveNowDate", "");
                         loginSuccess();
                     } else {
                         Toast.makeText(getApplicationContext() , response.getString("msg"), Toast.LENGTH_SHORT).show();
@@ -101,6 +104,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void loginSuccess() {
+
         Intent intent = new Intent(this , Main2Activity.class);
         startActivity(intent);
         finish();

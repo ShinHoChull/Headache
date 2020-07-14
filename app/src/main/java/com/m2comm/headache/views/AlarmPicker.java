@@ -44,6 +44,7 @@ public class AlarmPicker extends AppCompatActivity implements View.OnClickListen
     //timepicker
     String time = "";
     private Activity activity;
+    int num = -1;
 
     private void regObj() {
         this.binding.successBt.setOnClickListener(this);
@@ -72,8 +73,16 @@ public class AlarmPicker extends AppCompatActivity implements View.OnClickListen
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         this.time = String.valueOf(calendar.get(Calendar.HOUR)) +":"+ String.valueOf(calendar.get(Calendar.MINUTE));
-    }
 
+        Intent intent = getIntent();
+        this.num = intent.getIntExtra("num",-1);
+        if ( this.num != -1 ) {
+            this.time = intent.getStringExtra("time");
+            String[] timeCut = this.time.split(":");
+            this.binding.timepicker.setCurrentHour(Integer.parseInt(timeCut[0]));
+            this.binding.timepicker.setCurrentMinute(Integer.parseInt(timeCut[1]));;
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -83,6 +92,9 @@ public class AlarmPicker extends AppCompatActivity implements View.OnClickListen
             case R.id.successBt:
                 Intent intent = new Intent();
                 intent.putExtra("time",this.time);
+                if ( this.num != -1 ) {
+                    intent.putExtra("num",this.num);
+                }
                 setResult(RESULT_OK,intent);
                 finish();
                 break;

@@ -1,7 +1,9 @@
 package com.m2comm.headache.contentStepView;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
@@ -26,7 +28,7 @@ import com.m2comm.headache.views.EtcInputActivity;
 
 import java.util.ArrayList;
 
-public class Step7 implements View.OnClickListener , AdapterView.OnItemClickListener{
+public class Step7 implements View.OnClickListener , AdapterView.OnItemClickListener , AdapterView.OnItemLongClickListener{
 
     public final static int ETC7_INPUT = 777;
 
@@ -51,7 +53,7 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
     private LinearLayout step7Line , step7GridV;
 
     //두통 알수있는지 예true or 아니요false
-    private boolean isHeadache = false;
+    private String isHeadache = "";
 
     private Step7SaveDTO step7SaveDTO;
 
@@ -118,7 +120,7 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
 //            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
 
         } else {
-            this.isHeadche(this.step7SaveDTO.getAche_with_yn().equals("Y"));
+            this.isHeadche(this.step7SaveDTO.getAche_with_yn());
             this.step7SaveDTO.getStep7EtcDTOS().get(0).setClick(this.step7SaveDTO.getAche_with1().equals("Y"));
             this.step7SaveDTO.getStep7EtcDTOS().get(1).setClick(this.step7SaveDTO.getAche_with2().equals("Y"));
             this.step7SaveDTO.getStep7EtcDTOS().get(2).setClick(this.step7SaveDTO.getAche_with3().equals("Y"));
@@ -136,6 +138,30 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
         this.adapter = new Step7GridviewAdapter( this.step7SaveDTO.getStep7EtcDTOS() , this.activity.getLayoutInflater());
         this.gridView.setAdapter(this.adapter);
         this.gridView.setOnItemClickListener(this);
+        this.gridView.setOnItemLongClickListener(this);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+        Step7EtcDTO row = this.step7SaveDTO.getStep7EtcDTOS().get(position);
+        if (row.getEtcBt() || !row.getEtc()) return true;
+
+        new AlertDialog.Builder(activity).setTitle("안내").setMessage("해당 항목을 삭제 하시겠습니까?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        parentActivity.removeETC(step7SaveDTO.getStep7EtcDTOS().get(position).getKey());
+                        step7SaveDTO.getStep7EtcDTOS().remove(position);
+                        reloadListView();
+                    }
+                }).setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
+        return true;
     }
 
     @Override
@@ -209,37 +235,43 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
                     public void run() {
                         Log.d("gridViewHeight=",((int)Math.ceil((double)step7SaveDTO.getStep7EtcDTOS().size() / 4) )+"_");
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        layoutParams.height = (int) (titleHeight + (400 * Math.ceil((double)step7SaveDTO.getStep7EtcDTOS().size() / 4)));
+                        layoutParams.height = (int) (titleHeight + (500 * Math.ceil((double)step7SaveDTO.getStep7EtcDTOS().size() / 4)));
                         step7LinearView.setLayoutParams(layoutParams);
                     }
                 });
             }
         });
-
     }
 
-    private void isHeadche(boolean isHeadache) {
+    private void isHeadche(String isHeadache) {
         this.isHeadache = isHeadache;
-        if ( isHeadache ) {
+        if ( isHeadache.equals("Y") ) {
             this.step7SaveDTO.setAche_with_yn("Y");
             this.yesBt.setBackgroundResource(R.drawable.step5_select_board);
             this.yesBt.setTextColor(Color.parseColor("#1EA2B6"));
-            this.noBt.setTextColor(Color.parseColor("#C2C2C2"));;
+            this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
-            this.step7Line.setVisibility(View.VISIBLE);
-            this.step7GridV.setVisibility(View.VISIBLE);
+
+//            this.step7Line.setVisibility(View.VISIBLE);
+//            this.step7GridV.setVisibility(View.VISIBLE);
             this.step5BottomV2.setVisibility(View.GONE);
-            this.step7BottomV.setVisibility(View.VISIBLE);
-        } else {
+//            this.step7BottomV.setVisibility(View.VISIBLE);
+        } else if ( isHeadache.equals("N") ){
             this.step7SaveDTO.setAche_with_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
             this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
-            this.step7Line.setVisibility(View.GONE);
-            this.step7GridV.setVisibility(View.GONE);
-            this.step5BottomV2.setVisibility(View.VISIBLE);
-            this.step7BottomV.setVisibility(View.INVISIBLE);
+
+//            this.step7Line.setVisibility(View.GONE);
+//            this.step7GridV.setVisibility(View.GONE);
+//            this.step5BottomV2.setVisibility(View.VISIBLE);
+//            this.step7BottomV.setVisibility(View.INVISIBLE);
+        } else {
+            this.yesBt.setBackgroundColor(Color.TRANSPARENT);
+            this.noBt.setBackgroundColor(Color.TRANSPARENT);
+            this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
+            this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
         }
         this.parentActivity.save7(this.step7SaveDTO);
     }
@@ -258,10 +290,10 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
                 break;
 
             case R.id.yesBt:
-                this.isHeadche(true);
+                this.isHeadche("Y");
                 break;
             case R.id.noBt:
-                this.isHeadche(false);
+                this.isHeadche("N");
                 break;
 
         }

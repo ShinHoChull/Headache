@@ -74,8 +74,20 @@ public class Custom_SharedPreferences
 	        {
 	            return dftValue;
 	        }
-	 
 	    }
+
+	public long getValue(String key, long dftValue)
+	{
+		try
+		{
+			return this.pref.getLong(key, dftValue);
+		}
+		catch (Exception e)
+		{
+			return dftValue;
+		}
+	}
+
 	    public boolean getValue(String key, boolean dftValue)
 	    {
 	        try

@@ -6,11 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".views.IntroActivity">
 
-    <ImageView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/intro"
-        android:scaleType="fitXY"/>
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/intro_bg"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/intro_til"
+            android:scaleType="fitEnd"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/intro_img"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginBottom="300dp"
+            android:layout_marginTop="100dp"
+            android:scaleType="fitCenter"/>
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="30dp"
+            android:src="@drawable/intro_logo"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center|bottom"
+            android:scaleType="fitCenter"/>
+
+    </FrameLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

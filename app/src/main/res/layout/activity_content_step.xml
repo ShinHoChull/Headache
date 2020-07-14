@@ -30,7 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="TITLE"
+                    android:text=""
                     android:textColor="#222222"
                     android:textSize="20dp" />
 
@@ -130,7 +130,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="10dp"
-                                android:background="@drawable/step_content_bt_work">
+                                android:background="@drawable/step_content_bt_success">
 
                                 <TextView
                                     android:id="@+id/step2B_Back_txt"
@@ -138,9 +138,10 @@
                                     android:layout_height="match_parent"
                                     android:layout_margin="8dp"
                                     android:fontFamily="@font/nanum_bold"
+                                    android:background="@drawable/step_content_bt_sub_success"
                                     android:gravity="center"
                                     android:text="2 강도"
-                                    android:textColor="#FFFFFF" />
+                                    android:textColor="#9C9C9C" />
                             </LinearLayout>
                         </LinearLayout>
 

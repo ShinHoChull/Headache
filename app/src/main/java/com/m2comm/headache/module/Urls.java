@@ -19,6 +19,11 @@ public class Urls {
             put("del","/diary/del_diary.php");
             put("getETC","/diary/get_etc_medicine.php");
             put("getNotiCount","/bbs/get_new_count.php");
+            put("setMens","/diary/set_mens.php");
+            put("getMens","/diary/get_mens.php");
+            put("delMens","/diary/del_mens.php");
+            put("getRecentDiary","/diary/get_recent_diary.php");
+            put("del_etc","/diary/del_etc_code.php");
         }
     };
 

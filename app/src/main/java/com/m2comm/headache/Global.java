@@ -95,6 +95,17 @@ public class Global {
         }
     }
 
+    public static String getTimeToStrYearMonth(long time) {
+        try {
+            Date date = new Date(time);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM", Locale.KOREA);
+
+            return dateFormat.format(date);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static String inputDateTimeToStr(long time) {
         try {
             Date date = new Date(time);
@@ -105,6 +116,19 @@ public class Global {
             return null;
         }
     }
+
+    public static String inputDateToStr(long time) {
+        try {
+            Date date = new Date(time);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년MM월dd일", Locale.KOREA);
+
+            return dateFormat.format(date);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
 
     public static String getTimeToDateAndWeek(long time) {
         try {
@@ -124,13 +148,14 @@ public class Global {
         int hour = Integer.parseInt(cutTime[0]);
         int min = Integer.parseInt(cutTime[1]);
 
-        String am_pm = "오전";
-        if ( hour > 12 ) {
-            am_pm = "오후";
-            hour = hour - 12;
-        }
+//        String am_pm = "오전";
+//        if ( hour > 12 ) {
+//            am_pm = "오후";
+//            hour = hour - 12;
+//        }
 
-        return am_pm+" "+hour+"시 "+min+"분";
+        return hour+":"+min;
+        //return am_pm+" "+hour+"시 "+min+"분";
     }
 
     //px을 dp로 변환 (px을 입력받아 dp를 리턴)

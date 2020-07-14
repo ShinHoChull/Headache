@@ -200,7 +200,7 @@
                             android:layout_weight="6"
                             android:fontFamily="@font/nanum"
                             android:gravity="center_vertical"
-                            android:text="알람 설정"
+                            android:text="알림 설정"
                             android:textColor="#222222"
                             android:textSize="18dp" />
 
@@ -216,45 +216,8 @@
                         android:layout_height="1px"
                         android:background="#dedede" />
 
-                    <LinearLayout
-                        android:id="@+id/option5"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:orientation="horizontal">
-
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2"
-                            android:padding="22dp"
-                            android:src="@drawable/setting_5" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="6"
-                            android:fontFamily="@font/nanum"
-                            android:gravity="center_vertical"
-                            android:text="두통뉴스 구독"
-                            android:textColor="#222222"
-                            android:textSize="18dp" />
-
-                        <ImageView
-                            android:id="@+id/setting3CheckBt"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="2"
-                            android:padding="10dp"
-                            android:src="@drawable/setting_cehck_on" />
-                    </LinearLayout>
-
                 </LinearLayout>
                 <!--Setting 2group end-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#dedede" />
 
                 <LinearLayout
                     android:visibility="gone"
@@ -263,7 +226,6 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-
                         android:id="@+id/option6"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
@@ -295,11 +257,6 @@
                             android:src="@drawable/setting_next" />
                     </LinearLayout>
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="#dedede" />
 
 
             </LinearLayout>

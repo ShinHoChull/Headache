@@ -40,6 +40,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SubTimePicker extends AppCompatActivity implements View.OnClickListener {
 
@@ -67,7 +69,9 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
 
     //endDate 설정하게 하기.
     private boolean isEnd = false;
-    private boolean isStep11 = false;
+    private boolean isMean = false;
+    private boolean isTime = false; //클릭했을때 클릭시간.
+    boolean isTimeStep = false;
 
     private Activity activity;
     private void regObj() {
@@ -77,6 +81,7 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
         this.binding.backBt.setOnClickListener(this);
         this.binding.successBt.setOnClickListener(this);
         this.binding.cancelBt.setOnClickListener(this);
+        this.binding.closeBt.setOnClickListener(this);
     }
 
     @Override
@@ -99,20 +104,30 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
         //시작날짜 가져오기
         this.startDateLong = intent.getLongExtra("startDateLong",0);
         this.isEnd = intent.getBooleanExtra("isEnd",false);
-        this.isStep11 = intent.getBooleanExtra("isStep11",false);
+        this.isMean = intent.getBooleanExtra("isMean",false);
+        this.isTime = intent.getBooleanExtra("isTime",false);
 
-        Log.d("dataaa",this.startDateLong+"____");
+
         if ( this.startDateLong != 0 ) {
             String reciveStartDate = Global.getTimeToStr(this.startDateLong);
             this.startDate = new Date(Global.getStrToDate(reciveStartDate).getTime());
+
+            if ( !this.isEnd ) {
+                this.time = Global.inputTimeToStr(this.startDateLong);
+                String[] timeCut = this.time.split(":");
+                this.binding.timepicker.setCurrentHour(Integer.parseInt(timeCut[0]));
+                this.binding.timepicker.setCurrentMinute(Integer.parseInt(timeCut[1]));
+            }
         }
 
-        if ( this.isStep11 ) {
+        if ( this.isMean ) {
             this.binding.title.setText("월경 시작일을 선택해 주세요.");
+            this.binding.dateTimeParentV.setVisibility(View.GONE);
+            this.isTimeStep = true;
         }
 
         if (this.isEnd) {
-            if ( this.isStep11 ) {
+            if ( this.isMean ) {
                 this.binding.title.setText("월경 종료일을 선택해 주세요.");
             } else {
                 this.binding.title.setText("두통 종료일을 선택해 주세요.");
@@ -122,30 +137,35 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
             if ( this.endDateLong != 0 ) {
                 String reciveEndDate = Global.getTimeToStr(this.endDateLong);
                 this.endDate = new Date(Global.getStrToDate(reciveEndDate).getTime());
+
+                this.time = Global.inputTimeToStr(this.endDateLong);
+                String[] timeCut = this.time.split(":");
+                this.binding.timepicker.setCurrentHour(Integer.parseInt(timeCut[0]));
+                this.binding.timepicker.setCurrentMinute(Integer.parseInt(timeCut[1]));
+
             } else {
                 String reciveEndDate = Global.getTimeToStr(this.startDateLong);
                 this.endDate = new Date(Global.getStrToDate(reciveEndDate).getTime());
                 this.endDateLong = endDate.getTime();
             }
+
         }
-
-
 
         this.binding.nextBt.setColorFilter(Color.parseColor("#000000"));
         this.binding.backBt.setColorFilter(Color.parseColor("#000000"));
 
         this.binding.timepicker.setIs24HourView(false);
 
-        this.changeBt(this.binding.dateBtTxt, this.binding.dateBtLine, this.binding.timeBtTxt, this.binding.timeBtLine, this.VIEW_PAGER);
-        this.getMonth();
+        changeBt(binding.dateBtTxt, binding.dateBtLine, binding.timeBtTxt, binding.timeBtLine, VIEW_PAGER);
 
+
+        this.getMonth();
         this.binding.pager.post(new Runnable() {
             @Override
             public void run() {
                 changeAdapter();
             }
         });
-
 
         this.binding.pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -200,8 +220,42 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
             this.binding.calendarView.setVisibility(View.VISIBLE);
             this.binding.timepicker.setVisibility(View.GONE);
         } else {
+
             this.binding.calendarView.setVisibility(View.GONE);
             this.binding.timepicker.setVisibility(View.VISIBLE);
+        }
+
+        if ( !this.isMean && !this.isTimeStep ) {
+            this.binding.cancelBt.setVisibility(View.GONE);
+            this.binding.successBt.setText("시간 입력");
+        } else  {
+            this.binding.cancelBt.setVisibility(View.GONE);
+            this.binding.successBt.setText("확인");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if ( isTime ) {
+            this.isTimeStep = true;
+            this.binding.calendarView.post(new Runnable() {
+                @Override
+                public void run() {
+                    changeBt(binding.timeBtTxt, binding.timeBtLine, binding.dateBtTxt, binding.dateBtLine, VIEW_TIME_PICKER);
+                }
+            });
+
+        }
+
+        if ( this.startDateLong != 0 ) {
+            String dateYearMonth = Global.getTimeToStrYearMonth(this.startDateLong);
+            for( int i = 0 , j = this.dateStrings.size() ; i < j ; i++ ) {
+                if ( dateYearMonth != null && dateYearMonth.equals(this.dateStrings.get(i)) ) {
+                    dateIndex = i;
+                }
+            }
+            this.binding.pager.setCurrentItem(this.dateIndex);
         }
     }
 
@@ -209,6 +263,10 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         switch (v.getId()) {
+
+            case R.id.closeBt:
+                finish();
+                break;
 
             case R.id.nextBt:
                 this.changeAdapter();
@@ -239,15 +297,25 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.dateBt:
+                this.isTimeStep = false;
                 this.changeBt(this.binding.dateBtTxt, this.binding.dateBtLine, this.binding.timeBtTxt, this.binding.timeBtLine, this.VIEW_PAGER);
                 break;
 
             case R.id.timeBt:
+                this.isTimeStep = true;
                 this.changeBt(this.binding.timeBtTxt, this.binding.timeBtLine, this.binding.dateBtTxt, this.binding.dateBtLine, this.VIEW_TIME_PICKER);
                 break;
 
             case R.id.successBt:
                 if ( this.startDate == null ) return;
+
+                //날짜입력 후 시간 입력 강제하는 처리
+                if ( !this.isTimeStep ) {
+                    this.isTimeStep = true;
+                    this.changeBt(this.binding.timeBtTxt, this.binding.timeBtLine, this.binding.dateBtTxt, this.binding.dateBtLine, this.VIEW_TIME_PICKER);
+                    return;
+                }
+
                 if (this.time.equals("")) this.time = this.cmm.getTime();
                 Intent intent = new Intent();
                 if ( this.isEnd ) {
@@ -296,7 +364,6 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
             Log.d("dateList", curYearFormat.format(cal.getTime()) + "-" + curMonthFormat.format(cal.getTime()));
         }
     }
-
 
     public class NewPagerAdapter extends PagerAdapter {
 
