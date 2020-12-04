@@ -4,5 +4,9 @@
 Screenshots
 -----------
 <div>
-<img src="https://user-images.githubusercontent.com/23310187/34244435-91eab306-e668-11e7-8063-735dff683bf8.png" width="90%"></img>
+  <img src="https://user-images.githubusercontent.com/17059271/101189310-37904f80-369a-11eb-9155-011ff8ee0685.jpg"></img>
+  <img src="https://user-images.githubusercontent.com/17059271/101189310-37904f80-369a-11eb-9155-011ff8ee0685.jpg"></img>
+  <img src="https://user-images.githubusercontent.com/17059271/101189310-37904f80-369a-11eb-9155-011ff8ee0685.jpg"></img>
+<img src="https://user-images.githubusercontent.com/17059271/101189310-37904f80-369a-11eb-9155-011ff8ee0685.jpg"></img>
+
 </div>
