@@ -1,5 +1,13 @@
-# Headache
-5.31 master
+# 두통일기
+자신의 두통이 지속된 날짜와 두통의 위치 또는 두통이 올때 어떤 현상을 겪었는지를 상세하게 입력할 수 있는 프로젝트입니다.
+
+# 설치방법
+
+http://ezv.kr/headache/demo.php
+
+Android 버튼 클릭 후 APK 다운 후 사용. 
+<br/>**배포 대기중. 
+
 
 Screenshots
 -----------
