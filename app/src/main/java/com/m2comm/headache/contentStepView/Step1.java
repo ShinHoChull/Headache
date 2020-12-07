@@ -23,9 +23,12 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.gson.JsonObject;
 import com.m2comm.headache.DTO.Step10EtcDTO;
+import com.m2comm.headache.DTO.Step10MainDTO;
 import com.m2comm.headache.DTO.Step1SaveDTO;
 import com.m2comm.headache.DTO.Step9DTO;
 import com.m2comm.headache.DTO.Step9Dates;
+import com.m2comm.headache.DTO.Step9MainDTO;
+import com.m2comm.headache.DTO.Step9MainEtcDTO;
 import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
 import com.m2comm.headache.module.CalendarModule;
@@ -49,14 +52,18 @@ public class Step1 implements View.OnClickListener {
     public final static int BT1 = 111;
     public final static int BT2 = 222;
     public final static int BT3 = 333;
+    public final static int CHECK_BT = 4444;
 
     private LayoutInflater inflater;
     private int ParentID;
-    private LinearLayout parent;
+    private LinearLayout parent , checkBt;
     private Context context;
     private Activity activity;
     private ContentStepActivity parentActivity;
     private View view;
+
+    //현재 진행중 상태
+    private boolean isCheck = true;
 
     /*step1*/
     int nextStepNum = 2;
@@ -68,7 +75,7 @@ public class Step1 implements View.OnClickListener {
     TextView startDateTxt , startTimeTxt , endDateTxt , endTimeTxt ,
     temp , pressureAndHumidity , addressTxt;
 
-    ImageView weatherImg , locationBt;
+    ImageView weatherImg , locationBt , check1;
 
     //getTime
     long startDateTimeLong = 0;
@@ -107,6 +114,7 @@ public class Step1 implements View.OnClickListener {
         this.startTimeTxt.setOnClickListener(this);
         this.endDateTxt.setOnClickListener(this);
         this.endTimeTxt.setOnClickListener(this);
+        this.checkBt.setOnClickListener(this);
     }
 
     private void init () {
@@ -126,6 +134,8 @@ public class Step1 implements View.OnClickListener {
         this.addressTxt = this.view.findViewById(R.id.address);
         this.weatherImg = this.view.findViewById(R.id.weatherImg);
         this.locationBt = this.view.findViewById(R.id.locationBt);
+        this.checkBt = this.view.findViewById(R.id.checkBt);
+        this.check1 = this.view.findViewById(R.id.check1);
 
         this.cm = new CalendarModule(this.context , this.activity);
         this.regObj();
@@ -138,6 +148,9 @@ public class Step1 implements View.OnClickListener {
         } else {
             this.startTimeSetting(this.step1SaveDTO.getSdate());
             this.endTimeSetting(this.step1SaveDTO.geteDate());
+            if ( this.step1SaveDTO.geteDate() > 0 ) {
+                this.headacheCheckOnOff(false);
+            }
         }
 
         //날씨가 저장되어있으면 저장되어있는것을 가져오고 , 아니면 새로 불러온다.
@@ -150,8 +163,9 @@ public class Step1 implements View.OnClickListener {
         if ( this.isDetail ) {
             if ( this.step1SaveDTO.geteDate() > 0 ) {
                 this.calendarBt1.setVisibility(View.INVISIBLE);
-                this.calendarBt2.setVisibility(View.INVISIBLE);
+                //this.calendarBt2.setVisibility(View.INVISIBLE);
                 this.locationBt.setVisibility(View.GONE);
+                this.checkBt.setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -169,7 +183,7 @@ public class Step1 implements View.OnClickListener {
         }
 
         this.address = getCurrentAddress(latitude, longitude);
-        Log.d("address",address);
+
         if(!address.equals(""))this.step1SaveDTO.setAddress(address);
 
         AndroidNetworking.post("https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid=60b48ba536f4029e11f19e4a0b407466")
@@ -184,10 +198,6 @@ public class Step1 implements View.OnClickListener {
 
                     JSONObject obj = response.getJSONObject("main");
                     JSONArray iconObj = response.getJSONArray("weather");
-
-                    Log.d("temp",obj.getDouble("temp")+"_");
-                    Log.d("pressure",obj.getDouble("pressure")+"_");
-                    Log.d("humidity",obj.getDouble("humidity")+"_");
 
                     step1SaveDTO.setHumidity(obj.getDouble("humidity"));
                     step1SaveDTO.setPressure(obj.getDouble("pressure"));
@@ -240,6 +250,7 @@ public class Step1 implements View.OnClickListener {
         this.parentActivity.save1(this.step1SaveDTO);
 
         String date = Global.inputDateTimeToStr(this.step1SaveDTO.getSdate());
+
         if ( startDateTime == 0 ) {
             date = " - ";
         }
@@ -263,11 +274,16 @@ public class Step1 implements View.OnClickListener {
         String date = Global.inputDateTimeToStr(this.step1SaveDTO.geteDate());
         if ( endDateTime == 0 ) {
             date = " - ";
+        } else {
+            headacheCheckOnOff(false);
         }
         String[] cut = date.split("-");
 
         this.endDateTxt.setText(cut[0]);
         this.endTimeTxt.setText(cut[1]);
+
+
+
     }
 
     public void setLocation(double lat , double lon) {
@@ -275,22 +291,35 @@ public class Step1 implements View.OnClickListener {
     }
 
     private boolean countCheck () {
-        if ( this.parentActivity.step9SaveDTO != null ) {
-            for ( int i = 0 , j = this.parentActivity.step9SaveDTO.getStep9DTOS().size(); i < j; i++ ) {
-                Step9DTO row = this.parentActivity.step9SaveDTO.getStep9DTOS().get(i);
-                if ( row.getDrugArray() != null ) {
-                    for( int k = 0 , l = row.getDrugArray().size(); k < l ; k++ ) {
-                        Step9Dates dateRow = row.getDrugArray().get(k);
-                        if ( dateRow.getVal().equals("Y")) return true;
-                    }
+        if ( this.parentActivity.step9NewSaveDTO != null ) {
+            for ( int i = 0 , j = this.parentActivity.step9NewSaveDTO.size(); i < j; i++ ) {
+                Step9MainDTO row = this.parentActivity.step9NewSaveDTO.get(i);
+                if ( row.getAche_medicine1().equals("Y") ) return true;
+                else if ( row.getAche_medicine2().equals("Y") ) return true;
+                else if ( row.getAche_medicine3().equals("Y") ) return true;
+                else if ( row.getAche_medicine4().equals("Y") ) return true;
+                else if ( row.getAche_medicine5().equals("Y") ) return true;
+                else if ( row.getAche_medicine6().equals("Y") ) return true;
+                else if ( row.getAche_medicine7().equals("Y") ) return true;
+                else if ( row.getAche_medicine8().equals("Y") ) return true;
+                else if ( row.getAche_medicine9().equals("Y") ) return true;
+                else if ( row.getAche_medicine10().equals("Y") ) return true;
+
+                for ( int k = 0 , l = row.getAche_medicine_etc().size(); k < l; k++ ) {
+                    Step9MainEtcDTO row_etc = row.getAche_medicine_etc().get(k);
+                    if ( row_etc.getVal().equals("Y") ) return true;
                 }
             }
         }
 
-        if (this.parentActivity.step10SaveDTO != null) {
-            for ( int i = 0 , j = this.parentActivity.step10SaveDTO.getArrayList().size(); i < j; i++ ) {
-                Step10EtcDTO row = this.parentActivity.step10SaveDTO.getArrayList().get(i);
-                if ( row.getVal().equals("Y") )return true;
+        if (this.parentActivity.step10NewSaveDTO != null) {
+            for ( int i = 0 , j = this.parentActivity.step10NewSaveDTO.size(); i < j; i++ ) {
+                Step10MainDTO row = this.parentActivity.step10NewSaveDTO.get(i);
+                if ( row.getAche_effect1().equals("Y") )return true;
+                else if ( row.getAche_effect2().equals("Y") )return true;
+                else if ( row.getAche_effect3().equals("Y") )return true;
+                else if ( row.getAche_effect4().equals("Y") )return true;
+                else if ( row.getAche_effect5().equals("Y") )return true;
             }
         }
         return false;
@@ -312,7 +341,7 @@ public class Step1 implements View.OnClickListener {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    parentActivity.getETC();
+                                   parentActivity.getETC();
 
                                     Intent intent = new Intent(activity , SubTimePicker.class);
                                     intent.putExtra("startDateLong",step1SaveDTO.getSdate());
@@ -325,7 +354,7 @@ public class Step1 implements View.OnClickListener {
                         }
                     }).show();
                 } else {
-                    parentActivity.getETC();
+                  //  parentActivity.getETC();
 
                     Intent intent2 = new Intent(activity , SubTimePicker.class);
                     intent2.putExtra("startDateLong",step1SaveDTO.getSdate());
@@ -346,7 +375,7 @@ public class Step1 implements View.OnClickListener {
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    parentActivity.getETC();
+                                       parentActivity.getETC();
 
                                     Intent intent = new Intent(activity , SubTimePicker.class);
                                     intent.putExtra("isEnd",true);
@@ -361,7 +390,7 @@ public class Step1 implements View.OnClickListener {
                         }
                     }).show();
                 } else {
-                    parentActivity.getETC();
+                 //   parentActivity.getETC();
 
                     Intent intent2 = new Intent(activity , SubTimePicker.class);
                     intent2.putExtra("isEnd",true);
@@ -409,15 +438,13 @@ public class Step1 implements View.OnClickListener {
                         }
                     }).show();
                 } else {
-                    parentActivity.getETC();
+                  //  parentActivity.getETC();
 
                     Intent intent2 = new Intent(activity , SubTimePicker.class);
                     intent2.putExtra("startDateLong",step1SaveDTO.getSdate());
                     intent2.putExtra("isTime",true);
                     activity.startActivityForResult(intent2 , BT1);
                 }
-
-
 
 //                intent = new Intent(this.activity , SubTimePicker.class);
 //                intent.putExtra("startDateLong",this.step1SaveDTO.getSdate());
@@ -426,10 +453,12 @@ public class Step1 implements View.OnClickListener {
                 break;
 
             case R.id.endTime:
+
                 if ( this.step1SaveDTO.getSdate() == 0 ) {
                     Toast.makeText(this.context , "두통 시작시간을 선택해주세요",Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 if (this.countCheck()) {
                     new AlertDialog.Builder(activity).setTitle("안내").setMessage("두통기간 수정 시 기존에 입력하셨던\n" +
                             "약물/장애 정보가 초기화됩니다.\n정보를 수정하시겠습니까?")
@@ -452,7 +481,7 @@ public class Step1 implements View.OnClickListener {
                         }
                     }).show();
                 } else {
-                    parentActivity.getETC();
+                  //  parentActivity.getETC();
 
                     Intent intent2 = new Intent(activity , SubTimePicker.class);
                     intent2.putExtra("isEnd",true);
@@ -471,10 +500,32 @@ public class Step1 implements View.OnClickListener {
 //                this.activity.startActivityForResult(intent , BT2);
                 break;
 
+            case R.id.checkBt:
 
+                if ( this.isCheck ) {
+                    //현재 두통이 진행중이 않다고 체크를 누르면 달력버튼이 뜬다.
+                    headacheCheckOnOff(false);
+
+                    Intent intent2 = new Intent(activity , SubTimePicker.class);
+                    intent2.putExtra("isEnd",true);
+                    intent2.putExtra("startDateLong",step1SaveDTO.getSdate());
+                    intent2.putExtra("endDateLong",step1SaveDTO.geteDate());
+                    activity.startActivityForResult(intent2 , CHECK_BT);
+
+                } else {
+                    this.endTimeSetting(0);
+                    this.headacheCheckOnOff(true);
+                }
+
+                break;
         }
     }
 
+    public void headacheCheckOnOff( boolean check) {
+        this.isCheck = check;
+        if ( check )this.check1.setImageResource(R.drawable.login_check_on);
+        else this.check1.setImageResource(R.drawable.login_check_off);
+    }
 
     public String getCurrentAddress( double latitude, double longitude) {
 

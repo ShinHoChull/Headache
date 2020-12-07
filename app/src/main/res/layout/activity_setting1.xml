@@ -37,7 +37,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:padding="20dp"
+                        android:padding="16dp"
                         android:src="@drawable/step_back" />
 
                     <LinearLayout
@@ -70,7 +70,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="8"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:orientation="vertical">
@@ -219,36 +220,136 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1px"
+                        android:background="#dedede"
+                        android:orientation="vertical"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanum"
+                            android:gravity="center_vertical"
+                            android:text="내원(할)병원"
+                            android:textColor="#666666"
+                            android:textSize="18dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:id="@+id/hospitalName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanum_bold"
+                            android:gravity="center_vertical"
+                            android:text="은평성모병원"
+                            android:textColor="#000000"
+                            android:textSize="18dp"
+                            android:layout_marginRight="10dp"/>
+
+                        <TextView
+                            android:id="@+id/modifyBt"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanum_bold"
+                            android:gravity="center"
+                            android:background="@drawable/search_radius"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="15dp"
+                            android:text="수정"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
                         android:background="#dedede" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        >
+
+                        <LinearLayout
+                            android:visibility="gone"
+                            android:id="@+id/hospitalParentV"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:orientation="horizontal"
+                            android:background="@drawable/step1_day_board">
+                            <EditText
+                                android:id="@+id/hospitalEditText"
+                                android:inputType="text"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="7.5"
+                                android:fontFamily="@font/nanum"
+                                android:gravity="center_vertical"
+                                android:paddingStart="10dp"
+                                android:textColor="#222222"
+                                android:textColorHint="#222222"
+                                android:textSize="14dp"
+                                android:layout_margin="4dp"
+                                android:background="#FFFFFF"/>
+
+                            <TextView
+                                android:id="@+id/saveBt"
+                                android:layout_width="0dp"
+                                android:layout_weight="2.5"
+                               android:text="저장"
+                                android:gravity="center"
+                                android:textColor="#FFFFFF"
+                                android:background="@drawable/modify_radius"
+                                android:layout_height="match_parent"/>
+
+                        </LinearLayout>
+
+                        <ListView
+                            android:visibility="gone"
+                            android:id="@+id/listview"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
                 <!--Option1 Group End-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="7" />
+                        android:layout_weight="3" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_weight="5"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="6"
+                            android:layout_height="match_parent"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -274,12 +375,13 @@
                                 android:layout_weight="1" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3" />
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2" />
 
 
                 </LinearLayout>

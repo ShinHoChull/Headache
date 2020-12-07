@@ -40,6 +40,7 @@ import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.gson.Gson;
 import com.m2comm.headache.CalendarFragment;
 import com.m2comm.headache.DTO.Step10EtcDTO;
+import com.m2comm.headache.DTO.Step10MainDTO;
 import com.m2comm.headache.DTO.Step10SaveDTO;
 import com.m2comm.headache.DTO.Step11SaveDTO;
 import com.m2comm.headache.DTO.Step12SaveDTO;
@@ -57,6 +58,8 @@ import com.m2comm.headache.DTO.Step8EtcDTO;
 import com.m2comm.headache.DTO.Step8SaveDTO;
 import com.m2comm.headache.DTO.Step9DTO;
 import com.m2comm.headache.DTO.Step9Dates;
+import com.m2comm.headache.DTO.Step9MainDTO;
+import com.m2comm.headache.DTO.Step9MainEtcDTO;
 import com.m2comm.headache.DTO.Step9SaveDTO;
 import com.m2comm.headache.DTO.StepParentDTO;
 import com.m2comm.headache.Global;
@@ -122,7 +125,10 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
     Step6SaveDTO step6SaveDTO;
     Step7SaveDTO step7SaveDTO;
     Step8SaveDTO step8SaveDTO;
-    Step9SaveDTO step9SaveDTO;
+    //Step9SaveDTO step9SaveDTO;
+    public ArrayList<Step9MainDTO> step9NewSaveDTO;
+    public ArrayList<Step10MainDTO> step10NewSaveDTO;
+
     Step10SaveDTO step10SaveDTO;
     Step11SaveDTO step11SaveDTO;
     Step12SaveDTO step12SaveDTO;
@@ -185,7 +191,12 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            binding.notiCount.setText(String.valueOf(response.getInt("rows")));
+                            if ( response.getInt("rows") > 0 ) {
+                                binding.notiCount.setText(String.valueOf(response.getInt("rows")));
+                            } else {
+                                binding.notiCount.setVisibility(View.GONE);
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -198,6 +209,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                 });
 
         if (csp.getValue("isOff", false) && !this.csp.getValue("notSaveSid", "").equals("")) {
+
             csp.put("isOff", false);
 
             //종료하지 않은 일기가 있을때 7일 지나면 자동으로 End날짜를 입력해 Save 해줍니다.
@@ -209,27 +221,34 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
             cal.add(Calendar.DATE, -7);
             Date nowDate = new Date(cal.getTimeInMillis());
 
+
+
             //현재 날짜에서 7일을 빼서 저장된 날짜보다 크면 입력된 시작날짜보다 12시간 크게 저장한다..
             if ( saveStartDate.getTime() < nowDate.getTime() ) {
                 this.diary_sid = Integer.parseInt(this.csp.getValue("notSaveSid","-1"));
                 this.isPush = true;
                 this.getDiary();
-            } else {
-                new android.app.AlertDialog.Builder(this).setTitle("안내").setMessage("작성이 완료되지 않은 두통일기가 있습니다.\n현재도 두통이 지속되고 있나요?")
-                        .setPositiveButton("예", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String sid = csp.getValue("notSaveSid", "-1");
-                        diary_sid = Integer.parseInt(sid);
-                        getDiary();
-                    }
-                }).setCancelable(false).show();
             }
+            /*
+            * 2020.11.06 수정사항
+            * 기존에 종료날짜를 입력하지않으면 두통이있는지 Alert을 띄었는데 없앴음.
+            * */
+//            else {
+//                new android.app.AlertDialog.Builder(this).setTitle("안내").setMessage("작성이 완료되지 않은 두통일기가 있습니다.\n현재도 두통이 지속되고 있나요?")
+//                        .setPositiveButton("예", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//
+//                            }
+//                        }).setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        String sid = csp.getValue("notSaveSid", "-1");
+//                        diary_sid = Integer.parseInt(sid);
+//                        getDiary();
+//                    }
+//                }).setCancelable(false).show();
+//            }
         }
     }
 
@@ -625,10 +644,10 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                     step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default2, R.drawable.step5_type_click2, "뒷목통증\n뻐근함/당김", false, false, response.getString("ache_realize1").equals("Y"), 0, response.getString("ache_realize2")));
                     step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default3, R.drawable.step5_type_click3, "하품", false, false, response.getString("ache_realize3").equals("Y"), 0, response.getString("ache_realize3")));
                     step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default4, R.drawable.step5_type_click4, "피로", false, false, response.getString("ache_realize4").equals("Y"), 0, response.getString("ache_realize4")));
-                    step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default5, R.drawable.step5_type_click5, "집중력저하", false, false, response.getString("ache_realize5").equals("Y"), 0, response.getString("ache_realize5")));
-                    step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default6, R.drawable.step5_type_click6, "기분변화", false, false, response.getString("ache_realize6").equals("Y"), 0, response.getString("ache_realize6")));
-                    step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default7, R.drawable.step5_type_click7, "식욕변화", false, false, response.getString("ache_realize7").equals("Y"), 0, response.getString("ache_realize7")));
-                    step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default8, R.drawable.step5_type_click8, "빛/소리/\n냄새에 과민", false, false, response.getString("ache_realize8").equals("Y"), 0, response.getString("ache_realize8")));
+                    //step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default5, R.drawable.step5_type_click5, "집중력저하", false, false, response.getString("ache_realize5").equals("Y"), 0, response.getString("ache_realize5")));
+                    step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default6, R.drawable.step5_type_click6, "기분변화", false, false, response.getString("ache_realize5").equals("Y"), 0, response.getString("ache_realize5")));
+                    step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default7, R.drawable.step5_type_click7, "식욕변화", false, false, response.getString("ache_realize6").equals("Y"), 0, response.getString("ache_realize6")));
+                    step5EtcDTOS.add(new Step5EtcDTO(R.drawable.step5_type_default8, R.drawable.step5_type_click8, "빛/소리/\n냄새에 과민", false, false, response.getString("ache_realize7").equals("Y"), 0, response.getString("ache_realize7")));
 
                     if (!response.isNull("ache_realize_etc")) {
                         JSONArray list5 = (JSONArray) response.get("ache_realize_etc");
@@ -641,7 +660,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
 
                     step5SaveDTO = new Step5SaveDTO(response.getString("ache_realize_yn"), response.isNull("ache_realize_hour") ? 0 : response.getInt("ache_realize_hour"), response.isNull("ache_realize_minute") ? 0 : response.getInt("ache_realize_minute"),
                             response.getString("ache_realize1"), response.getString("ache_realize2"), response.getString("ache_realize3"), response.getString("ache_realize4"),
-                            response.getString("ache_realize5"), response.getString("ache_realize6"), response.getString("ache_realize7"), response.getString("ache_realize8"), step5EtcDTOS);
+                            response.getString("ache_realize5"), response.getString("ache_realize6"), response.getString("ache_realize7"), "", step5EtcDTOS);
 
 
                     step6SaveDTO = new Step6SaveDTO(response.getString("ache_sign_yn"), response.getString("ache_sign1"), response.getString("ache_sign2"),
@@ -658,8 +677,8 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                     step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default6, R.drawable.step7_type_click6, "빛에 예민", false, false, response.getString("ache_with6").equals("Y"), 0, response.getString("ache_with6")));
                     step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default7, R.drawable.step7_type_click7, "소리에 예민", false, false, response.getString("ache_with7").equals("Y"), 0, response.getString("ache_with7")));
                     step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default8, R.drawable.step7_type_click8, "냄새에 예민", false, false, response.getString("ache_with8").equals("Y"), 0, response.getString("ache_with8")));
-                    step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default9, R.drawable.step7_type_click9, "뒷목통증/\n뻐근함/당김", false, false, response.getString("ache_with8").equals("Y"), 0, response.getString("ache_with9")));
-                    step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default10, R.drawable.step7_type_click10, "어깨통증", false, false, response.getString("ache_with9").equals("Y"), 0, response.getString("ache_with9")));
+                    step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default9, R.drawable.step7_type_click9, "뒷목통증/\n뻐근함/당김", false, false, response.getString("ache_with9").equals("Y"), 0, response.getString("ache_with9")));
+                    //step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default10, R.drawable.step7_type_click10, "어깨통증", false, false, response.getString("ache_with9").equals("Y"), 0, response.getString("ache_with9")));
                     step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default11, R.drawable.step7_type_click11, "눈물/눈충혈", false, false, response.getString("ache_with10").equals("Y"), 0, response.getString("ache_with10")));
                     step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step7_type_default12, R.drawable.step7_type_click12, "콧물/코막힘", false, false, response.getString("ache_with11").equals("Y"), 0, response.getString("ache_with11")));
 
@@ -672,17 +691,17 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                     }
                     step7EtcDTOS.add(new Step7EtcDTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false, 0, "N"));
 
-                    step7SaveDTO = new Step7SaveDTO(response.getString("ache_with_yn"), response.getString("ache_with1"), response.getString("ache_with2"), response.getString("ache_with3"),
+                    step7SaveDTO = new Step7SaveDTO(response.getString("ache_with1"), response.getString("ache_with2"), response.getString("ache_with3"),
                             response.getString("ache_with4"), response.getString("ache_with5"), response.getString("ache_with6"), response.getString("ache_with7"),
                             response.getString("ache_with8"), response.getString("ache_with9"), response.getString("ache_with10"), response.getString("ache_with11"),
-                            response.getString("ache_with12"), step7EtcDTOS);
+                            step7EtcDTOS);
 
 
                     ArrayList<Step8EtcDTO> step8EtcDTOS = new ArrayList<>();
                     step8EtcDTOS.add(new Step8EtcDTO(R.drawable.step8_type_default1, R.drawable.step8_type_click1, "스트레스", false, false, response.getString("ache_factor1").equals("Y"), 0, response.getString("ache_factor1")));
                     step8EtcDTOS.add(new Step8EtcDTO(R.drawable.step8_type_default2, R.drawable.step8_type_click2, "피로", false, false, response.getString("ache_factor2").equals("Y"), 0, response.getString("ache_factor2")));
                     step8EtcDTOS.add(new Step8EtcDTO(R.drawable.step8_type_default3, R.drawable.step8_type_click3, "수면부족", false, false, response.getString("ache_factor3").equals("Y"), 0, response.getString("ache_factor3")));
-                    step8EtcDTOS.add(new Step8EtcDTO(R.drawable.step8_type_default4, R.drawable.step8_type_click4, "낮잠 또는\n늦잠", false, false, response.getString("ache_factor4").equals("Y"), 0, response.getString("ache_factor4")));
+                    step8EtcDTOS.add(new Step8EtcDTO(R.drawable.step8_type_default4, R.drawable.step8_type_click4, "낮잠/늦잠", false, false, response.getString("ache_factor4").equals("Y"), 0, response.getString("ache_factor4")));
                     step8EtcDTOS.add(new Step8EtcDTO(R.drawable.step8_type_default5, R.drawable.step8_type_click5, "주말", false, false, response.getString("ache_factor5").equals("Y"), 0, response.getString("ache_factor5")));
                     step8EtcDTOS.add(new Step8EtcDTO(R.drawable.step8_type_default6, R.drawable.step8_type_click6, "굶음", false, false, response.getString("ache_factor6").equals("Y"), 0, response.getString("ache_factor6")));
                     step8EtcDTOS.add(new Step8EtcDTO(R.drawable.step8_type_default8, R.drawable.step8_type_click8, "체함", false, false, response.getString("ache_factor7").equals("Y"), 0, response.getString("ache_factor7")));
@@ -711,120 +730,6 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                             response.getString("ache_factor12"), response.getString("ache_factor13"),
                             response.getString("ache_factor14"), response.getString("ache_factor15"), step8EtcDTOS);
 
-
-                    //step9
-                    step9SaveDTO = new Step9SaveDTO("", "", "",
-                            "", "", "", "",
-                            "", "", "", "",
-                            new ArrayList<Step9DTO>(), response.isNull("ache_medicine_effect") ? 0 : response.getInt("ache_medicine_effect"));
-
-                    ArrayList<Step9Dates> ache_medicine1 = new ArrayList<>();
-                    JSONObject acheObj1 = response.getJSONObject("ache_medicine1");
-                    JSONArray acheArr1 = acheObj1.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr1.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr1.get(i);
-                        ache_medicine1.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default1, R.drawable.step9_type_click1, "모름", false, false, acheObj1.isNull("chk_num") ? false : acheObj1.getInt("chk_num") != 0, ache_medicine1, 0, acheObj1.getInt("effect")));
-
-                    ArrayList<Step9Dates> ache_medicine2 = new ArrayList<>();
-                    JSONObject acheObj2 = response.getJSONObject("ache_medicine2");
-                    JSONArray acheArr2 = acheObj2.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr2.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr2.get(i);
-                        ache_medicine2.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "이미그란", false, false, acheObj2.isNull("chk_num") ? false : acheObj2.getInt("chk_num") != 0, ache_medicine2, 0, acheObj2.getInt("effect")));
-
-
-                    ArrayList<Step9Dates> ache_medicine3 = new ArrayList<>();
-                    JSONObject acheObj3 = response.getJSONObject("ache_medicine3");
-                    JSONArray acheArr3 = acheObj3.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr3.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr3.get(i);
-                        ache_medicine3.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "수마트란", false, false, acheObj3.isNull("chk_num") ? false : acheObj3.getInt("chk_num") != 0, ache_medicine3, 0, acheObj3.getInt("effect")));
-
-                    ArrayList<Step9Dates> ache_medicine4 = new ArrayList<>();
-                    JSONObject acheObj4 = response.getJSONObject("ache_medicine4");
-                    JSONArray acheArr4 = acheObj4.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr4.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr4.get(i);
-                        ache_medicine4.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "슈그란", false, false, acheObj4.isNull("chk_num") ? false : acheObj4.getInt("chk_num") != 0, ache_medicine4, 0, acheObj4.getInt("effect")));
-
-
-                    ArrayList<Step9Dates> ache_medicine5 = new ArrayList<>();
-                    JSONObject acheObj5 = response.getJSONObject("ache_medicine5");
-                    JSONArray acheArr5 = acheObj5.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr5.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr5.get(i);
-                        ache_medicine5.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "마이그란", false, false, acheObj5.isNull("chk_num") ? false : acheObj5.getInt("chk_num") != 0, ache_medicine5, 0, acheObj5.getInt("effect")));
-
-                    ArrayList<Step9Dates> ache_medicine6 = new ArrayList<>();
-                    JSONObject acheObj6 = response.getJSONObject("ache_medicine6");
-                    JSONArray acheArr6 = acheObj6.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr6.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr6.get(i);
-                        ache_medicine6.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "조믹", false, false, acheObj6.isNull("chk_num") ? false : acheObj6.getInt("chk_num") != 0, ache_medicine6, 0, acheObj6.getInt("effect")));
-
-                    ArrayList<Step9Dates> ache_medicine7 = new ArrayList<>();
-                    JSONObject acheObj7 = response.getJSONObject("ache_medicine7");
-                    JSONArray acheArr7 = acheObj7.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr7.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr7.get(i);
-                        ache_medicine7.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "나라믹", false, false, acheObj7.isNull("chk_num") ? false : acheObj7.getInt("chk_num") != 0, ache_medicine7, 0, acheObj7.getInt("effect")));
-
-                    ArrayList<Step9Dates> ache_medicine8 = new ArrayList<>();
-                    JSONObject acheObj8 = response.getJSONObject("ache_medicine8");
-                    JSONArray acheArr8 = acheObj8.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr8.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr8.get(i);
-                        ache_medicine8.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "알모그란", false, false, acheObj8.isNull("chk_num") ? false : acheObj8.getInt("chk_num") != 0, ache_medicine8, 0, acheObj8.getInt("effect")));
-
-                    ArrayList<Step9Dates> ache_medicine9 = new ArrayList<>();
-                    JSONObject acheObj9 = response.getJSONObject("ache_medicine9");
-                    JSONArray acheArr9 = acheObj9.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr9.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr9.get(i);
-                        ache_medicine9.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "미가드", false, false, acheObj9.isNull("chk_num") ? false : acheObj9.getInt("chk_num") != 0, ache_medicine9, 0, acheObj9.getInt("effect")));
-
-                    ArrayList<Step9Dates> ache_medicine10 = new ArrayList<>();
-                    JSONObject acheObj10 = response.getJSONObject("ache_medicine10");
-                    JSONArray acheArr10 = acheObj10.getJSONArray("date_val");
-                    for (int i = 0, j = acheArr10.length(); i < j; i++) {
-                        JSONObject obj = (JSONObject) acheArr10.get(i);
-                        ache_medicine10.add(new Step9Dates(obj.getString("date"), obj.getString("val")));
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "크래밍", false, false, acheObj10.isNull("chk_num") ? false : acheObj10.getInt("chk_num") != 0, ache_medicine10, 0, acheObj10.getInt("effect")));
-
-                    //Step9 기타 데이터 넣기.
-                    if (!response.isNull("ache_medicine_etc")) {
-                        JSONArray acheArrEtc = response.getJSONArray("ache_medicine_etc");
-                        for (int i = 0, j = acheArrEtc.length(); i < j; i++) {
-                            JSONObject obj = (JSONObject) acheArrEtc.get(i);
-                            JSONArray acheEtcDateVal = obj.getJSONArray("date_val");
-                            ArrayList<Step9Dates> acheEtc = new ArrayList<>();
-                            for (int k = 0, l = acheEtcDateVal.length(); k < l; k++) {
-                                JSONObject dateObj = (JSONObject) acheEtcDateVal.get(k);
-                                acheEtc.add(new Step9Dates(dateObj.getString("date"), dateObj.getString("val")));
-                            }
-                            step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc_add, R.drawable.step_type_etc_add, obj.getString("content"), true, false, obj.isNull("chk_num") ? false : obj.getInt("chk_num") != 0, acheEtc, obj.getInt("key"), obj.getInt("effect")));
-                        }
-                    }
-                    step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false, null, 0, 0));
 
                     //step10
                     ArrayList<Step10EtcDTO> step10EtcDTOS = new ArrayList<Step10EtcDTO>();
@@ -883,7 +788,6 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                         startActivityForResult(intent, CONTENT_STEP1);
                     }
 
-
                 } catch (JSONException e) {
                     Log.d("Exceptionee", e.toString());
                     e.printStackTrace();
@@ -936,7 +840,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
             this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default2, R.drawable.step5_type_click2, "뒷목통증\n뻐근함/당김", false, false, false, 0, "N"));
             this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default3, R.drawable.step5_type_click3, "하품", false, false, false, 0, "N"));
             this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default4, R.drawable.step5_type_click4, "피로", false, false, false, 0, "N"));
-            this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default5, R.drawable.step5_type_click5, "집중력저하", false, false, false, 0, "N"));
+            //this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default5, R.drawable.step5_type_click5, "집중력저하", false, false, false, 0, "N"));
             this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default6, R.drawable.step5_type_click6, "기분변화", false, false, false, 0, "N"));
             this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default7, R.drawable.step5_type_click7, "식욕변화", false, false, false, 0, "N"));
             this.step5SaveDTO.getArrayList().add(new Step5EtcDTO(R.drawable.step5_type_default8, R.drawable.step5_type_click8, "빛/소리/\n냄새에 과민", false, false, false, 0, "N"));
@@ -950,9 +854,9 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
 
         if (this.step7SaveDTO == null) {
 
-            this.step7SaveDTO = new Step7SaveDTO("", "N", "N", "N", "N",
+            this.step7SaveDTO = new Step7SaveDTO("N", "N", "N", "N",
                     "N", "N", "N", "N",
-                    "N", "N", "N", "N", new ArrayList<Step7EtcDTO>());
+                    "N", "N", "N", new ArrayList<Step7EtcDTO>());
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default1, R.drawable.step7_type_click1, "소화가 안됨", false, false, false, 0, "N"));
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default2, R.drawable.step7_type_click2, "울렁거림", false, false, false, 0, "N"));
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default3, R.drawable.step7_type_click3, "구토", false, false, false, 0, "N"));
@@ -962,7 +866,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default7, R.drawable.step7_type_click7, "소리에 예민", false, false, false, 0, "N"));
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default8, R.drawable.step7_type_click8, "냄새에 예민", false, false, false, 0, "N"));
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default9, R.drawable.step7_type_click9, "뒷목통증/\n뻐근함/당김", false, false, false, 0, "N"));
-            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default10, R.drawable.step7_type_click10, "어깨통증", false, false, false, 0, "N"));
+            //this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default10, R.drawable.step7_type_click10, "어깨통증", false, false, false, 0, "N"));
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default11, R.drawable.step7_type_click11, "눈물/눈충혈", false, false, false, 0, "N"));
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step7_type_default12, R.drawable.step7_type_click12, "콧물/코막힘", false, false, false, 0, "N"));
             this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false, 0, "N"));
@@ -977,7 +881,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default1, R.drawable.step8_type_click1, "스트레스", false, false, false, 0, "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default2, R.drawable.step8_type_click2, "피로", false, false, false, 0, "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default3, R.drawable.step8_type_click3, "수면부족", false, false, false, 0, "N"));
-            this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default4, R.drawable.step8_type_click4, "낮잠 또는\n늦잠", false, false, false, 0, "N"));
+            this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default4, R.drawable.step8_type_click4, "낮잠/늦잠", false, false, false, 0, "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default5, R.drawable.step8_type_click5, "주말", false, false, false, 0, "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default6, R.drawable.step8_type_click6, "굶음", false, false, false, 0, "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default7, R.drawable.step8_type_click7, "과식", false, false, false, 0, "N"));
@@ -993,36 +897,22 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
 
         }
 
-        if (this.step9SaveDTO == null) {
-
-            this.step9SaveDTO = new Step9SaveDTO("N", "N", "N", "N"
-                    , "N", "N", "N", "N",
-                    "N", "N", "N", new ArrayList<Step9DTO>(), 999);
-
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default1, R.drawable.step9_type_click1, "모름", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "이미그란", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "수마트란", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "슈그란", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "마이그란", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "조믹", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "나라믹", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "알모그란", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "미가드", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step9_type_default2, R.drawable.step9_type_click2, "크래밍", false, false, false, new ArrayList<Step9Dates>(), 0, 0));
-            this.step9SaveDTO.getStep9DTOS().add(new Step9DTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false, new ArrayList<Step9Dates>(), 0, 0));
+        if (this.step9NewSaveDTO == null) {
+            this.step9NewSaveDTO = new ArrayList<>();
+            ArrayList<String> formatDates = Global.getFormatDates(this.step1SaveDTO.getSdate() , this.step1SaveDTO.geteDate());
+            for ( String date : formatDates ) {
+                this.step9NewSaveDTO.add(new Step9MainDTO(date,"0","N","N","N","N",
+                        "N","N","N","N","N","N",new ArrayList<Step9MainEtcDTO>()));
+            }
         }
 
-        if (this.step10SaveDTO == null) {
-            this.step10SaveDTO = new Step10SaveDTO("N", "N", "N", "N"
-                    , "N", new ArrayList<Step9Dates>(), new ArrayList<Step10EtcDTO>());
-
-            this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step10_type_default1, R.drawable.step10_type_click1, "결근/결석", false, false, false, 0, "N"));
-            this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step10_type_default2, R.drawable.step10_type_click2, "업무/학습\n능률저하", false, false, false, 0, "N"));
-            this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step10_type_default3, R.drawable.step10_type_click3, "가사활동\n못함", false, false, false, 0, "N"));
-            this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step10_type_default4, R.drawable.step10_type_click4, "가사활동\n능률 저하", false, false, false, 0, "N"));
-            this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step10_type_default5, R.drawable.step10_type_click5, "여가활동\n불참", false, false, false, 0, "N"));
-            this.step10SaveDTO.getArrayList().add(new Step10EtcDTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false, 0, "N"));
-
+        if ( this.step10NewSaveDTO == null  ) {
+            this.step10NewSaveDTO = new ArrayList<>();
+            ArrayList<String> formatDates = Global.getFormatDates(this.step1SaveDTO.getSdate() , this.step1SaveDTO.geteDate());
+            for ( String date : formatDates ) {
+                this.step10NewSaveDTO.add(new Step10MainDTO(date, "N" , "N" ,
+                        "N", "N" , "N"));
+            }
         }
 
         if (this.step11SaveDTO == null) {
@@ -1063,45 +953,6 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                 step8Arraylist.add(new Step4SendDTO(row.getKey(), row.getContent(), row.getVal()));
         }
 
-        Send9PixDTO send9PixDTO1 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(0).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(0).getEffect(), this.step9SaveDTO.getStep9DTOS().get(0).getDrugArray());
-        Send9PixDTO send9PixDTO2 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(1).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(1).getEffect(), this.step9SaveDTO.getStep9DTOS().get(1).getDrugArray());
-        Send9PixDTO send9PixDTO3 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(2).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(2).getEffect(), this.step9SaveDTO.getStep9DTOS().get(2).getDrugArray());
-        Send9PixDTO send9PixDTO4 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(3).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(3).getEffect(), this.step9SaveDTO.getStep9DTOS().get(3).getDrugArray());
-        Send9PixDTO send9PixDTO5 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(4).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(4).getEffect(), this.step9SaveDTO.getStep9DTOS().get(4).getDrugArray());
-        Send9PixDTO send9PixDTO6 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(5).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(5).getEffect(), this.step9SaveDTO.getStep9DTOS().get(5).getDrugArray());
-        Send9PixDTO send9PixDTO7 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(6).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(6).getEffect(), this.step9SaveDTO.getStep9DTOS().get(6).getDrugArray());
-        Send9PixDTO send9PixDTO8 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(7).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(7).getEffect(), this.step9SaveDTO.getStep9DTOS().get(7).getDrugArray());
-        Send9PixDTO send9PixDTO9 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(8).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(8).getEffect(), this.step9SaveDTO.getStep9DTOS().get(8).getDrugArray());
-        Send9PixDTO send9PixDTO10 = new Send9PixDTO(this.step9SaveDTO.getStep9DTOS().get(9).getDrugArray().size(), this.step9SaveDTO.getStep9DTOS().get(9).getEffect(), this.step9SaveDTO.getStep9DTOS().get(9).getDrugArray());
-
-        ArrayList<Step9SendDTO> send9Etc = new ArrayList<>();
-
-        //11은 기타 이후부터 추가되는 항목들
-        for (int i = 0, j = this.step9SaveDTO.getStep9DTOS().size(); i < j; i++) {
-            Step9DTO row = this.step9SaveDTO.getStep9DTOS().get(i);
-            if (row.getEtc()) {
-                ArrayList<Step9Dates> dates = new ArrayList<>();
-                for (int k = 0, l = row.getDrugArray().size(); k < l; k++) {
-                    Step9Dates datesRow = row.getDrugArray().get(k);
-                    dates.add(new Step9Dates(datesRow.getDate(), datesRow.getVal()));
-                }
-                send9Etc.add(new Step9SendDTO(row.getKey(), row.getName(), dates.size(), dates, row.getEffect()));
-            }
-        }
-
-        //step10
-        ArrayList<Step4SendDTO> step10Arraylist = new ArrayList<Step4SendDTO>();
-        for (int i = 0, j = this.step10SaveDTO.getArrayList().size(); i < j; i++) {
-            Step10EtcDTO row = this.step10SaveDTO.getArrayList().get(i);
-            if (row.getEtc())
-                step10Arraylist.add(new Step4SendDTO(row.getKey(), row.getContent(), row.getVal()));
-        }
-
-        ArrayList<Step9Dates> step10Dates = new ArrayList<>();
-        for (int i = 0, j = this.step10SaveDTO.getAche_effect_date_val_Array().size(); i < j; i++) {
-            Step9Dates row = this.step10SaveDTO.getAche_effect_date_val_Array().get(i);
-            step10Dates.add(new Step9Dates(row.getDate(), row.getVal()));
-        }
 
         //step11월경
         //String meanStartDate = this.step11SaveDTO.getMens_sdate() == 0L ? null :  Global.getTimeToStr(this.step11SaveDTO.getMens_sdate());
@@ -1112,8 +963,8 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
         Log.d("mean_edate", this.step11SaveDTO.getMens_edate() + "_");
 
         String effect = null;
-        if (step9SaveDTO.getAche_medicine_effect() > 10) effect = null;
-        else effect = String.valueOf(step9SaveDTO.getAche_medicine_effect());
+//        if (step9SaveDTO.getAche_medicine_effect() > 10) effect = null;
+//        else effect = String.valueOf(step9SaveDTO.getAche_medicine_effect());
 
         String id = this.diary_sid == -1 ? null : String.valueOf(this.diary_sid);
 
@@ -1129,12 +980,10 @@ public class Main2Activity extends AppCompatActivity implements View.OnTouchList
                 this.step4SaveDTO.getAche_type1(), this.step4SaveDTO.getAche_type2(), this.step4SaveDTO.getAche_type3(), this.step4SaveDTO.getAche_type4(), this.step4SaveDTO.getAche_type5(), step4Arraylist,
                 this.step5SaveDTO.getAche_realize_yn(), this.step5SaveDTO.getAche_realize_hour(), this.step5SaveDTO.getAche_realize_minute(), this.step5SaveDTO.getAche_realize1(), this.step5SaveDTO.getAche_realize2(), this.step5SaveDTO.getAche_realize3(), this.step5SaveDTO.getAche_realize4(), this.step5SaveDTO.getAche_realize5(), this.step5SaveDTO.getAche_realize6(), this.step5SaveDTO.getAche_realize7(), this.step5SaveDTO.getAche_realize8(), step5Arraylist,
                 this.step6SaveDTO.getAche_sign_yn(), this.step6SaveDTO.getAche_sign1(), this.step6SaveDTO.getAche_sign2(), this.step6SaveDTO.getAche_sign3(), this.step6SaveDTO.getAche_sign4(), this.step6SaveDTO.getAche_sign5(), this.step6SaveDTO.getAche_sign6(), this.step6SaveDTO.getAche_sign7(),
-                this.step7SaveDTO.getAche_with_yn(), this.step7SaveDTO.getAche_with1(), this.step7SaveDTO.getAche_with2(), this.step7SaveDTO.getAche_with3(), this.step7SaveDTO.getAche_with4(), this.step7SaveDTO.getAche_with5(), this.step7SaveDTO.getAche_with6(), this.step7SaveDTO.getAche_with7(), this.step7SaveDTO.getAche_with8(), this.step7SaveDTO.getAche_with9(), this.step7SaveDTO.getAche_with10(), this.step7SaveDTO.getAche_with11(), this.step7SaveDTO.getAche_with12(), step7Arraylist,
+                this.step7SaveDTO.getAche_with1(), this.step7SaveDTO.getAche_with2(), this.step7SaveDTO.getAche_with3(), this.step7SaveDTO.getAche_with4(), this.step7SaveDTO.getAche_with5(), this.step7SaveDTO.getAche_with6(), this.step7SaveDTO.getAche_with7(), this.step7SaveDTO.getAche_with8(), this.step7SaveDTO.getAche_with9(), this.step7SaveDTO.getAche_with10(), this.step7SaveDTO.getAche_with11(), step7Arraylist,
                 this.step8SaveDTO.getAche_factor_yn(), this.step8SaveDTO.getAche_factor1(), this.step8SaveDTO.getAche_factor2(), this.step8SaveDTO.getAche_factor3(), this.step8SaveDTO.getAche_factor4(), this.step8SaveDTO.getAche_factor5(), this.step8SaveDTO.getAche_factor6(), this.step8SaveDTO.getAche_factor7(), this.step8SaveDTO.getAche_factor8(), this.step8SaveDTO.getAche_factor9(), this.step8SaveDTO.getAche_factor10(), this.step8SaveDTO.getAche_factor11(), this.step8SaveDTO.getAche_factor12(), this.step8SaveDTO.getAche_factor13(), this.step8SaveDTO.getAche_factor14(), this.step8SaveDTO.getAche_factor15(), step8Arraylist,
-                send9PixDTO1, send9PixDTO2, send9PixDTO3, send9PixDTO4, send9PixDTO5,
-                send9PixDTO6, send9PixDTO7, send9PixDTO8, send9PixDTO9, send9PixDTO10, send9Etc, effect,
-                this.step10SaveDTO.getAche_effect1(), this.step10SaveDTO.getAche_effect2(), this.step10SaveDTO.getAche_effect3(),
-                this.step10SaveDTO.getAche_effect4(), this.step10SaveDTO.getAche_effect5(), step10Dates, step10Arraylist,
+                this.step9NewSaveDTO,
+                this.step10NewSaveDTO,
                 this.step11SaveDTO.getMens_sdate() / 1000, this.step11SaveDTO.getMens_edate() / 1000,
                 this.step12SaveDTO.getDesc(),
                 id

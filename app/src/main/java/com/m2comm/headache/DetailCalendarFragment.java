@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ import com.m2comm.headache.DTO.CalendarDTO;
 import com.m2comm.headache.DTO.CalendarListDTO;
 import com.m2comm.headache.module.Custom_SharedPreferences;
 import com.m2comm.headache.module.Urls;
+import com.m2comm.headache.views.DetailCalendarActivity;
 import com.m2comm.headache.views.SubTimePicker;
 
 import org.json.JSONArray;
@@ -43,6 +45,8 @@ public class DetailCalendarFragment extends Fragment {
     private DetailCalendarAdapter calendarAdapter;
 
     private int gridviewHeight = 0;
+
+    private LinearLayout mensV;
 
     public static DetailCalendarFragment newInstance(String dateStr , ArrayList<String> dayArr) {
 
@@ -103,9 +107,11 @@ public class DetailCalendarFragment extends Fragment {
         });
     }
 
-    private void reloadCalendar() {
+    public void reloadCalendar() {
         this.calendarAdapter = new DetailCalendarAdapter( this.calendarDTOS, dateStr ,dayArr , getContext() , getLayoutInflater(),gridviewHeight);
         gridView.setAdapter(calendarAdapter);
+
+
     }
 
     @Nullable
@@ -116,14 +122,22 @@ public class DetailCalendarFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.detail_calendar_fragment , container , false);
         this.gridView = view.findViewById(R.id.calendar);
+        this.mensV = view.findViewById(R.id.mensV);
+
         this.gridView.post(new Runnable() {
             @Override
             public void run() {
                 gridviewHeight = (gridView.getHeight()/6);
                 calendarAdapter = new DetailCalendarAdapter(calendarDTOS, dateStr ,dayArr , getContext() , getLayoutInflater(),gridviewHeight);
                 gridView.setAdapter(calendarAdapter);
+
+
             }
         });
+
+        if (this.csp.getValue("sex", "").equals("M") || this.csp.getValue("mens", "").equals("N")) {
+            mensV.setVisibility(View.GONE);
+        }
 
 //        view.findViewById(R.id.meanBt).setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -138,6 +152,8 @@ public class DetailCalendarFragment extends Fragment {
 
 
         //tv.setText(this.dayArr.size());
+
+        getContext().sendBroadcast(new Intent("M2COMM_COMPLETED"));
 
         return view;
     }

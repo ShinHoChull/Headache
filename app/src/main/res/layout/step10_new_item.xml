@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/step9_new_item"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/step9_new_parent_radius"
+            android:elevation="2dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="2020.10.30(수)"
+                android:textColor="#222222"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:textSize="17dp"
+                android:fontFamily="@font/nanum_bold"
+                android:includeFontPadding="false"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8Cdedede" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/step10_new_bottom_radius"
+                android:orientation="horizontal"
+                >
+
+                <FrameLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <FrameLayout
+                            android:id="@+id/step10NewBt1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            >
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:scaleType="fitXY"
+                                android:background="@drawable/step_grid_radius"
+                                />
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/step10_type_click1"
+                                android:padding="10dp"
+                                />
+
+                            <LinearLayout
+                                android:id="@+id/step10_img1"
+                                android:visibility="invisible"
+                                android:layout_marginTop="1dp"
+                                android:layout_width="59dp"
+                                android:layout_height="57dp"
+                                android:background="@drawable/step4_type_check"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"/>
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:text="결근/결석"
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#A4A5A7"
+                            android:layout_gravity="center"
+                            android:gravity="center_horizontal"
+                            android:textSize="14dp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <FrameLayout
+                            android:id="@+id/step10NewBt2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:scaleType="fitXY"
+                                android:background="@drawable/step_grid_radius"
+                                />
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/step10_type_click2"
+                                android:padding="10dp"
+                                />
+
+                            <LinearLayout
+                                android:id="@+id/step10_img2"
+                                android:visibility="invisible"
+                                android:layout_marginTop="1dp"
+                                android:layout_width="59dp"
+                                android:layout_height="57dp"
+                                android:background="@drawable/step4_type_check"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"/>
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:text="업무/학습\n능률저하"
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#A4A5A7"
+                            android:layout_gravity="center"
+                            android:gravity="center_horizontal"
+                            android:textSize="14dp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#aaaaaa"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="7dp"/>
+
+                <FrameLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <FrameLayout
+                            android:id="@+id/step10NewBt3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:scaleType="fitXY"
+                                android:background="@drawable/step_grid_radius"
+                                />
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="3dp"
+                                android:src="@drawable/step10_type_click3"
+                                android:padding="10dp"
+                                />
+
+                            <LinearLayout
+                                android:id="@+id/step10_img3"
+                                android:visibility="invisible"
+                                android:layout_marginTop="1dp"
+                                android:layout_width="59dp"
+                                android:layout_height="57dp"
+                                android:background="@drawable/step4_type_check"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"/>
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:text="가사활동\n못함"
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#A4A5A7"
+                            android:layout_gravity="center"
+                            android:gravity="center_horizontal"
+                            android:textSize="14dp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <FrameLayout
+                            android:id="@+id/step10NewBt4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:scaleType="fitXY"
+                                android:background="@drawable/step_grid_radius"
+                                />
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/step10_type_click4"
+                                android:padding="10dp"
+                                />
+
+                            <LinearLayout
+                                android:id="@+id/step10_img4"
+                                android:visibility="invisible"
+                                android:layout_marginTop="1dp"
+                                android:layout_width="59dp"
+                                android:layout_height="57dp"
+                                android:background="@drawable/step4_type_check"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"/>
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:text="가사활동\n능률저하"
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#A4A5A7"
+                            android:layout_gravity="center"
+                            android:gravity="center_horizontal"
+                            android:textSize="14dp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#aaaaaa"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="7dp"/>
+
+                <FrameLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <FrameLayout
+                            android:id="@+id/step10NewBt5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+                            <LinearLayout
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:scaleType="fitXY"
+                                android:background="@drawable/step_grid_radius"
+                                />
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/step10_type_click5"
+                                android:padding="10dp"
+                                />
+
+                            <LinearLayout
+                                android:id="@+id/step10_img5"
+                                android:visibility="invisible"
+                                android:layout_marginTop="1dp"
+                                android:layout_width="59dp"
+                                android:layout_height="57dp"
+                                android:background="@drawable/step4_type_check"
+                                android:layout_gravity="center"
+                                android:orientation="vertical"/>
+
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:text="여가활동\n불참"
+                            android:fontFamily="@font/nanum"
+                            android:textColor="#A4A5A7"
+                            android:layout_gravity="center"
+                            android:gravity="center_horizontal"
+                            android:textSize="14dp"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

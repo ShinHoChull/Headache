@@ -59,7 +59,7 @@ public class Step9DatePicker extends AppCompatActivity implements View.OnClickLi
             R.id.radio2_img,
             R.id.radio3_img,
             R.id.radio4_img,
-            R.id.radio5_img
+
     };
 
 
@@ -76,7 +76,6 @@ public class Step9DatePicker extends AppCompatActivity implements View.OnClickLi
         this.binding.radio2.setOnClickListener(this);
         this.binding.radio3.setOnClickListener(this);
         this.binding.radio4.setOnClickListener(this);
-        this.binding.radio5.setOnClickListener(this);
         this.binding.closeBt.setOnClickListener(this);
 
     }
@@ -106,6 +105,7 @@ public class Step9DatePicker extends AppCompatActivity implements View.OnClickLi
     }
 
     private void init () {
+
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_step9_date_picker);
         this.binding.setSubTime(this);
 
@@ -154,6 +154,8 @@ public class Step9DatePicker extends AppCompatActivity implements View.OnClickLi
             this.binding.timeBtLine.setVisibility(View.GONE);
             this.changeBt(this.binding.timeBtTxt, this.binding.timeBtLine, this.binding.dateBtTxt, this.binding.dateBtLine, this.VIEW_TIME_PICKER);
             this.binding.successBt.setText("확인");
+        } else {
+            this.binding.choiceViewParent.setVisibility(View.GONE);
         }
 
         if (this.isStep10) {
@@ -257,9 +259,6 @@ public class Step9DatePicker extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.radio4:
                 this.checkRadio(3);
-                break;
-            case R.id.radio5:
-                this.checkRadio(4);
                 break;
         }
     }

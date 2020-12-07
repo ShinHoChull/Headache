@@ -11,7 +11,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -20,7 +21,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="280dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -33,14 +34,16 @@
                         android:layout_height="0dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:layout_weight="2.5"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="5dp"
                         android:orientation="vertical">
 
                         <LinearLayout
+
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3"
+                            android:layout_height="match_parent"
                             android:orientation="horizontal">
+
 
                             <ImageView
                                 android:layout_width="0dp"
@@ -55,11 +58,6 @@
                                 android:layout_weight="2" />
                         </LinearLayout>
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="0.5" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -109,17 +107,14 @@
                         android:layout_height="0dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:layout_weight="6"
+                        android:layout_weight="2"
                         android:src="@drawable/step6_img" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:id="@+id/step6Line"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
@@ -139,9 +134,9 @@
                         >
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="30dp" />
+                            android:layout_height="10dp" />
 
-                        <LinearLayout
+<!--                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="120dp"
                             android:orientation="horizontal">
@@ -162,7 +157,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.5" />
 
-                        </LinearLayout>
+                        </LinearLayout>-->
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -190,8 +185,7 @@
                                     <LinearLayout
                                         android:id="@+id/checkbox1"
                                         android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="0.3"
+                                        android:layout_height="65dp"
                                         android:orientation="horizontal">
 
                                         <ImageView
@@ -223,8 +217,7 @@
                                     <LinearLayout
                                         android:id="@+id/checkbox2"
                                         android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="0.3"
+                                        android:layout_height="65dp"
                                         android:orientation="horizontal">
 
                                         <ImageView
@@ -256,8 +249,7 @@
                                     <LinearLayout
                                         android:id="@+id/checkbox3"
                                         android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="0.3"
+                                        android:layout_height="65dp"
                                         android:orientation="horizontal">
 
                                         <ImageView
@@ -289,8 +281,7 @@
                                     <LinearLayout
                                         android:id="@+id/checkbox4"
                                         android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="0.3"
+                                        android:layout_height="65dp"
                                         android:orientation="horizontal">
 
                                         <ImageView
@@ -322,8 +313,7 @@
                                     <LinearLayout
                                         android:id="@+id/checkbox5"
                                         android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="0.3"
+                                        android:layout_height="65dp"
                                         android:orientation="horizontal">
 
                                         <ImageView
@@ -355,8 +345,7 @@
                                     <LinearLayout
                                         android:id="@+id/checkbox6"
                                         android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="0.3"
+                                        android:layout_height="65dp"
                                         android:orientation="horizontal">
 
                                         <ImageView
@@ -388,8 +377,7 @@
                                     <LinearLayout
                                         android:id="@+id/checkbox7"
                                         android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="0.3"
+                                        android:layout_height="65dp"
                                         android:orientation="horizontal">
 
                                         <ImageView
@@ -431,72 +419,6 @@
                     </LinearLayout>
 
 
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="4"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1" />
-
-                            <TextView
-                                android:id="@+id/backBt"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="4"
-                                android:background="@drawable/back_radius"
-                                android:fontFamily="@font/nanum_bold"
-                                android:gravity="center"
-                                android:text="이전"
-                                android:textColor="#FFFFFF"
-                                android:textSize="20dp" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="0.5" />
-
-                            <TextView
-                                android:id="@+id/nextBt"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="4"
-                                android:background="@drawable/next_radius"
-                                android:fontFamily="@font/nanum_bold"
-                                android:gravity="center"
-                                android:text="다음"
-                                android:textColor="#FFFFFF"
-                                android:textSize="20dp" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="3" />
-
-                    </LinearLayout>
-
                 </LinearLayout>
 
 
@@ -504,6 +426,70 @@
 
 
         </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/backBt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/back_radius"
+                    android:fontFamily="@font/nanum_bold"
+                    android:gravity="center"
+                    android:text="이전"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5" />
+
+                <TextView
+                    android:id="@+id/nextBt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:background="@drawable/next_radius"
+                    android:fontFamily="@font/nanum_bold"
+                    android:gravity="center"
+                    android:text="다음"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3" />
+
+        </LinearLayout>
     </LinearLayout>
 
 

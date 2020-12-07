@@ -146,6 +146,7 @@ public class Step6 implements View.OnClickListener {
         if (check[num].equals("N")) {
             check[num] = "Y";
             img.setImageResource(R.drawable.login_check_on);
+            this.isHeadche("Y");
         } else {
             check[num] = "N";
             img.setImageResource(R.drawable.login_check_off);
@@ -159,6 +160,23 @@ public class Step6 implements View.OnClickListener {
         else if (num == 6)this.step6SaveDTO.setAche_sign7(check[num]);
 
         this.parentActivity.save6(this.step6SaveDTO);
+    }
+
+    private void resetSign() {
+        this.step6SaveDTO.setAche_sign1("N");
+        this.step6SaveDTO.setAche_sign2("N");
+        this.step6SaveDTO.setAche_sign3("N");
+        this.step6SaveDTO.setAche_sign4("N");
+        this.step6SaveDTO.setAche_sign5("N");
+        this.step6SaveDTO.setAche_sign6("N");
+        this.step6SaveDTO.setAche_sign7("N");
+
+        for ( int i = 0 , j = check.length; i < j ; i ++ ) {
+            check[i] = "N";
+            ImageView img = this.view.findViewById(this.checkImgIds[i]);
+            img.setImageResource(R.drawable.login_check_off);
+        }
+
     }
 
     @Override
@@ -177,6 +195,8 @@ public class Step6 implements View.OnClickListener {
                 break;
             case R.id.noBt:
                 this.isHeadche("N");
+                this.resetSign();
+                this.parentActivity.positionView(this.nextStepNum);
                 break;
 
             case R.id.checkbox1:

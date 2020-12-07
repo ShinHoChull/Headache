@@ -44,7 +44,7 @@ public class Step8GridviewAdapter extends BaseAdapter {
 
         Step8EtcDTO row = this.arrayList.get(position);
 
-        convertView = this.inflater.inflate(R.layout.step4_grid_item, parent, false);
+        convertView = this.inflater.inflate(R.layout.step4_grid_item_1line, parent, false);
         ImageView type = convertView.findViewById(R.id.step3_type);
         LinearLayout type_check = convertView.findViewById(R.id.step3_type_check);
         TextView type_Txt = convertView.findViewById(R.id.step3_type_txt);
@@ -60,12 +60,13 @@ public class Step8GridviewAdapter extends BaseAdapter {
         type_Txt.setText(row.getContent());
 
         ViewGroup.LayoutParams param = convertView.getLayoutParams();
+        /*
         if (param == null) {
             param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
-        param.height = 430;
+        param.height = 350;
         convertView.setLayoutParams(param);
-
+        */
 
         return convertView;
 

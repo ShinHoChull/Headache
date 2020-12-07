@@ -44,7 +44,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
     ContentStepActivity parentActivity;
 
     //step8
-    TextView nextBt , backBt , yesBt , noBt , nextBt2 , backBt2;
+    TextView nextBt , backBt , yesBt , noBt;
 
     int nextStepNum = 9;
     int backStepNum = 7;
@@ -63,6 +63,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         this.init();
         this.regObj();
         this.viewReset();
+        this.isHeadche("Y");
     }
 
     private void regObj () {
@@ -70,8 +71,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         this.backBt.setOnClickListener(this);
         this.yesBt.setOnClickListener(this);
         this.noBt.setOnClickListener(this);
-        this.nextBt2.setOnClickListener(this);
-        this.backBt2.setOnClickListener(this);
+
     }
 
     private void init () {
@@ -90,8 +90,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         this.step8ParentV = view.findViewById(R.id.step8ParentV);
 
         this.step5BottomV2 = this.view.findViewById(R.id.step5BottomV2);
-        this.nextBt2 = this.view.findViewById(R.id.nextBt2);
-        this.backBt2 = this.view.findViewById(R.id.backBt2);
+
         
 
         if ( this.step8SaveDTO == null ) {
@@ -104,7 +103,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default1,R.drawable.step8_type_click1,"스트레스",false,false,false,0 , "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default2,R.drawable.step8_type_click2,"피로",false,false,false,0 , "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default3,R.drawable.step8_type_click3,"수면부족",false,false,false,0 , "N"));
-            this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default4,R.drawable.step8_type_click4,"낮잠 또는\n늦잠",false,false,false,0 , "N"));
+            this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default4,R.drawable.step8_type_click4,"낮잠/늦잠",false,false,false,0 , "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default5,R.drawable.step8_type_click5,"주말",false,false,false,0 , "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default6,R.drawable.step8_type_click6,"굶음",false,false,false,0 , "N"));
             this.step8SaveDTO.getArrayList().add(new Step8EtcDTO(R.drawable.step8_type_default7,R.drawable.step8_type_click7,"과식",false,false,false,0 , "N"));
@@ -169,6 +168,9 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id ) {
+
+        if (this.step8SaveDTO.getAche_factor_yn().equals("N") ) return;
+
         Step8EtcDTO row = this.step8SaveDTO.getArrayList().get(position);
         if ( row.getEtcBt() ) {
             getEtcActivity();
@@ -215,6 +217,32 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         }
     }
 
+    private boolean checkState() {
+
+        if (this.step8SaveDTO.getAche_factor1().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor2().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor3().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor4().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor5().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor6().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor7().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor8().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor9().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor10().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor11().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor12().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor13().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor14().equals("Y"))return true;
+        else if (this.step8SaveDTO.getAche_factor15().equals("Y"))return true;
+
+        for ( int i = 0 , j = this.step8SaveDTO.getArrayList().size(); i < j; i++ ) {
+            Step8EtcDTO row = this.step8SaveDTO.getArrayList().get(i);
+            if ( row.getVal().equals("Y") ) return true;
+        }
+
+        return false;
+    }
+
     public void addListView (String etc) {
         this.step8SaveDTO.getArrayList().remove(this.step8SaveDTO.getArrayList().size()-1);
         this.step8SaveDTO.getArrayList().add( new Step8EtcDTO(R.drawable.step_type_etc_add, R.drawable.step_type_etc_add, etc,true,false, true,0,"Y") );
@@ -224,6 +252,11 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
 
     private void reloadListView() {
         viewReset();
+        if ( this.checkState() ) {
+            isHeadche("Y");
+        } else {
+            isHeadche("");
+        }
         this.adapter = new Step8GridviewAdapter( this.step8SaveDTO.getArrayList() , this.activity.getLayoutInflater() );
         this.gridView.setAdapter( this.adapter );
         this.adapter.notifyDataSetChanged();
@@ -233,6 +266,7 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
         Intent intent = new Intent(this.activity , EtcInputActivity.class);
         this.activity.startActivityForResult(intent,ETC8_INPUT);
     }
+
 
     private void viewReset() {
         step8BottomV.post(new Runnable() {
@@ -244,13 +278,41 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
                     public void run() {
                         Log.d("gridViewHeight=",((int)Math.ceil((double)step8SaveDTO.getArrayList().size() / 4) )+"_");
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        layoutParams.height = (int) (titleHeight + (500 * Math.ceil((double)step8SaveDTO.getArrayList().size() / 4)));
+                        layoutParams.height = (int) (titleHeight + (450 * Math.ceil((double)step8SaveDTO.getArrayList().size() / 4)));
                         step8LinearView.setLayoutParams(layoutParams);
                     }
                 });
             }
         });
     }
+
+    private void step8Reset() {
+
+        this.step8SaveDTO.setAche_factor1("N");
+        this.step8SaveDTO.setAche_factor2("N");
+        this.step8SaveDTO.setAche_factor3("N");
+        this.step8SaveDTO.setAche_factor4("N");
+        this.step8SaveDTO.setAche_factor5("N");
+        this.step8SaveDTO.setAche_factor6("N");
+        this.step8SaveDTO.setAche_factor7("N");
+        this.step8SaveDTO.setAche_factor8("N");
+        this.step8SaveDTO.setAche_factor9("N");
+        this.step8SaveDTO.setAche_factor10("N");
+        this.step8SaveDTO.setAche_factor11("N");
+        this.step8SaveDTO.setAche_factor12("N");
+        this.step8SaveDTO.setAche_factor13("N");
+        this.step8SaveDTO.setAche_factor14("N");
+        this.step8SaveDTO.setAche_factor15("N");
+
+
+        for ( int i = 0 , j = this.step8SaveDTO.getArrayList().size(); i < j; i++ ) {
+            Step8EtcDTO row = this.step8SaveDTO.getArrayList().get(i);
+            row.setClick(false);
+            row.setVal("N");
+        }
+
+    }
+
 
     private void isHeadche(String isHeadache) {
         this.isHeadache = isHeadache;
@@ -288,12 +350,11 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.nextBt2:
+
             case R.id.nextBt:
                 this.parentActivity.positionView(this.nextStepNum);
                 break;
 
-            case R.id.backBt2:
             case R.id.backBt:
                 this.parentActivity.positionView(this.backStepNum);
                 break;
@@ -303,6 +364,8 @@ public class Step8 implements View.OnClickListener , AdapterView.OnItemClickList
                 break;
             case R.id.noBt:
                 this.isHeadche("N");
+                this.step8Reset();
+                this.parentActivity.positionView(this.nextStepNum);
                 break;
         }
     }

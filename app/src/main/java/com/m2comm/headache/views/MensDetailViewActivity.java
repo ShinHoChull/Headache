@@ -77,8 +77,14 @@ public class MensDetailViewActivity extends AppCompatActivity implements View.On
 
         if ( this.sData == 0 ) {
             this.binding.mensStartDate.setVisibility(View.INVISIBLE);
-        } else if (this.eData == 0) {
+        } else {
+            this.binding.mensStartDate.setVisibility(View.VISIBLE);
+        }
+
+        if (this.eData == 0) {
             this.binding.mensEndDate.setVisibility(View.INVISIBLE);
+        } else {
+            this.binding.mensEndDate.setVisibility(View.VISIBLE);
         }
 
         this.binding.mensStartDate.setText(Global.inputDateToStr(this.sData));
@@ -200,7 +206,21 @@ public class MensDetailViewActivity extends AppCompatActivity implements View.On
                         .build().getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        binding.mensEndDate.setText(Global.inputDateToStr(eData));
+                        Log.d("responseID=",response.toString());
+                        Log.d("responseID=",csp.getValue("mens_sid",""));
+                        dateSetting();
+
+                        try {
+
+                            if (csp.getValue("mens_sid","").equals(response.getString("mens_sid"))) {
+                                csp.put("mensSdate",0L);
+                                csp.put("mens_sid","");
+                                csp.put("isMensStart",false);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

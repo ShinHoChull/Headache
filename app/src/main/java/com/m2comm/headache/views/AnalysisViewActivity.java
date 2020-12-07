@@ -126,10 +126,12 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                     if ( !response.isNull("alert_txt")) Toast.makeText(getApplicationContext() , response.getString("alert_txt"),Toast.LENGTH_SHORT).show();
 
                     JSONObject obj =  response.getJSONObject("tot");
-                    Log.d("response_data",obj.getString("ache_day"));
+
                     analyTotDTO = new AnalyTotDTO(obj.getString("ache_day"),obj.getString("medicine_day"),
                             obj.getString("effect_day"),obj.getString("ache_time"),
-                            obj.isNull("ache_power")?"":obj.getString("ache_power"));
+                            obj.isNull("ache_power")?"":obj.getString("ache_power"),
+                            obj.isNull("ache_sign")?"":obj.getString("ache_sign")
+                            );
 
                     if ( !response.isNull("graph") ) {
                         JSONArray graphs = response.getJSONArray("graph");
@@ -227,7 +229,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
             icon = R.drawable.step8_type_click2;
         } else if ( txt.equals("수면부족") ){
             icon = R.drawable.step8_type_click3;
-        } else if ( txt.equals("낮잠 또는 늦잠") ){
+        } else if ( txt.equals("낮잠/늦잠") ){
             icon = R.drawable.step8_type_click4;
         } else if ( txt.equals("주말") ){
             icon = R.drawable.step8_type_click5;
@@ -266,19 +268,19 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void step5Setting() {
-        if ( this.analyRankDTOArrayList.size() < 1 ) {
-            this.binding.reallizeParent.setVisibility(View.GONE);
-            return;
-        }
+//        if ( this.analyRankDTOArrayList.size() < 1 ) {
+//            this.binding.reallizeParent.setVisibility(View.GONE);
+//            return;
+//        }
         this.adapter = new AnalysisGridviewAdapter(this.analyReallizeDTOArrayList,getLayoutInflater());
         this.binding.step5GridV.setAdapter(this.adapter);
     }
 
     private void step6Setting() {
-        if ( this.factorDTOArrayList.size() < 1 ) {
-            this.binding.factorParent.setVisibility(View.GONE);
-            return;
-        }
+//        if ( this.factorDTOArrayList.size() < 1 ) {
+//            this.binding.factorParent.setVisibility(View.GONE);
+//            return;
+//        }
         this.adapter2 = new AnalysisGridviewAdapter(this.factorDTOArrayList,getLayoutInflater());
         this.binding.step6GridV.setAdapter(this.adapter2);
     }
@@ -304,7 +306,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
             public void run() {
                 final int h = binding.rankParent1.getHeight();
 
-                int rank11H = 0;
+              //  int rank11H = 0;
                 int rank12H = 0;
                 int rank13H = 0;
                 int rank14H = 0;
@@ -314,14 +316,12 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
 
                     if ( analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("효과 없음") ) {
                         rank15H =  (h / rankMaxHour) * analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("30분 이내") ){
+                    } else if ( analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("1시간 이내") ){
                         rank14H =  (h / rankMaxHour) * analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("1시간 이내") ) {
-                        rank13H =  (h / rankMaxHour) * analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getVal();
                     } else if ( analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("2시간 이내") ) {
+                        rank13H =  (h / rankMaxHour) * analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getVal();
+                    } else if ( analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("4시간 이내") ) {
                         rank12H =  (h / rankMaxHour) * analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("2시간 이후") ) {
-                        rank11H =  (h / rankMaxHour) * analyRankDTOArrayList.get(0).getAnalyMedicineTimeValDTOS().get(i).getVal();
                     }
                 }
 
@@ -345,11 +345,11 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams2.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
                 binding.rank12.setLayoutParams(layoutParams2);
 
-                Log.d("rank11H",rank11H+"_");
+    /*            Log.d("rank11H",rank11H+"_");
                 LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1.5f);
                 layoutParams1.height = rank11H;
                 layoutParams1.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
-                binding.rank11.setLayoutParams(layoutParams1);
+                binding.rank11.setLayoutParams(layoutParams1);*/
             }
         });
 
@@ -373,14 +373,12 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
 
                     if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("효과 없음") ) {
                         rank15H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("30분 이내") ){
+                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("1시간 이내") ){
                         rank14H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("1시간 이내") ) {
-                        rank13H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
                     } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("2시간 이내") ) {
+                        rank13H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
+                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("4시간 이내") ) {
                         rank12H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
-                    } else if ( analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getTime_txt().equals("2시간 이후") ) {
-                        rank11H =  (h / rankMaxHour) * analyRankDTOArrayList.get(1).getAnalyMedicineTimeValDTOS().get(i).getVal();
                     }
                 }
 
@@ -404,10 +402,10 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
                 layoutParams2.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
                 binding.rank22.setLayoutParams(layoutParams2);
 
-                LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1.5f);
+              /*  LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT,1.5f);
                 layoutParams1.height = rank11H;
                 layoutParams1.gravity = Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM;
-                binding.rank21.setLayoutParams(layoutParams1);
+                binding.rank21.setLayoutParams(layoutParams1);*/
             }
         });
 
@@ -613,6 +611,7 @@ public class AnalysisViewActivity extends AppCompatActivity implements View.OnCl
         this.binding.analysisEffectDay.setText(this.analyTotDTO.getEffect_day().equals("null")?"":this.analyTotDTO.getEffect_day());
         this.binding.analysisAcheTime.setText(this.analyTotDTO.getAche_time().equals("null")?"":this.analyTotDTO.getAche_time());
         this.binding.analysisAchePower.setText(this.analyTotDTO.getAche_power().equals("null")?"":this.analyTotDTO.getAche_power());
+        this.binding.acheSign.setText(this.analyTotDTO.getAche_sign().equals("null")?"0":this.analyTotDTO.getAche_sign());
     }
 
 

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.m2comm.headache.DTO.Step9Dates;
 import com.m2comm.headache.Global;
 import com.m2comm.headache.R;
@@ -35,6 +36,7 @@ public class DrugInput extends AppCompatActivity implements View.OnClickListener
     EditText input1;
     LinearLayout parentV;
     Long startDateLong, endDateLong;
+    boolean isStep9New = false;
 
 
     private void regObj() {
@@ -53,6 +55,7 @@ public class DrugInput extends AppCompatActivity implements View.OnClickListener
         this.regObj();
 
         Intent intent = getIntent();
+        this.isStep9New = intent.getBooleanExtra("isStep9New",false);
         this.startDateLong = intent.getLongExtra("startDateLong", 0L);
         this.endDateLong = intent.getLongExtra("endDateLong", 0L);
     }
@@ -109,6 +112,11 @@ public class DrugInput extends AppCompatActivity implements View.OnClickListener
                     intent.putExtra("endDateLong", this.endDateLong);
                     startActivityForResult(intent, Step9.ETC9_INPUT2);
                     this.parentV.setVisibility(View.INVISIBLE);
+                } else if ( this.isStep9New ){
+                    Intent intent = new Intent();
+                    intent.putExtra("input1", this.input1.getText().toString());
+                    setResult(RESULT_OK, intent);
+                    finish();
                 } else {
 
                     Intent intent = new Intent(this, Step9DatePicker.class);

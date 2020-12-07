@@ -137,7 +137,6 @@ public class MensActivity extends AppCompatActivity implements AdapterView.OnIte
             this.binding.startBt.setVisibility(View.VISIBLE);
             this.binding.endBt.setVisibility(View.GONE);
         }
-
         this.adapterReg();
     }
 
@@ -159,7 +158,7 @@ public class MensActivity extends AppCompatActivity implements AdapterView.OnIte
         if (resultCode == RESULT_OK) {
             assert data != null;
             if (requestCode == MENS_START_CODE) {
-
+                Log.d("callState=","Startcall");
                 final long sDate = data.getLongExtra("startDateTime", 0);
                 //서버 저장 후 sDate , sid , 저장단계 저장
                 AndroidNetworking.post(this.urls.mainUrl + this.urls.getUrls.get("setMens"))
@@ -175,7 +174,7 @@ public class MensActivity extends AppCompatActivity implements AdapterView.OnIte
                         try {
 
                             csp.put("mensSdate", sDate);
-                            csp.put("mens_sid", response.getInt("mens_sid"));
+                            csp.put("mens_sid", response.getString("mens_sid"));
                             csp.put("isMensStart", true);
 
                             getData();
@@ -193,13 +192,13 @@ public class MensActivity extends AppCompatActivity implements AdapterView.OnIte
                 });
 
             } else if (requestCode == MENS_END_CODE) {
-
+                Log.d("callState=","Endcall");
                 final long eDate = data.getLongExtra("endDateTime", 0);
 
                 AndroidNetworking.post(this.urls.mainUrl + this.urls.getUrls.get("setMens"))
                         .addBodyParameter("sdate", Global.getTimeToStr(csp.getValue("mensSdate", 0L)))
                         .addBodyParameter("edate", Global.getTimeToStr(eDate))
-                        .addBodyParameter("mens_sid", csp.getValue("mens_sid", 0)+"")
+                        .addBodyParameter("mens_sid", csp.getValue("mens_sid", ""))
                         .addBodyParameter("user_sid", this.csp.getValue("user_sid", ""))
                         .addBodyParameter("device", "android")
                         .addBodyParameter("deviceid", csp.getValue("deviceid", ""))
@@ -209,7 +208,7 @@ public class MensActivity extends AppCompatActivity implements AdapterView.OnIte
                     public void onResponse(JSONObject response) {
 
                         csp.put("mensSdate", 0L);
-                        csp.put("mens_sid", "");
+                        csp.put("mens_sid", 0);
                         csp.put("isMensStart", false);
 
                         getData();

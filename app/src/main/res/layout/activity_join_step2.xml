@@ -5,7 +5,6 @@
         <variable
             name="joinStep2"
             type="com.m2comm.headache.views.JoinStep2Activity" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -382,7 +381,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="500dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
                         android:background="#FFFFFF"
@@ -547,15 +546,70 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/list_line"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="#dddddd" />
+                            android:background="#dddddd"
+                            android:orientation="vertical"/>
 
                         <LinearLayout
+                            android:layout_marginTop="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.8"
-                            android:orientation="horizontal" />
+                            android:layout_weight="4"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:fontFamily="@font/nanum"
+                                android:gravity="center_vertical"
+                                android:hint="내원(할)병원"
+                                android:textColor="#555555"
+                                android:textColorHint="#222222"
+                                android:textSize="13dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:orientation="horizontal"
+                                android:background="@drawable/step1_day_board">
+                                <EditText
+                                    android:inputType="text"
+                                    android:id="@+id/hospital"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="7"
+                                    android:fontFamily="@font/nanum"
+                                    android:gravity="center_vertical"
+                                    android:paddingStart="10dp"
+                                    android:textColor="#222222"
+                                    android:textColorHint="#222222"
+                                    android:textSize="18dp"
+                                    android:layout_margin="4dp"
+                                    android:background="#FFFFFF"/>
+
+                                <TextView
+                                    android:visibility="gone"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="3"
+                                    android:text="검색"
+                                    android:gravity="center"
+                                    android:textColor="#FFFFFF"
+                                    android:background="@drawable/search_radius"
+                                    android:layout_height="match_parent"/>
+
+                            </LinearLayout>
+
+                            <ListView
+                                android:layout_marginTop="5dp"
+                                android:id="@+id/listview"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:nestedScrollingEnabled="true"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/joinSuccessBt"

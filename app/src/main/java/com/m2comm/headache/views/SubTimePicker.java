@@ -118,6 +118,9 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
                 this.binding.timepicker.setCurrentHour(Integer.parseInt(timeCut[0]));
                 this.binding.timepicker.setCurrentMinute(Integer.parseInt(timeCut[1]));
             }
+        } else {
+            //시작 날짜가 없으면.
+            this.startDate =  new Date(Global.getStrToDateTime(this.cm.getStrRealDateTime()).getTime());
         }
 
         if ( this.isMean ) {
@@ -404,23 +407,40 @@ public class SubTimePicker extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     if ( !isEnd ) {
+
                         //미래 날짜를 선택하면 Return
                         if ( Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position)).getTime() > Global.getStrToDate(cmm.getStrRealDate()).getTime()) {
                             return;
-                        }
+                        } /*else if ( Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position)).getTime() < aMonth_ago.getTime() ) {
+                            //기준날짜가 현재 날짜의 한달전 시간 보다 작으면 return.
+                            return;
+                        }*/
                         startDate = Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position));
                     } else {
+
+                        //한달전 시간 구하기.
+                        Calendar mon = Calendar.getInstance();
+                        mon.setTime(startDate);
+                        mon.add(Calendar.MONTH , 1);
+                        Date aMonth_ago = mon.getTime();
+
                         //끝날짜가 시작날짜보다 작으면 Return;
                         //끝날짜가래 미래날짜를 선택하면 Return;
                         if ( Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position)).getTime() < startDate.getTime() ||
                         Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position)).getTime() > Global.getStrToDate(cmm.getStrRealDate()).getTime()
                         ) {
                             return;
+                        } else if ( Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position)).getTime() > aMonth_ago.getTime() ) {
+                            //선택된 날짜가 시작날짜 +30일 보다 크면 return
+                            return;
                         }
+
                         endDate = Global.getStrToDate(currentlyDateStr+"-"+dayArr.get(position));
                     }
-                    calendarAdapter = new SubTimeCalendarAdapter(isEnd ,startDate, endDate, dayArr, currentlyDateStr, getApplicationContext(), getLayoutInflater(), (binding.pager.getHeight()-10)/6,activity);
-                    reloadGridView(gridView , calendarAdapter);
+//                    calendarAdapter = new SubTimeCalendarAdapter(isEnd ,startDate, endDate, dayArr, currentlyDateStr, getApplicationContext(), getLayoutInflater(), (binding.pager.getHeight()-10)/6,activity);
+//                    reloadGridView(gridView , calendarAdapter);
+
+                    changeAdapter();
                 }
             });
 

@@ -11,7 +11,8 @@
         >
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,7 +41,7 @@
                         <LinearLayout
                             android:id="@+id/step4Title"
                             android:layout_width="match_parent"
-                            android:layout_height="120dp"
+                            android:layout_height="90dp"
                             android:orientation="horizontal"
                             >
                             <ImageView
@@ -70,14 +71,10 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#e4e6ea"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="100dp"
                     android:background="#EFF2F7"
                     android:orientation="vertical"
                     >
@@ -88,11 +85,13 @@
                         android:layout_weight="7"
                         android:orientation="horizontal">
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="0.5"/>
 
                         <ImageView
+                            android:visibility="gone"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:src="@drawable/step4_desc"
@@ -105,6 +104,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:orientation="vertical" >
@@ -123,7 +123,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"/>
                             <TextView
-                                android:id="@+id/backBt"
+
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/back_radius"
@@ -141,7 +141,7 @@
                                 android:layout_weight="0.5"/>
 
                             <TextView
-                                android:id="@+id/nextBt"
+
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/next_radius"
@@ -173,6 +173,68 @@
             </LinearLayout>
         </ScrollView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/backBt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/back_radius"
+                    android:layout_weight="4"
+                    android:text="이전"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/nanum_bold"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"/>
+
+                <TextView
+                    android:id="@+id/nextBt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/next_radius"
+                    android:layout_weight="4"
+                    android:text="다음"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/nanum_bold"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
 
 
     </LinearLayout>

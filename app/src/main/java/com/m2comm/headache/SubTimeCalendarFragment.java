@@ -79,7 +79,7 @@ public class SubTimeCalendarFragment extends Fragment implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getActivity() , ""+this.dayArr.get(position) , Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getActivity() , ""+this.dayArr.get(position) , Toast.LENGTH_SHORT).show();
         this.startDate = Global.getStrToDate(this.currentlyDateStr+"-"+this.dayArr.get(position));
         this.reloadGridView();
     }

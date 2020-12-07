@@ -59,12 +59,14 @@ public class Step5GridviewAdapter extends BaseAdapter {
             }
             type_Txt.setText(row.getContent());
 
+/*
             ViewGroup.LayoutParams param = convertView.getLayoutParams();
             if(param == null) {
                 param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
             param.height = 430;
             convertView.setLayoutParams(param);
+*/
 
 
         return convertView;

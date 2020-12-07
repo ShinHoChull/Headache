@@ -137,19 +137,19 @@ public class CalendarAdapter extends BaseAdapter {
 
             for (int i = 0, j = this.calendarDTOS.size(); i < j; i++) {
                 final CalendarDTO row = this.calendarDTOS.get(i);
-
+               // Log.d("datee=",row.getDate()+"//"+pushDate);
                 if (row.getDate().equals(pushDate)) {
 
                     convertView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (row.getDiary_sid() > 0) {
-                                Log.d("calendarAdapter=",row.getAche_power_txt());
-                                Log.d("calendarAdapter=",row.getMedicine_effect_txt());
-                                Log.d("calendarAdapter=",row.getMedicine_txt());
+                                String strFormatedDate = Global.formatChangeToStrDate(row.getDate());
                                 Intent intent = new Intent(c, DetaiViewActivity.class);
                                 intent.putExtra("diary_sid", row.getDiary_sid());
                                 intent.putExtra("calendar_desc",row.getMedicine_txt()+"~"+row.getMedicine_effect_txt());
+                                intent.putExtra("date", strFormatedDate);
+
                                 c.startActivity(intent);
                             }
                         }

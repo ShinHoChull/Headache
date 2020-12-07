@@ -29,6 +29,7 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
     BottomActivity bottomActivity;
     Urls urls;
     String page = "";
+    String paramUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         this.regObj();
         Intent intent = getIntent();
         this.page = intent.getStringExtra("page");
+        this.paramUrl = intent.getStringExtra("paramUrl");
+
 
 
         this.binding.webview.setWebViewClient(new WebviewCustomClient());
@@ -62,7 +65,11 @@ public class NewsActivity extends AppCompatActivity implements View.OnClickListe
         this.binding.webview.getSettings().setBuiltInZoomControls(true);
         this.binding.webview.getSettings().setDisplayZoomControls(false);
         this.binding.webview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        this.binding.webview.loadUrl(this.urls.mainUrl+page);
+        if (this.paramUrl != null && !this.paramUrl.equals("")) {
+            this.binding.webview.loadUrl(this.paramUrl);
+        } else {
+            this.binding.webview.loadUrl(this.urls.mainUrl+page);
+        }
     }
 
     @Override

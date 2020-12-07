@@ -48,10 +48,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (extra != null) {
             int num = extra.getInt("alarmNum");
             String code = extra.getString("pushCode");
-            Log.d("kkkk", "num=" + num);
-            Log.d("pushCode", "code=" + code);
+//            Log.d("kkkk", "num=" + num);
+//            Log.d("pushCode", "code=" + code);
 
-            if (code.equals("content")) {
+            if (code != null && code.equals("content")) {
                 Intent popupIntent = new Intent(context, Main2Activity.class);
                 popupIntent.putExtra("action", "diary");
                 this.sendPush(context, popupIntent , "종료되지 않은 일기가 있습니다.");
@@ -71,9 +71,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     this.arrayList = new ArrayList<>();
                 }
             }
-            Log.d("pushSize=", this.arrayList.size() + "_");
             AlarmDTO row = this.arrayList.get(num);
-            Log.d("isPush = ", row.isPush() + "__");
 
             if (row.isPush()) {
                 this.sendPush(context, intent, "예방약을 복용할 시간입니다.");

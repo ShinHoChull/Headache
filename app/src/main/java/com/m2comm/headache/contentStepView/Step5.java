@@ -74,8 +74,8 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
         this.nextBt.setOnClickListener(this);
         this.backBt.setOnClickListener(this);
 
-        this.nextBt2.setOnClickListener(this);
-        this.backBt2.setOnClickListener(this);
+//        this.nextBt2.setOnClickListener(this);
+//        this.backBt2.setOnClickListener(this);
 
         this.yesBt.setOnClickListener(this);
         this.noBt.setOnClickListener(this);
@@ -93,8 +93,8 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
         this.nextBt = this.view.findViewById(R.id.nextBt);
         this.backBt = this.view.findViewById(R.id.backBt);
         this.step5BottomV2 = this.view.findViewById(R.id.step5BottomV2);
-        this.nextBt2 = this.view.findViewById(R.id.nextBt2);
-        this.backBt2 = this.view.findViewById(R.id.backBt2);
+//        this.nextBt2 = this.view.findViewById(R.id.nextBt2);
+//        this.backBt2 = this.view.findViewById(R.id.backBt2);
 
         this.yesBt = this.view.findViewById(R.id.yesBt);
         this.noBt = this.view.findViewById(R.id.noBt);
@@ -229,6 +229,8 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
 
     @Override
     public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
+        if (this.step5SaveDTO.getAche_realize_yn().equals("N") ) return;
+
         Step5EtcDTO row = this.step5SaveDTO.getArrayList().get(position);
         if ( row.getEtcBt() ) {
             getEtcActivity();
@@ -238,10 +240,10 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
                 else if (position == 1) this.step5SaveDTO.setAche_realize2("N");
                 else if (position == 2) this.step5SaveDTO.setAche_realize3("N");
                 else if (position == 3) this.step5SaveDTO.setAche_realize4("N");
-                else if (position == 4) this.step5SaveDTO.setAche_realize5("N");
-                else if (position == 5) this.step5SaveDTO.setAche_realize6("N");
-                else if (position == 6) this.step5SaveDTO.setAche_realize7("N");
-                else if (position == 7) this.step5SaveDTO.setAche_realize8("N");
+                else if (position == 4) this.step5SaveDTO.setAche_realize6("N");
+                else if (position == 5) this.step5SaveDTO.setAche_realize7("N");
+                else if (position == 6) this.step5SaveDTO.setAche_realize8("N");
+                //else if (position == 7) this.step5SaveDTO.setAche_realize8("N");
                 row.setVal("N");
                 row.setClick(false);
             } else {
@@ -249,16 +251,35 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
                 else if (position == 1) this.step5SaveDTO.setAche_realize2("Y");
                 else if (position == 2) this.step5SaveDTO.setAche_realize3("Y");
                 else if (position == 3) this.step5SaveDTO.setAche_realize4("Y");
-                else if (position == 4) this.step5SaveDTO.setAche_realize5("Y");
-                else if (position == 5) this.step5SaveDTO.setAche_realize6("Y");
-                else if (position == 6) this.step5SaveDTO.setAche_realize7("Y");
-                else if (position == 7) this.step5SaveDTO.setAche_realize8("Y");
+                else if (position == 4) this.step5SaveDTO.setAche_realize6("Y");
+                else if (position == 5) this.step5SaveDTO.setAche_realize7("Y");
+                else if (position == 6) this.step5SaveDTO.setAche_realize8("Y");
+                //else if (position == 7) this.step5SaveDTO.setAche_realize8("Y");
                 row.setVal("Y");
                 row.setClick(true);
             }
             this.parentActivity.save5(this.step5SaveDTO);
             reloadListView();
         }
+    }
+
+    private boolean checkState() {
+
+        if (this.step5SaveDTO.getAche_realize1().equals("Y"))return true;
+        else if (this.step5SaveDTO.getAche_realize2().equals("Y"))return true;
+        else if (this.step5SaveDTO.getAche_realize3().equals("Y"))return true;
+        else if (this.step5SaveDTO.getAche_realize4().equals("Y"))return true;
+        else if (this.step5SaveDTO.getAche_realize5().equals("Y"))return true;
+        else if (this.step5SaveDTO.getAche_realize6().equals("Y"))return true;
+        else if (this.step5SaveDTO.getAche_realize7().equals("Y"))return true;
+        else if (this.step5SaveDTO.getAche_realize8().equals("Y"))return true;
+
+        for ( int i = 0 , j = this.step5SaveDTO.getArrayList().size(); i < j; i++ ) {
+            Step5EtcDTO row = this.step5SaveDTO.getArrayList().get(i);
+            if ( row.getVal().equals("Y") ) return true;
+        }
+
+        return false;
     }
 
     public void addListView (String etc) {
@@ -271,9 +292,37 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
 
     private void reloadListView() {
         viewReset();
+
+        if ( this.checkState() ) {
+            isHeadche("Y");
+        } else {
+            isHeadche("");
+        }
+
         this.adapter = new Step5GridviewAdapter( this.step5SaveDTO.getArrayList() , this.activity.getLayoutInflater() );
         this.gridView.setAdapter( this.adapter );
         this.adapter.notifyDataSetChanged();
+    }
+
+    private void step5Reset() {
+
+        this.step5SaveDTO.setAche_realize1("N");
+        this.step5SaveDTO.setAche_realize2("N");
+        this.step5SaveDTO.setAche_realize3("N");
+        this.step5SaveDTO.setAche_realize4("N");
+        this.step5SaveDTO.setAche_realize5("N");
+        this.step5SaveDTO.setAche_realize6("N");
+        this.step5SaveDTO.setAche_realize7("N");
+        this.step5SaveDTO.setAche_realize8("N");
+
+        for ( int i = 0 , j = this.step5SaveDTO.getArrayList().size(); i < j; i++ ) {
+            Step5EtcDTO row = this.step5SaveDTO.getArrayList().get(i);
+            row.setClick(false);
+            row.setVal("N");
+        }
+
+        this.step5SaveDTO.setAche_realize_hour(0);
+        this.step5SaveDTO.setAche_realize_minute(0);
     }
 
     private void getEtcActivity () {
@@ -291,7 +340,7 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
                     public void run() {
                         Log.d("gridViewHeight=",((int)Math.ceil((double)step5SaveDTO.getArrayList().size() / 4) )+"_");
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        layoutParams.height = (int) (titleHeight + (500 * Math.ceil((double)step5SaveDTO.getArrayList().size() / 4)));
+                        layoutParams.height = (int) (titleHeight + (450 * Math.ceil((double)step5SaveDTO.getArrayList().size() / 4)));
                         step5LinearView.setLayoutParams(layoutParams);
                     }
                 });
@@ -329,6 +378,9 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
             this.noBt.setTextColor(Color.parseColor("#1EA2B6"));
 
+            this.hour.setEnabled(false);
+            this.min.setEnabled(false);
+
 //            this.timeSettingV.setVisibility(View.GONE);
 //            this.step5Line.setVisibility(View.GONE);
 //            this.step5gridVParent.setVisibility(View.GONE);
@@ -341,26 +393,31 @@ public class Step5 implements View.OnClickListener , AdapterView.OnItemClickList
             this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundColor(Color.TRANSPARENT);
         }
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.nextBt2:
             case R.id.nextBt:
                 this.parentActivity.positionView(this.nextStepNum);
                 break;
 
-            case R.id.backBt2:
             case R.id.backBt:
                 this.parentActivity.positionView(this.backStepNum);
                 break;
 
             case R.id.yesBt:
                 this.isHeadche("Y");
+                this.hour.setEnabled(true);
+                this.min.setEnabled(true);
                 break;
+
             case R.id.noBt:
                 this.isHeadche("N");
+                step5Reset();
+                this.parentActivity.positionView(this.nextStepNum);
+
                 break;
         }
     }

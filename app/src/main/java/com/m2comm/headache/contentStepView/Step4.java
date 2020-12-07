@@ -27,13 +27,13 @@ import com.m2comm.headache.views.EtcInputActivity;
 
 import java.util.ArrayList;
 
-public class Step4 implements View.OnClickListener , AdapterView.OnItemClickListener , AdapterView.OnItemLongClickListener {
+public class Step4 implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     public final static int ETC4_INPUT = 444;
 
     private LayoutInflater inflater;
     private int ParentID;
-    private LinearLayout parent , step4LinearView , step4Title;
+    private LinearLayout parent, step4LinearView, step4Title;
     private Context context;
     private Activity activity;
 
@@ -44,14 +44,14 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
     ContentStepActivity parentActivity;
 
     //step4
-    TextView nextBt , backBt;
+    TextView nextBt, backBt;
 
     int nextStepNum = 5;
     int backStepNum = 3;
 
     Step4SaveDTO step4SaveDTO;
 
-    public Step4(LayoutInflater inflater, int parentID, Context context, Activity activity , ContentStepActivity parentActivity , Step4SaveDTO step4SaveDTO ) {
+    public Step4(LayoutInflater inflater, int parentID, Context context, Activity activity, ContentStepActivity parentActivity, Step4SaveDTO step4SaveDTO) {
         this.inflater = inflater;
         ParentID = parentID;
         this.context = context;
@@ -63,7 +63,7 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
         this.viewReset();
     }
 
-    private void regObj () {
+    private void regObj() {
         this.nextBt = this.view.findViewById(R.id.nextBt);
         this.nextBt.setOnClickListener(this);
         this.backBt = this.view.findViewById(R.id.backBt);
@@ -72,45 +72,21 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
         this.step4LinearView = this.view.findViewById(R.id.step4View1);
     }
 
-    private void init () {
+    private void init() {
         this.parent = this.activity.findViewById(this.ParentID);
         this.parent.removeAllViews();
-        this.view = inflater.inflate(R.layout.step4,this.parent,true);
+        this.view = inflater.inflate(R.layout.step4, this.parent, true);
         this.gridView = view.findViewById(R.id.step4_gridV);
 
-        //this.list = new ArrayList<>();
 
-        if ( this.step4SaveDTO == null ) {
-//            if ( step4SaveDTO.getArrayList() == null ) {
-//                this.step4SaveDTO = new Step4SaveDTO("N","N","N","N","N",new ArrayList<Step4EtcDTO>());
-//            } else {
-//                this.step4SaveDTO = new Step4SaveDTO("N","N","N","N","N",this.step4SaveDTO.getArrayList());
-//            }
-//
-//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default1,R.drawable.step4_type_click1,"욱신거림",false,false , false ,0 , "N"));
-//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default2,R.drawable.step4_type_click2,"조임",false,false, false,0,"N"));
-//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default3,R.drawable.step4_type_click3,"터질듯함",false,false, false,0,"N"));
-//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default4,R.drawable.step4_type_click4,"찌름",false,false, false,0,"N"));
-//            //this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step4_type_default5,R.drawable.step4_type_click5,"따끔따끔",false,false, false,0,"N"));
-//            this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0,"N"));
-        } else {
+        this.step4SaveDTO.getArrayList().get(0).setClick(this.step4SaveDTO.getAche_type1().equals("Y"));
+        this.step4SaveDTO.getArrayList().get(1).setClick(this.step4SaveDTO.getAche_type2().equals("Y"));
+        this.step4SaveDTO.getArrayList().get(2).setClick(this.step4SaveDTO.getAche_type3().equals("Y"));
+        this.step4SaveDTO.getArrayList().get(3).setClick(this.step4SaveDTO.getAche_type4().equals("Y"));
+        this.step4SaveDTO.getArrayList().get(4).setClick(this.step4SaveDTO.getAche_type5().equals("Y"));
 
-            this.step4SaveDTO.getArrayList().get(0).setClick(this.step4SaveDTO.getAche_type1().equals("Y"));
-            this.step4SaveDTO.getArrayList().get(1).setClick(this.step4SaveDTO.getAche_type2().equals("Y"));
-            this.step4SaveDTO.getArrayList().get(2).setClick(this.step4SaveDTO.getAche_type3().equals("Y"));
-            this.step4SaveDTO.getArrayList().get(3).setClick(this.step4SaveDTO.getAche_type4().equals("Y"));
-            this.step4SaveDTO.getArrayList().get(4).setClick(this.step4SaveDTO.getAche_type5().equals("Y"));
 
-//            for(int i = 0 , j = this.step4SaveDTO.getArrayList().size() ; i < j ; i++) {
-//                Step4EtcDTO row = this.step4SaveDTO.getArrayList().get(i);
-//                if ( row.getEtc() ) {
-//                    this.step4SaveDTO.getArrayList().add( new Step4EtcDTO(row.getDefault_icon(),row.getClick_icon(),
-//                            row.getContent(),row.getEtc(),row.getEtcBt(),row.getClick(),row.getKey(),row.getVal()) );
-//                }
-//            }
-        }
-
-        this.adapter = new Step4GridviewAdapter( this.step4SaveDTO.getArrayList() , this.activity.getLayoutInflater());
+        this.adapter = new Step4GridviewAdapter(this.step4SaveDTO.getArrayList(), this.activity.getLayoutInflater());
         this.gridView.setAdapter(this.adapter);
         this.gridView.setOnItemClickListener(this);
         this.gridView.setOnItemLongClickListener(this);
@@ -127,7 +103,7 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
                     @Override
                     public void run() {
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        layoutParams.height = (int) (titleHeight + (500 * Math.ceil((double)step4SaveDTO.getArrayList().size() / 4)));
+                        layoutParams.height = (int) (titleHeight + (480 * Math.ceil((double) step4SaveDTO.getArrayList().size() / 4)));
                         step4LinearView.setLayoutParams(layoutParams);
                     }
                 });
@@ -135,19 +111,21 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
         });
     }
 
-    public void addListView (String etc) {
-        Step4EtcDTO row = new  Step4EtcDTO(R.drawable.step_type_etc_add,R.drawable.step_type_etc_add,etc,true,false , true ,0 , "Y");
-        this.step4SaveDTO.getArrayList().remove(this.step4SaveDTO.getArrayList().size()-1);
-        this.step4SaveDTO.getArrayList().add( row );
-        this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true, false,0,"N"));
+    public void addListView(String etc) {
+        this.checkReset();
+
+        Step4EtcDTO row = new Step4EtcDTO(R.drawable.step_type_etc_add, R.drawable.step_type_etc_add, etc, true, false, true, 0, "Y");
+        this.step4SaveDTO.getArrayList().remove(this.step4SaveDTO.getArrayList().size() - 1);
+        this.step4SaveDTO.getArrayList().add(row);
+        this.step4SaveDTO.getArrayList().add(new Step4EtcDTO(R.drawable.step_type_etc, R.drawable.step_type_etc, "기타", false, true, false, 0, "N"));
         this.parentActivity.save4(this.step4SaveDTO);
         reloadListView();
     }
 
     private void reloadListView() {
         viewReset();
-        this.adapter = new Step4GridviewAdapter( this.step4SaveDTO.getArrayList() , this.activity.getLayoutInflater() );
-        this.gridView.setAdapter( this.adapter );
+        this.adapter = new Step4GridviewAdapter(this.step4SaveDTO.getArrayList(), this.activity.getLayoutInflater());
+        this.gridView.setAdapter(this.adapter);
         this.adapter.notifyDataSetChanged();
     }
 
@@ -175,13 +153,14 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
     }
 
     @Override
-    public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Step4EtcDTO row = this.step4SaveDTO.getArrayList().get(position);
-        if ( row.getEtcBt() ) {
+
+        if (row.getEtcBt()) {
             getEtcActivity();
         } else {
-            if ( row.getClick() ) {
 
+            if (row.getClick()) {
                 if (position == 0) this.step4SaveDTO.setAche_type1("N");
                 else if (position == 1) this.step4SaveDTO.setAche_type2("N");
                 else if (position == 2) this.step4SaveDTO.setAche_type3("N");
@@ -190,6 +169,8 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
                 row.setVal("N");
                 row.setClick(false);
             } else {
+                this.checkReset();
+
                 if (position == 0) this.step4SaveDTO.setAche_type1("Y");
                 else if (position == 1) this.step4SaveDTO.setAche_type2("Y");
                 else if (position == 2) this.step4SaveDTO.setAche_type3("Y");
@@ -203,9 +184,24 @@ public class Step4 implements View.OnClickListener , AdapterView.OnItemClickList
         }
     }
 
-    private void getEtcActivity () {
-        Intent intent = new Intent(this.activity , EtcInputActivity.class);
-        this.activity.startActivityForResult(intent,ETC4_INPUT);
+    private void checkReset() {
+        this.step4SaveDTO.setAche_type1("N");
+        this.step4SaveDTO.setAche_type2("N");
+        this.step4SaveDTO.setAche_type3("N");
+        this.step4SaveDTO.setAche_type4("N");
+        this.step4SaveDTO.setAche_type5("N");
+
+        for ( int i = 0 , j = this.step4SaveDTO.getArrayList().size(); i < j ; i++ ) {
+            Step4EtcDTO row = this.step4SaveDTO.getArrayList().get(i);
+            row.setVal("N");
+            row.setClick(false);
+        }
+
+    }
+
+    private void getEtcActivity() {
+        Intent intent = new Intent(this.activity, EtcInputActivity.class);
+        this.activity.startActivityForResult(intent, ETC4_INPUT);
     }
 
     @Override

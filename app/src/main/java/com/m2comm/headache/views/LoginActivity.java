@@ -52,6 +52,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if ( !this.csp.getValue("user_sid","").equals("") ) {
             this.loginSuccess();
         }
+        if ( !csp.getValue("joinId","").equals("") ) {
+            this.binding.emailInput.setText(csp.getValue("joinId",""));
+        }
+
+
     }
 
     private void login () {
@@ -64,10 +69,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return ;
         }
 
+
+
         AndroidNetworking.post(this.urls.mainUrl+this.urls.getUrls.get("getLogin"))
                 .addBodyParameter("user_id",this.binding.emailInput.getText().toString())
                 .addBodyParameter("passwd",this.binding.pwInput.getText().toString())
-                .addBodyParameter("token","CreateToken Fail")
+                .addBodyParameter("token",csp.getValue("token",""))
                 .addBodyParameter("device","android")
                 .addBodyParameter("deviceid",csp.getValue("deviceid",""))
                 .setPriority(Priority.MEDIUM)
@@ -79,10 +86,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (response.getString("rows").equals("Y")) {
                         csp.put("isLogin",true);
                         csp.put("user_sid",response.getString("user_sid"));
+                        Log.d("yjh", response.getString("user_id"));
                         csp.put("user_id",response.getString("user_id"));
                         csp.put("sex",response.getString("sex"));
                         csp.put("birth_year",response.getString("birth_year"));
                         csp.put("mens",response.getString("mens"));
+                        csp.put("hospital",response.getString("hospital"));
                         csp.put("notSaveSid", "");
                         csp.put("saveStartDate", "");
                         csp.put("notSaveNowDate", "");

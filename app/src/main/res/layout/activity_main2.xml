@@ -62,6 +62,7 @@
                             android:padding="15dp"
                             android:src="@drawable/main_bell" />
                         <TextView
+                            android:visibility="invisible"
                             android:id="@+id/noti_count"
                             android:layout_width="19dp"
                             android:layout_height="19dp"
@@ -73,7 +74,6 @@
                             android:text="0"
                             android:textColor="@android:color/white"
                             android:background="@drawable/main_bell_cir"
-
                             >
 
                         </TextView>

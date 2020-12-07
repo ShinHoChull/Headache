@@ -36,7 +36,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:padding="20dp"
+                        android:padding="16dp"
                         android:src="@drawable/step_back" />
 
                     <LinearLayout
@@ -301,8 +301,9 @@
                             android:id="@+id/step1"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:orientation="horizontal"
-                            android:background="#e4e8ef">
+                            android:background="#e4e8ef"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:id="@+id/step1Next"
                                 android:layout_width="match_parent"
@@ -318,10 +319,9 @@
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
 
                         <!--step1-->
@@ -464,8 +464,7 @@
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="2.5"
-                                                android:padding="13dp"
-                                                 />
+                                                android:padding="13dp" />
 
                                         </LinearLayout>
 
@@ -491,11 +490,11 @@
                                                 android:textSize="15dp" />
 
                                             <ImageView
-                                                android:visibility="gone"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="2"
-                                                android:padding="15dp" />
+                                                android:padding="15dp"
+                                                android:visibility="gone" />
 
                                         </LinearLayout>
                                     </LinearLayout>
@@ -597,25 +596,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step2Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="02. 강도"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
 
                         <!--step2-->
@@ -714,25 +713,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step3Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="03. 위치"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step3-->
                         <LinearLayout
@@ -740,10 +739,11 @@
                             android:layout_height="950dp"
                             android:background="#EFF2F7"
                             android:orientation="vertical">
+
                             <LinearLayout
-                                android:layout_marginTop="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
+                                android:layout_marginTop="10dp"
                                 android:gravity="center">
 
                                 <ImageView
@@ -874,34 +874,36 @@
                                         </FrameLayout>
 
                                         <FrameLayout
-                                            android:visibility="visible"
                                             android:id="@+id/bt5_1"
                                             android:layout_width="101dp"
                                             android:layout_height="82dp"
                                             android:layout_marginLeft="36.6dp"
-                                            android:layout_marginTop="120dp">
+                                            android:layout_marginTop="120dp"
+                                            android:visibility="visible">
+
                                             <ImageView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:scaleType="fitXY"
                                                 android:src="@drawable/step3_front_click5_1"
                                                 android:visibility="visible" />
+
                                             <ImageView
                                                 android:layout_width="20dp"
                                                 android:layout_height="20dp"
-                                                android:layout_marginLeft="10dp"
                                                 android:layout_gravity="center"
+                                                android:layout_marginLeft="10dp"
                                                 android:src="@drawable/step3_check" />
                                         </FrameLayout>
 
 
                                         <FrameLayout
-                                            android:visibility="gone"
                                             android:id="@+id/bt5"
                                             android:layout_width="101.5dp"
                                             android:layout_height="147dp"
                                             android:layout_marginLeft="37dp"
-                                            android:layout_marginTop="118dp">
+                                            android:layout_marginTop="118dp"
+                                            android:visibility="gone">
 
                                             <ImageView
                                                 android:layout_width="match_parent"
@@ -918,18 +920,20 @@
                                         </FrameLayout>
 
                                         <FrameLayout
-                                            android:visibility="visible"
                                             android:id="@+id/bt6_1"
                                             android:layout_width="101dp"
                                             android:layout_height="82dp"
                                             android:layout_marginLeft="136.6dp"
-                                            android:layout_marginTop="120dp">
+                                            android:layout_marginTop="120dp"
+                                            android:visibility="visible">
+
                                             <ImageView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:scaleType="fitXY"
                                                 android:src="@drawable/step3_front_click6_1"
                                                 android:visibility="visible" />
+
                                             <ImageView
                                                 android:layout_width="20dp"
                                                 android:layout_height="20dp"
@@ -940,12 +944,12 @@
 
 
                                         <FrameLayout
-                                            android:visibility="gone"
                                             android:id="@+id/bt6"
                                             android:layout_width="101.5dp"
                                             android:layout_height="147dp"
                                             android:layout_marginLeft="136dp"
-                                            android:layout_marginTop="118dp">
+                                            android:layout_marginTop="118dp"
+                                            android:visibility="gone">
 
                                             <ImageView
                                                 android:layout_width="match_parent"
@@ -986,18 +990,20 @@
                                         </FrameLayout>
 
                                         <FrameLayout
-                                            android:visibility="visible"
                                             android:id="@+id/bt5_2"
                                             android:layout_width="89dp"
                                             android:layout_height="68dp"
                                             android:layout_marginLeft="48.5dp"
-                                            android:layout_marginTop="198dp">
+                                            android:layout_marginTop="198dp"
+                                            android:visibility="visible">
+
                                             <ImageView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:scaleType="fitXY"
                                                 android:src="@drawable/step3_front_click5_2"
                                                 android:visibility="visible" />
+
                                             <ImageView
                                                 android:layout_width="20dp"
                                                 android:layout_height="20dp"
@@ -1030,18 +1036,20 @@
                                         </FrameLayout>
 
                                         <FrameLayout
-                                            android:visibility="visible"
                                             android:id="@+id/bt6_2"
                                             android:layout_width="89dp"
                                             android:layout_height="68dp"
                                             android:layout_marginLeft="136.5dp"
-                                            android:layout_marginTop="198dp">
+                                            android:layout_marginTop="198dp"
+                                            android:visibility="visible">
+
                                             <ImageView
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:scaleType="fitXY"
                                                 android:src="@drawable/step3_front_click6_2"
                                                 android:visibility="visible" />
+
                                             <ImageView
                                                 android:layout_width="20dp"
                                                 android:layout_height="20dp"
@@ -1055,48 +1063,47 @@
                                 </LinearLayout>
 
                                 <TextView
-                                    android:layout_marginTop="50dp"
-                                    android:layout_marginLeft="25dp"
                                     android:layout_width="50dp"
                                     android:layout_height="20dp"
+                                    android:layout_marginLeft="25dp"
+                                    android:layout_marginTop="50dp"
                                     android:text="오른쪽"
                                     android:textColor="#666666"
-                                    android:textSize="15dp"/>
+                                    android:textSize="15dp" />
 
                                 <TextView
-                                    android:layout_marginTop="50dp"
-                                    android:layout_marginLeft="285dp"
                                     android:layout_width="50dp"
                                     android:layout_height="20dp"
+                                    android:layout_marginLeft="285dp"
+                                    android:layout_marginTop="50dp"
                                     android:text="왼쪽"
                                     android:textColor="#666666"
-                                    android:textSize="15dp"/>
+                                    android:textSize="15dp" />
 
                                 <LinearLayout
+                                    android:layout_width="3dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginTop="14dp"
-                                    android:layout_gravity="center_horizontal"
-                                    android:layout_width="3dp"
-                                    android:layout_height="30dp"
-                                    android:background="#9E9E9E"
-                                    />
+                                    android:background="#9E9E9E" />
 
                                 <LinearLayout
-                                    android:layout_marginTop="344dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:layout_width="3dp"
                                     android:layout_height="30dp"
-                                    android:background="#9E9E9E"
-                                    />
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="344dp"
+                                    android:background="#9E9E9E" />
 
                             </FrameLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp" />
+
                             <LinearLayout
-                                android:layout_marginTop="10dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
+                                android:layout_marginTop="10dp"
                                 android:gravity="center">
 
                                 <ImageView
@@ -1104,6 +1111,7 @@
                                     android:layout_height="match_parent"
                                     android:src="@drawable/step3_back_title" />
                             </LinearLayout>
+
                             <FrameLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="400dp">
@@ -1276,12 +1284,12 @@
                                         </FrameLayout>
 
                                         <FrameLayout
-                                            android:visibility="visible"
                                             android:id="@+id/bt13_1"
                                             android:layout_width="59.2dp"
                                             android:layout_height="74dp"
                                             android:layout_marginLeft="109.5dp"
-                                            android:layout_marginTop="233dp">
+                                            android:layout_marginTop="233dp"
+                                            android:visibility="visible">
 
                                             <ImageView
                                                 android:layout_width="match_parent"
@@ -1300,12 +1308,12 @@
                                         </FrameLayout>
 
                                         <FrameLayout
-                                            android:visibility="visible"
                                             android:id="@+id/bt13_2"
                                             android:layout_width="60dp"
                                             android:layout_height="74dp"
                                             android:layout_marginLeft="167dp"
-                                            android:layout_marginTop="233dp">
+                                            android:layout_marginTop="233dp"
+                                            android:visibility="visible">
 
                                             <ImageView
                                                 android:layout_width="match_parent"
@@ -1325,12 +1333,12 @@
 
 
                                         <FrameLayout
-                                            android:visibility="gone"
                                             android:id="@+id/bt13"
                                             android:layout_width="116.5dp"
                                             android:layout_height="74dp"
                                             android:layout_marginLeft="109.5dp"
-                                            android:layout_marginTop="233dp">
+                                            android:layout_marginTop="233dp"
+                                            android:visibility="gone">
 
                                             <ImageView
                                                 android:layout_width="match_parent"
@@ -1353,41 +1361,39 @@
                                 </LinearLayout>
 
                                 <TextView
-                                    android:layout_marginTop="50dp"
-                                    android:layout_marginLeft="40dp"
                                     android:layout_width="50dp"
                                     android:layout_height="20dp"
-                                    android:text="왼쪽"
+                                    android:layout_marginLeft="40dp"
+                                    android:layout_marginTop="50dp"
                                     android:gravity="right"
+                                    android:text="왼쪽"
                                     android:textColor="#666666"
-                                    android:textSize="15dp"/>
+                                    android:textSize="15dp" />
 
                                 <TextView
-                                    android:layout_marginTop="50dp"
-                                    android:layout_marginLeft="275dp"
                                     android:layout_width="50dp"
                                     android:layout_height="20dp"
+                                    android:layout_marginLeft="275dp"
+                                    android:layout_marginTop="50dp"
                                     android:gravity="right"
                                     android:text="오른쪽"
                                     android:textColor="#666666"
-                                    android:textSize="15dp"/>
+                                    android:textSize="15dp" />
 
                                 <LinearLayout
-                                    android:layout_marginTop="344dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:layout_width="3dp"
                                     android:layout_height="30dp"
+                                    android:layout_gravity="center_horizontal"
                                     android:layout_marginLeft="1dp"
-                                    android:background="#9E9E9E"
-                                    />
+                                    android:layout_marginTop="344dp"
+                                    android:background="#9E9E9E" />
 
                                 <LinearLayout
-                                    android:layout_marginTop="14dp"
-                                    android:layout_gravity="center_horizontal"
                                     android:layout_width="3dp"
                                     android:layout_height="30dp"
-                                    android:background="#9E9E9E"
-                                    />
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="14dp"
+                                    android:background="#9E9E9E" />
 
                             </FrameLayout>
 
@@ -1398,25 +1404,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step4Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="04. 유형"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step4-->
                         <LinearLayout
@@ -1473,25 +1479,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step5Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="05. 전구"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step5-->
                         <LinearLayout
@@ -1541,7 +1547,7 @@
                                             <LinearLayout
                                                 android:layout_width="2px"
                                                 android:layout_height="match_parent"
-                                                android:background="#DEDEDE"/>
+                                                android:background="#DEDEDE" />
 
                                             <TextView
                                                 android:id="@+id/step5_noBt"
@@ -1565,68 +1571,65 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="50dp"
                                             android:orientation="horizontal">
-
-                                            <LinearLayout
+                                            <!--New-->
+                                            <TextView
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="3"
-                                                android:background="@drawable/step1_day_board">
+                                                android:fontFamily="@font/nanum"
+                                                android:gravity="center_vertical|right"
+                                                android:text="두통 발생"
+                                                android:textColor="#000000"
+                                                android:textSize="16dp" />
 
-                                                <EditText
-                                                    android:id="@+id/step5_hour"
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="match_parent"
-                                                    android:layout_margin="3dp"
-                                                    android:layout_weight="7"
-                                                    android:background="#FFF"
-                                                    android:enabled="false"
-                                                    android:gravity="right|center_vertical"
-                                                    android:textColor="#222222" />
+                                            <EditText
+                                                android:id="@+id/step5_hour"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="2"
+                                                android:backgroundTint="#000000"
+                                                android:gravity="center_vertical|right"
+                                                android:inputType="number"
+                                                android:textColor="#000000"
+                                                android:focusable="false"
+                                                android:clickable="false"
+                                                android:textSize="15dp" />
 
-                                                <TextView
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="match_parent"
-                                                    android:layout_weight="3"
-                                                    android:fontFamily="@font/nanum"
-                                                    android:gravity="center_vertical"
-                                                    android:text="시간"
-                                                    android:textColor="#C2C2C2"
-                                                    android:textSize="16dp" />
-                                            </LinearLayout>
-
-                                            <LinearLayout
+                                            <TextView
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
-                                                android:layout_weight="0.5" />
+                                                android:layout_weight="2"
+                                                android:fontFamily="@font/nanum"
+                                                android:gravity="center_vertical"
+                                                android:text="시간"
+                                                android:textColor="#000000"
+                                                android:textSize="16dp" />
 
-                                            <LinearLayout
+                                            <EditText
+                                                android:id="@+id/step5_min"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="2"
+                                                android:backgroundTint="#000000"
+                                                android:gravity="center_vertical|right"
+                                                android:inputType="number"
+                                                android:textColor="#000000"
+                                                android:focusable="false"
+                                                android:clickable="false"
+                                                android:textSize="15dp" />
+
+                                            <TextView
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
-                                                android:layout_weight="3"
-                                                android:background="@drawable/step1_day_board">
+                                                android:layout_weight="2"
+                                                android:fontFamily="@font/nanum"
+                                                android:gravity="center_vertical"
+                                                android:text="분 전"
+                                                android:textColor="#000000"
+                                                android:textSize="16dp" />
+                                            <!--End-->
 
-                                                <EditText
-                                                    android:id="@+id/step5_min"
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="match_parent"
-                                                    android:layout_margin="3dp"
-                                                    android:layout_weight="7"
-                                                    android:background="#FFF"
-                                                    android:enabled="false"
-                                                    android:gravity="right|center_vertical"
-                                                    android:textColor="#222222" />
 
-                                                <TextView
-                                                    android:layout_width="0dp"
-                                                    android:layout_height="match_parent"
-                                                    android:layout_weight="3"
-                                                    android:fontFamily="@font/nanum"
-                                                    android:gravity="center_vertical"
-                                                    android:text="분 전"
-                                                    android:textColor="#C2C2C2"
-                                                    android:textSize="16dp" />
-
-                                            </LinearLayout>
                                         </LinearLayout>
 
                                         <LinearLayout
@@ -1675,25 +1678,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step6Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="06. 조짐"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step6-->
                         <LinearLayout
@@ -1739,10 +1742,12 @@
                                                 android:text="예"
                                                 android:textColor="#1EA2B6"
                                                 android:textSize="18dp" />
+
                                             <LinearLayout
                                                 android:layout_width="2px"
                                                 android:layout_height="match_parent"
-                                                android:background="#DEDEDE"/>
+                                                android:background="#DEDEDE" />
+
                                             <TextView
                                                 android:id="@+id/step6_noBt"
                                                 android:layout_width="match_parent"
@@ -1777,25 +1782,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step7Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="07. 동반증상"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step7-->
                         <LinearLayout
@@ -1813,6 +1818,7 @@
                                 android:orientation="vertical">
 
                                 <LinearLayout
+                                    android:visibility="gone"
                                     android:id="@+id/step7YesAndNoV"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
@@ -1836,10 +1842,12 @@
                                             android:text="예"
                                             android:textColor="#1EA2B6"
                                             android:textSize="18dp" />
+
                                         <LinearLayout
                                             android:layout_width="2px"
                                             android:layout_height="match_parent"
-                                            android:background="#DEDEDE"/>
+                                            android:background="#DEDEDE" />
+
                                         <TextView
                                             android:id="@+id/step7_noBt"
                                             android:layout_width="match_parent"
@@ -1892,25 +1900,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step8Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="08. 유발요인"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step8-->
                         <LinearLayout
@@ -1928,6 +1936,7 @@
                                 android:orientation="vertical">
 
                                 <LinearLayout
+                                    android:visibility="gone"
                                     android:id="@+id/step8YesAndNoV"
                                     android:layout_width="match_parent"
                                     android:layout_height="50dp"
@@ -1951,10 +1960,12 @@
                                             android:text="예"
                                             android:textColor="#1EA2B6"
                                             android:textSize="18dp" />
+
                                         <LinearLayout
                                             android:layout_width="2px"
                                             android:layout_height="match_parent"
-                                            android:background="#DEDEDE"/>
+                                            android:background="#DEDEDE" />
+
                                         <TextView
                                             android:id="@+id/step8_noBt"
                                             android:layout_width="match_parent"
@@ -2007,25 +2018,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step9Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="09. 약물"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step9-->
                         <LinearLayout
@@ -2035,111 +2046,77 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:background="#EFF2F7"
-                            android:orientation="vertical"/>
+                            android:orientation="vertical" />
                         <!--step9-->
                         <LinearLayout
                             android:id="@+id/step10"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step10Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="10. 장애"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step10-->
                         <LinearLayout
                             android:id="@+id/step10ParentV"
                             android:layout_width="match_parent"
-                            android:layout_height="250dp"
+                            android:layout_height="320dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
                             android:background="#EFF2F7"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="20dp"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:id="@+id/step10_dateParent"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="130dp"
-                                    android:layout_marginTop="5dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical" />
-
-                                <GridView
-                                    android:id="@+id/detail10GridV"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="10dp"
-                                    android:layout_marginTop="5dp"
-                                    android:nestedScrollingEnabled="true"
-                                    android:numColumns="4" />
-
-                                <LinearLayout
-                                    android:id="@+id/step10_etcParent"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="130dp"
-                                    android:layout_marginTop="5dp"
-                                    android:gravity="center"
-                                    android:orientation="vertical" />
-
-                            </LinearLayout>
-
-
-                        </LinearLayout>
+                            android:orientation="vertical" />
                         <!--step10-->
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/step11TitleV"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:background="#e4e8ef">
+                            android:background="#e4e8ef"
+                            android:visibility="gone">
+
                             <TextView
                                 android:id="@+id/step11Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="11. 월경"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
                         <!--step11-->
                         <LinearLayout
-                            android:visibility="gone"
                             android:id="@+id/step11ParentV"
                             android:layout_width="match_parent"
                             android:layout_height="230dp"
                             android:background="#EFF2F7"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -2149,9 +2126,9 @@
                                 android:orientation="vertical">
 
                                 <LinearLayout
-                                    android:layout_marginTop="10dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="90dp"
+                                    android:layout_marginTop="10dp"
                                     android:orientation="vertical">
 
                                     <LinearLayout
@@ -2209,14 +2186,13 @@
                                             android:textSize="16dp" />
 
                                         <LinearLayout
-                                            android:visibility="invisible"
                                             android:layout_width="1dp"
                                             android:layout_height="20dp"
                                             android:layout_gravity="center"
-                                            android:background="#C2C2C2" />
+                                            android:background="#C2C2C2"
+                                            android:visibility="invisible" />
 
                                         <TextView
-                                            android:visibility="invisible"
                                             android:id="@+id/step11_startTime"
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
@@ -2224,15 +2200,16 @@
                                             android:fontFamily="@font/nanum"
                                             android:gravity="center"
                                             android:textColor="#222222"
-                                            android:textSize="16dp" />
+                                            android:textSize="16dp"
+                                            android:visibility="invisible" />
 
                                     </LinearLayout>
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_marginTop="10dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="90dp"
+                                    android:layout_marginTop="10dp"
                                     android:orientation="vertical">
 
                                     <LinearLayout
@@ -2290,14 +2267,13 @@
                                             android:textSize="16dp" />
 
                                         <LinearLayout
-                                            android:visibility="invisible"
                                             android:layout_width="1dp"
                                             android:layout_height="20dp"
                                             android:layout_gravity="center"
-                                            android:background="#C2C2C2" />
+                                            android:background="#C2C2C2"
+                                            android:visibility="invisible" />
 
                                         <TextView
-                                            android:visibility="invisible"
                                             android:id="@+id/step11_endTime"
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
@@ -2305,13 +2281,13 @@
                                             android:fontFamily="@font/nanum"
                                             android:gravity="center"
                                             android:textColor="#222222"
-                                            android:textSize="16dp" />
+                                            android:textSize="16dp"
+                                            android:visibility="invisible" />
 
                                     </LinearLayout>
                                 </LinearLayout>
 
                             </LinearLayout>
-
 
 
                         </LinearLayout>
@@ -2321,25 +2297,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:background="#e4e8ef">
+
                             <TextView
                                 android:id="@+id/step12Next"
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/nanum_bold"
                                 android:gravity="center_vertical"
                                 android:paddingStart="15dp"
                                 android:text="12. 기록"
-                                android:layout_weight="1"
                                 android:textColor="#222222"
                                 android:textSize="15dp" />
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/next_bt"
                                 android:layout_marginRight="5dp"
                                 android:padding="10dp"
-                                />
+                                android:src="@drawable/next_bt" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -2350,11 +2326,11 @@
 
                             <EditText
                                 android:id="@+id/step12_desc"
-                                android:enabled="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_margin="20dp"
                                 android:background="@drawable/step1_day_board"
+                                android:enabled="false"
                                 android:fontFamily="@font/nanum"
                                 android:gravity="left"
                                 android:padding="3dp"
@@ -2382,13 +2358,13 @@
                 android:background="#dedede" />
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/bottom"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.8"
                 android:background="#FFF"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:visibility="gone" />
 
 
         </LinearLayout>

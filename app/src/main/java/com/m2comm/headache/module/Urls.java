@@ -8,6 +8,8 @@ public class Urls {
 
     public HashMap<String, String> getUrls = new HashMap<String, String>() {
         {
+            put("changePw","/member/change_pwd.php");
+            put("findPw","/member/find_pwd.php");
             put("setLogin", "/member/set_member.php");
             put("getLogin", "/member/get_member.php");
             put("getMonthDiary", "/diary/get_month_diary.php");
@@ -24,6 +26,7 @@ public class Urls {
             put("delMens","/diary/del_mens.php");
             put("getRecentDiary","/diary/get_recent_diary.php");
             put("del_etc","/diary/del_etc_code.php");
+            put("getMensChk","/diary/get_mens_chk.php");
         }
     };
 

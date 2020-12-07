@@ -18,6 +18,7 @@ import com.m2comm.headache.module.CalendarModule;
 import com.m2comm.headache.module.Custom_SharedPreferences;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class SubTimeCalendarAdapter extends BaseAdapter {
@@ -86,10 +87,21 @@ public class SubTimeCalendarAdapter extends BaseAdapter {
             Date date = Global.getStrToDate(currentlyDateStr+"-"+this.dayString.get(position));
             Date now_date = Global.getStrToDate(this.cmm.getStrRealDate());
 
+            //시작시간의 한달후 시간 구하기.
+            Calendar mon = Calendar.getInstance();
+            mon.setTime(startDate);
+            mon.add(Calendar.MONTH , 1);
+
+            Date aMonth_ago = mon.getTime();
+
+
             //현재날짜보다 후의 날짜는 색깔을 바꿔준고 아무런 이벤트 작업을 하지 않는다.
             if ( this.isEnd && date.getTime() < startDate.getTime() ) {
                 tv.setTextColor(Color.parseColor("#BDBDBD"));
-            } else if ( date.getTime() > now_date.getTime()  ) {
+            } else if ( date.getTime() > now_date.getTime()) {
+                tv.setTextColor(Color.parseColor("#BDBDBD"));
+            } else if (  this.isEnd && date.getTime() > aMonth_ago.getTime() ) {
+                //종료시간 입력시 시작시간의 +30일 만 선택하게.
                 tv.setTextColor(Color.parseColor("#BDBDBD"));
             } else {
                 //첫번째 클릭한 시간
@@ -98,17 +110,24 @@ public class SubTimeCalendarAdapter extends BaseAdapter {
                     assert date != null;
                     if (date.getTime() == this.startDate.getTime() && this.endDate != null) {
                         back2.setVisibility(View.VISIBLE);
+                        tv.setTextColor(Color.parseColor("#21afc1"));
                     } else if ( date.getTime() == this.startDate.getTime() ) {
                         back4.setVisibility(View.VISIBLE);
-                    } else if ( this.endDate != null && date.getTime() == this.endDate.getTime()) {
+                    } else if (this.endDate != null && date.getTime() == this.endDate.getTime()) {
                         back3.setVisibility(View.VISIBLE);
-                    } else if (this.endDate != null && ( startDate.getTime() < date.getTime() && date.getTime() < endDate.getTime() ) ) {
-                        Log.d("dayString",this.dayString.get(position));
+                    } else if (this.endDate != null && ( startDate.getTime() < date.getTime() &&
+                            date.getTime() < endDate.getTime() && date.getTime() < aMonth_ago.getTime() ) ) {
                         tv.setTextColor(Color.parseColor("#21afc1"));
                         back1.setVisibility(View.VISIBLE);
                     } else {
                         back4.setVisibility(View.GONE);
                     }
+
+                    /*else if (this.endDate != null && ( startDate.getTime() < date.getTime() && date.getTime() < endDate.getTime() ) ) {
+                        Log.d("dayString",this.dayString.get(position));
+                        tv.setTextColor(Color.parseColor("#21afc1"));
+                        back1.setVisibility(View.VISIBLE);
+                    } */
                 }
             }
 

@@ -45,7 +45,7 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
     ContentStepActivity parentActivity;
 
     //step6
-    TextView nextBt , backBt , yesBt , noBt , nextBt2 , backBt2;
+    TextView nextBt , backBt , yesBt , noBt;
 
     int nextStepNum = 8;
     int backStepNum = 6;
@@ -74,8 +74,6 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
         this.backBt.setOnClickListener(this);
         this.yesBt.setOnClickListener(this);
         this.noBt.setOnClickListener(this);
-        this.nextBt2.setOnClickListener(this);
-        this.backBt2.setOnClickListener(this);
 
     }
 
@@ -93,8 +91,8 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
         this.step7Line = this.view.findViewById(R.id.step7Line);
         this.step7GridV = this.view.findViewById(R.id.step7GridV);
         this.step5BottomV2 = this.view.findViewById(R.id.step5BottomV2);
-        this.nextBt2 = this.view.findViewById(R.id.nextBt2);
-        this.backBt2 = this.view.findViewById(R.id.backBt2);
+
+
 
         //this.list = new ArrayList<>();
 
@@ -120,7 +118,7 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
 //            this.step7SaveDTO.getStep7EtcDTOS().add(new Step7EtcDTO(R.drawable.step_type_etc,R.drawable.step_type_etc,"기타",false,true,false,0 , "N"));
 
         } else {
-            this.isHeadche(this.step7SaveDTO.getAche_with_yn());
+           // this.isHeadche(this.step7SaveDTO.getAche_with_yn());
             this.step7SaveDTO.getStep7EtcDTOS().get(0).setClick(this.step7SaveDTO.getAche_with1().equals("Y"));
             this.step7SaveDTO.getStep7EtcDTOS().get(1).setClick(this.step7SaveDTO.getAche_with2().equals("Y"));
             this.step7SaveDTO.getStep7EtcDTOS().get(2).setClick(this.step7SaveDTO.getAche_with3().equals("Y"));
@@ -132,7 +130,6 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
             this.step7SaveDTO.getStep7EtcDTOS().get(8).setClick(this.step7SaveDTO.getAche_with9().equals("Y"));
             this.step7SaveDTO.getStep7EtcDTOS().get(9).setClick(this.step7SaveDTO.getAche_with10().equals("Y"));
             this.step7SaveDTO.getStep7EtcDTOS().get(10).setClick(this.step7SaveDTO.getAche_with11().equals("Y"));
-            this.step7SaveDTO.getStep7EtcDTOS().get(11).setClick(this.step7SaveDTO.getAche_with12().equals("Y"));
         }
 
         this.adapter = new Step7GridviewAdapter( this.step7SaveDTO.getStep7EtcDTOS() , this.activity.getLayoutInflater());
@@ -166,6 +163,9 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id ) {
+
+        //if (this.step7SaveDTO.getAche_with_yn().equals("N") ) return;  아니오 눌렀을때 클릭안되게 하는 코드
+
         Step7EtcDTO row = this.step7SaveDTO.getStep7EtcDTOS().get(position);
         if ( row.getEtcBt() ) {
             getEtcActivity();
@@ -182,7 +182,7 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
                 else if (position == 8) this.step7SaveDTO.setAche_with9("N");
                 else if (position == 9) this.step7SaveDTO.setAche_with10("N");
                 else if (position == 10) this.step7SaveDTO.setAche_with11("N");
-                else if (position == 11) this.step7SaveDTO.setAche_with12("N");
+                //else if (position == 11) this.step7SaveDTO.setAche_with12("N");
                 row.setVal("N");
                 row.setClick(false);
             } else {
@@ -197,13 +197,35 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
                 else if (position == 8) this.step7SaveDTO.setAche_with9("Y");
                 else if (position == 9) this.step7SaveDTO.setAche_with10("Y");
                 else if (position == 10) this.step7SaveDTO.setAche_with11("Y");
-                else if (position == 11) this.step7SaveDTO.setAche_with12("Y");
+                //else if (position == 11) this.step7SaveDTO.setAche_with12("N");
                 row.setVal("Y");
                 row.setClick(true);
             }
             this.parentActivity.save7(this.step7SaveDTO);
             reloadListView();
         }
+    }
+
+    private boolean checkState() {
+
+        if (this.step7SaveDTO.getAche_with1().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with2().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with3().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with4().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with5().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with6().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with7().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with8().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with9().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with10().equals("Y"))return true;
+        else if (this.step7SaveDTO.getAche_with11().equals("Y"))return true;
+
+        for ( int i = 0 , j = this.step7SaveDTO.getStep7EtcDTOS().size(); i < j; i++ ) {
+            Step7EtcDTO row = this.step7SaveDTO.getStep7EtcDTOS().get(i);
+            if ( row.getVal().equals("Y") ) return true;
+        }
+
+        return false;
     }
 
     public void addListView (String etc) {
@@ -215,6 +237,11 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
 
     private void reloadListView() {
         viewReset();
+        if ( this.checkState() ) {
+            isHeadche("Y");
+        } else {
+            isHeadche("");
+        }
         this.adapter = new Step7GridviewAdapter( this.step7SaveDTO.getStep7EtcDTOS() , this.activity.getLayoutInflater() );
         this.gridView.setAdapter( this.adapter );
         this.adapter.notifyDataSetChanged();
@@ -235,7 +262,7 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
                     public void run() {
                         Log.d("gridViewHeight=",((int)Math.ceil((double)step7SaveDTO.getStep7EtcDTOS().size() / 4) )+"_");
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        layoutParams.height = (int) (titleHeight + (500 * Math.ceil((double)step7SaveDTO.getStep7EtcDTOS().size() / 4)));
+                        layoutParams.height = (int) (titleHeight + (450 * Math.ceil((double)step7SaveDTO.getStep7EtcDTOS().size() / 4)));
                         step7LinearView.setLayoutParams(layoutParams);
                     }
                 });
@@ -243,10 +270,31 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
         });
     }
 
+    private void step7Reset() {
+
+        this.step7SaveDTO.setAche_with1("N");
+        this.step7SaveDTO.setAche_with2("N");
+        this.step7SaveDTO.setAche_with3("N");
+        this.step7SaveDTO.setAche_with4("N");
+        this.step7SaveDTO.setAche_with5("N");
+        this.step7SaveDTO.setAche_with6("N");
+        this.step7SaveDTO.setAche_with7("N");
+        this.step7SaveDTO.setAche_with8("N");
+        this.step7SaveDTO.setAche_with9("N");
+        this.step7SaveDTO.setAche_with10("N");
+        this.step7SaveDTO.setAche_with11("N");
+
+        for ( int i = 0 , j = this.step7SaveDTO.getStep7EtcDTOS().size(); i < j; i++ ) {
+            Step7EtcDTO row = this.step7SaveDTO.getStep7EtcDTOS().get(i);
+            row.setClick(false);
+            row.setVal("N");
+        }
+    }
+
     private void isHeadche(String isHeadache) {
         this.isHeadache = isHeadache;
         if ( isHeadache.equals("Y") ) {
-            this.step7SaveDTO.setAche_with_yn("Y");
+         //   this.step7SaveDTO.setAche_with_yn("Y");
             this.yesBt.setBackgroundResource(R.drawable.step5_select_board);
             this.yesBt.setTextColor(Color.parseColor("#1EA2B6"));
             this.noBt.setTextColor(Color.parseColor("#C2C2C2"));
@@ -254,10 +302,10 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
 
 //            this.step7Line.setVisibility(View.VISIBLE);
 //            this.step7GridV.setVisibility(View.VISIBLE);
-            this.step5BottomV2.setVisibility(View.GONE);
+            //this.step5BottomV2.setVisibility(View.GONE);
 //            this.step7BottomV.setVisibility(View.VISIBLE);
         } else if ( isHeadache.equals("N") ){
-            this.step7SaveDTO.setAche_with_yn("N");
+        //    this.step7SaveDTO.setAche_with_yn("N");
             this.yesBt.setBackgroundColor(Color.TRANSPARENT);
             this.yesBt.setTextColor(Color.parseColor("#C2C2C2"));
             this.noBt.setBackgroundResource(R.drawable.step5_no_select_board);
@@ -279,12 +327,11 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.nextBt2:
+
             case R.id.nextBt:
                 this.parentActivity.positionView(this.nextStepNum);
                 break;
 
-            case R.id.backBt2:
             case R.id.backBt:
                 this.parentActivity.positionView(this.backStepNum);
                 break;
@@ -294,6 +341,8 @@ public class Step7 implements View.OnClickListener , AdapterView.OnItemClickList
                 break;
             case R.id.noBt:
                 this.isHeadche("N");
+                step7Reset();
+                this.parentActivity.positionView(this.nextStepNum);
                 break;
 
         }

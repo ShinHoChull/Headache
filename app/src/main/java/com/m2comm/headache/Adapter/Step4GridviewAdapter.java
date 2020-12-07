@@ -52,6 +52,10 @@ public class Step4GridviewAdapter extends BaseAdapter {
 
             type.setImageResource(row.getDefault_icon());
 
+            if(position == 0 || position == 2 || position == 3) {
+                type.setPadding(15,15,15,15);
+            }
+
             if( row.getClick() ) {
                 type.setImageResource(row.getClick_icon());
                 type_check.setVisibility(View.VISIBLE);
@@ -60,12 +64,12 @@ public class Step4GridviewAdapter extends BaseAdapter {
             }
             type_Txt.setText(row.getContent());
 
-            ViewGroup.LayoutParams param = convertView.getLayoutParams();
+/*            ViewGroup.LayoutParams param = convertView.getLayoutParams();
             if(param == null) {
                 param = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             }
             param.height = 430;
-            convertView.setLayoutParams(param);
+            convertView.setLayoutParams(param);*/
 
         }
 

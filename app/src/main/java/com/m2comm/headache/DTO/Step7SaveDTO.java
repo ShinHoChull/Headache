@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Step7SaveDTO {
 
-    private String ache_with_yn;
     private String ache_with1;
     private String ache_with2;
     private String ache_with3;
@@ -16,14 +15,11 @@ public class Step7SaveDTO {
     private String ache_with9;
     private String ache_with10;
     private String ache_with11;
-    private String ache_with12;
     private ArrayList<Step7EtcDTO> step7EtcDTOS;
 
-    public Step7SaveDTO(String ache_with_yn, String ache_with1, String ache_with2, String ache_with3, String ache_with4,
+    public Step7SaveDTO(String ache_with1, String ache_with2, String ache_with3, String ache_with4,
                         String ache_with5, String ache_with6, String ache_with7, String ache_with8,
-                        String ache_with9, String ache_with10, String ache_with11, String ache_with12,
-                        ArrayList<Step7EtcDTO> step7EtcDTOS) {
-        this.ache_with_yn = ache_with_yn;
+                        String ache_with9, String ache_with10, String ache_with11, ArrayList<Step7EtcDTO> step7EtcDTOS) {
         this.ache_with1 = ache_with1;
         this.ache_with2 = ache_with2;
         this.ache_with3 = ache_with3;
@@ -35,13 +31,9 @@ public class Step7SaveDTO {
         this.ache_with9 = ache_with9;
         this.ache_with10 = ache_with10;
         this.ache_with11 = ache_with11;
-        this.ache_with12 = ache_with12;
         this.step7EtcDTOS = step7EtcDTOS;
     }
 
-    public void setAche_with_yn(String ache_with_yn) {
-        this.ache_with_yn = ache_with_yn;
-    }
 
     public void setAche_with1(String ache_with1) {
         this.ache_with1 = ache_with1;
@@ -87,17 +79,11 @@ public class Step7SaveDTO {
         this.ache_with11 = ache_with11;
     }
 
-    public void setAche_with12(String ache_with12) {
-        this.ache_with12 = ache_with12;
-    }
 
     public void setStep7EtcDTOS(ArrayList<Step7EtcDTO> step7EtcDTOS) {
         this.step7EtcDTOS = step7EtcDTOS;
     }
 
-    public String getAche_with_yn() {
-        return ache_with_yn;
-    }
 
     public String getAche_with1() {
         return ache_with1;
@@ -141,10 +127,6 @@ public class Step7SaveDTO {
 
     public String getAche_with11() {
         return ache_with11;
-    }
-
-    public String getAche_with12() {
-        return ache_with12;
     }
 
     public ArrayList<Step7EtcDTO> getStep7EtcDTOS() {

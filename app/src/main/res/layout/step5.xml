@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -11,7 +11,8 @@
         >
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -20,18 +21,18 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="180dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="15dp"
                         android:orientation="horizontal" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="3"
+                        android:layout_weight="1.5"
                         android:orientation="vertical"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp">
@@ -42,12 +43,23 @@
                             android:layout_weight="3"
                             android:orientation="horizontal"
                             >
-                            <ImageView
+                            <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/step5_title"
-                                android:scaleType="fitStart"
-                                android:layout_weight="8"/>
+                                android:layout_weight="8"
+                                android:orientation="vertical"
+                                >
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/step5_title"
+                                    android:scaleType="fitStart"
+                                    android:layout_weight="8"/>
+
+
+                            </LinearLayout>
+
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -59,7 +71,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="5"
+                        android:layout_weight="4"
                         android:orientation="vertical"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp">
@@ -105,15 +117,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
+                            android:layout_height="10dp"
                             />
 
                         <LinearLayout
                             android:id="@+id/timeSettingV1"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
+                            android:layout_height="40dp"
                             android:orientation="horizontal">
                             <TextView
                                 android:layout_width="0dp"
@@ -127,15 +137,14 @@
 
                             <EditText
                                 android:gravity="center_vertical|right"
-                                android:layout_margin="5dp"
                                 android:id="@+id/hourInput"
                                 android:inputType="number"
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="2"
                                 android:textColor="#000000"
                                 android:backgroundTint="#000000"
-                                android:textSize="20dp"/>
+                                android:textSize="15dp"/>
 
                             <TextView
                                 android:layout_width="0dp"
@@ -148,21 +157,20 @@
                                 android:textColor="#000000"/>
                             <EditText
                                 android:gravity="center_vertical|right"
-                                android:layout_margin="5dp"
                                 android:id="@+id/minuteInput"
                                 android:inputType="number"
                                 android:layout_width="0dp"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="2"
                                 android:textColor="#000000"
                                 android:backgroundTint="#000000"
-                                android:textSize="20dp"/>
+                                android:textSize="15dp"/>
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
-                                android:text="분 "
+                                android:text="분 전"
                                 android:gravity="center_vertical"
                                 android:textSize="16dp"
                                 android:fontFamily="@font/nanum"
@@ -272,13 +280,8 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"/>
                         <GridView
                             android:id="@+id/step5_gridV"
-                            android:layout_marginTop="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="20dp"
@@ -297,7 +300,8 @@
 
 
                     <LinearLayout
-                        android:id="@+id/step5BottomV"
+                        android:visibility="gone"
+                        android:id="@+id/step5BottomV2"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_gravity="bottom"
@@ -318,7 +322,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"/>
                             <TextView
-                                android:id="@+id/backBt"
+                                android:id="@+id/backBt3"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/back_radius"
@@ -336,7 +340,7 @@
                                 android:layout_weight="0.5"/>
 
                             <TextView
-                                android:id="@+id/nextBt"
+                                android:id="@+id/nextBt3"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/next_radius"
@@ -367,8 +371,7 @@
         </ScrollView>
 
         <LinearLayout
-            android:visibility="gone"
-            android:id="@+id/step5BottomV2"
+            android:id="@+id/step5BottomV"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="bottom"
@@ -389,7 +392,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"/>
                 <TextView
-                    android:id="@+id/backBt2"
+                    android:id="@+id/backBt"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/back_radius"
@@ -407,7 +410,7 @@
                     android:layout_weight="0.5"/>
 
                 <TextView
-                    android:id="@+id/nextBt2"
+                    android:id="@+id/nextBt"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/next_radius"
@@ -433,6 +436,6 @@
 
         </LinearLayout>
 
-    </FrameLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -84,6 +84,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/choiceViewParent"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="0.9"
@@ -330,33 +331,7 @@
                                         android:textColor="#222222"
                                         android:textSize="18dp" />
 
-                                    <LinearLayout
-                                        android:id="@+id/radio1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal">
 
-                                        <ImageView
-                                            android:id="@+id/radio1_img"
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:src="@drawable/step9_radio_not_check"
-                                            android:layout_weight="0.6"
-                                            android:padding="1dp"
-                                            />
-                                        <TextView
-                                            android:layout_width="0dp"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="5"
-                                            android:fontFamily="@font/nanum_bold"
-                                            android:gravity="center_vertical"
-                                            android:text=" 효과 없음"
-                                            android:textColor="#666666"
-                                            android:textSize="15dp"
-                                            android:layout_marginLeft="5dp"
-                                            />
-                                    </LinearLayout>
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -383,7 +358,7 @@
                                                 android:layout_weight="5"
                                                 android:fontFamily="@font/nanum_bold"
                                                 android:gravity="center_vertical"
-                                                android:text=" 30분내 이내"
+                                                android:text=" 1시간 이내"
                                                 android:textColor="#666666"
                                                 android:textSize="15dp"
                                                 android:layout_marginLeft="5dp"
@@ -411,7 +386,7 @@
                                                 android:layout_weight="5"
                                                 android:fontFamily="@font/nanum_bold"
                                                 android:gravity="center_vertical"
-                                                android:text=" 1시간 이내"
+                                                android:text=" 2시간 이내"
                                                 android:textColor="#666666"
                                                 android:textSize="15dp"
                                                 android:layout_marginLeft="5dp"
@@ -445,7 +420,7 @@
                                                 android:layout_weight="5"
                                                 android:fontFamily="@font/nanum_bold"
                                                 android:gravity="center_vertical"
-                                                android:text=" 2시간 이내"
+                                                android:text=" 4시간 이내"
                                                 android:textColor="#666666"
                                                 android:textSize="15dp"
                                                 android:layout_marginLeft="5dp"
@@ -453,14 +428,14 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/radio5"
+                                            android:id="@+id/radio1"
                                             android:layout_width="0dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="5"
                                             android:orientation="horizontal">
 
                                             <ImageView
-                                                android:id="@+id/radio5_img"
+                                                android:id="@+id/radio1_img"
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
                                                 android:src="@drawable/step9_radio_not_check"
@@ -471,14 +446,13 @@
                                             <TextView
                                                 android:layout_width="0dp"
                                                 android:layout_height="match_parent"
+                                                android:layout_marginLeft="5dp"
                                                 android:layout_weight="5"
                                                 android:fontFamily="@font/nanum_bold"
                                                 android:gravity="center_vertical"
-                                                android:text=" 2시간 이상"
+                                                android:text=" 효과 없음"
                                                 android:textColor="#666666"
-                                                android:textSize="15dp"
-                                                android:layout_marginLeft="5dp"
-                                                />
+                                                android:textSize="15dp" />
                                         </LinearLayout>
                                     </LinearLayout>
                                     <LinearLayout

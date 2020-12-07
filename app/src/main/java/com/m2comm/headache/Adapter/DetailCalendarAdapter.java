@@ -3,6 +3,7 @@ package com.m2comm.headache.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,8 +94,11 @@ public class DetailCalendarAdapter extends BaseAdapter {
                         @Override
                         public void onClick(View v) {
                             if ( row.getDiary_sid() > 0 ) {
+                                String strFormatedDate = Global.formatChangeToStrDate(row.getDate());
                                 Intent intent = new Intent(c , DetaiViewActivity.class);
+                                intent.putExtra("calendar_desc",row.getMedicine_txt()+"~"+row.getMedicine_effect_txt());
                                 intent.putExtra("diary_sid",row.getDiary_sid());
+                                intent.putExtra("date", strFormatedDate);
                                 c.startActivity(intent);
                             }
                         }

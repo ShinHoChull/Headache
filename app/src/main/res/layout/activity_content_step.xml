@@ -44,7 +44,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1.5"
-                        android:padding="20dp"
+                        android:padding="16dp"
                         android:src="@drawable/step_back" />
 
                     <LinearLayout
@@ -52,13 +52,25 @@
                         android:layout_height="match_parent"
                         android:layout_weight="7" />
 
-                    <ImageView
+
+                    <TextView
                         android:id="@+id/closeBt"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1.5"
-                        android:padding="20dp"
-                        android:src="@drawable/step_close" />
+                        android:text="저장"
+                        android:textSize="15dp"
+                        android:textColor="#000000"
+                        android:gravity="center"
+                        android:fontFamily="@font/nanum"
+                        />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/closeBt"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1.5"-->
+<!--                        android:padding="20dp"-->
+<!--                        android:src="@drawable/step_close" />-->
 
                 </LinearLayout>
             </FrameLayout>

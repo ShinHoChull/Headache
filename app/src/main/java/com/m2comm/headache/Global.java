@@ -5,8 +5,14 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
+import android.util.Log;
+
+import com.m2comm.headache.DTO.Step9MainDTO;
+import com.m2comm.headache.DTO.Step9MainEtcDTO;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -109,7 +115,7 @@ public class Global {
     public static String inputDateTimeToStr(long time) {
         try {
             Date date = new Date(time);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년MM월dd일-a HH시mm분", Locale.KOREA);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년MM월dd일-a h시mm분", Locale.KOREA);
 
             return dateFormat.format(date);
         } catch (Exception e) {
@@ -128,6 +134,40 @@ public class Global {
         }
     }
 
+    public static String formatChangeDate(long time) {
+        try {
+            Date date = new Date(time);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd(EE)");
+
+            return dateFormat.format(date);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    public static ArrayList<String> getFormatDates (Long sDateLong , Long eDateLong) {
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd(EE)");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date sDate = new Date(sDateLong);
+        Date eDate = new Date(eDateLong);
+        Date currentDate = sDate;
+        ArrayList<String> dates = new ArrayList<>();
+
+        if ( eDateLong == 0L ) {
+            dates.add(sdf.format(sDate));
+        }
+        while ( currentDate.compareTo(eDate) <= 0 ) {
+            dates.add(sdf.format(currentDate));
+
+            Calendar c = Calendar.getInstance();
+            c.setTime(currentDate);
+            c.add(Calendar.DAY_OF_MONTH, 1);
+            currentDate = c.getTime();
+        }
+
+        return dates;
+    }
 
 
     public static String getTimeToDateAndWeek(long time) {
@@ -193,6 +233,19 @@ public class Global {
         }
         return color;
     }
+
+    public static String formatChangeToStrDate(String date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+        try {
+            Date tmpDate = getStrToDate(date);
+
+            return getTimeToDateAndWeek(tmpDate.getTime());
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+
 
 
 

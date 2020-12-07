@@ -137,7 +137,7 @@ public class NaverMapSelectActivity extends AppCompatActivity implements OnMapRe
             public void onMapClick(@NonNull PointF pointF, @NonNull LatLng latLng) {
 
                 setMarker(latLng.latitude , latLng.longitude);
-                Toast.makeText(getApplicationContext(), "lat="+latLng.latitude +"/ lon="+latLng.longitude, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "lat="+latLng.latitude +"/ lon="+latLng.longitude, Toast.LENGTH_SHORT).show();
             }
         });
 
