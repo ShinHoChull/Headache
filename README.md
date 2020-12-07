@@ -6,7 +6,7 @@
 http://ezv.kr/headache/demo.php
 
 Android 버튼 클릭 후 APK 다운 후 사용. 
-<br/>**배포 대기중. 
+<br/>배포 대기중. 
 
 
 Screenshots
