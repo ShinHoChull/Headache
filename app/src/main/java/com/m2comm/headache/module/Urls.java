@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Urls {
 
-    public String mainUrl = "https://ezv.kr:4447/headache";
+    public String mainUrl = "";
 
     public HashMap<String, String> getUrls = new HashMap<String, String>() {
         {
