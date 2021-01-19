@@ -3,7 +3,7 @@
 
 # 설치방법
 
-http://ezv.kr/headache/demo.php
+https://play.google.com/store/apps/details?id=com.m2comm.headache
 
 Android 버튼 클릭 후 APK 다운 후 사용. 
 <br/>배포 대기중. 
